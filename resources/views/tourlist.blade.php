@@ -1,0 +1,68 @@
+@extends('layouts.app')
+@section('content')
+     <div class="container">
+            <h1 class="page-title">Search for Activities</h1>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <aside class="sidebar-left">
+                        <form method="get" action="{{route('toursearch')}}">
+                            <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
+                                <label>Where</label>
+                                <input class="typeahead form-control" placeholder="City or U.S. Zip Code" type="text" name="destination">
+                            </div>
+                            <div class="input-daterange" data-date-format="MM d, D">
+                                <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                    <label>Check in</label>
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from"  type="text">
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                    <label>Check Out</label>
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till"  type="text">
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-male input-icon input-icon-hightlight"></i>
+                                    <label>People</label>
+                                    <input class="form-control" name="people" type="text">
+                                </div>
+                            </div>
+                            <input class="btn btn-primary mt10" type="submit" value="Search for Activities">
+                        </form>
+                    </aside>
+                </div>
+                <div class="col-md-9">
+                    <h3 class="mb20">Activities in Popular Destinations</h3>
+                    
+                    <div class="gap"></div>
+                   @foreach($tours->chunk(3) as $t)
+                    <div class="row row-wrap">
+                        @forelse($t as $tour)
+                        <div class="col-md-4">
+                            <div class="thumb">
+                                <header class="thumb-header">
+                                    <a class="hover-img" href="{{route('tour.show',$tour->id)}}">
+                                        <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}" alt="{{$tour->name}}" title="{{$tour->name}}">
+                                        <h5 class="hover-title-center">Book Now</h5>
+                                    </a>
+                                </header>
+                                <div class="thumb-caption">
+                                    
+                                    <h5 class="thumb-title"><a class="text-darken" href="#">{{$tour->name}}</a></h5>
+                                    <p class="mb0"><small><i class="fa fa-map-marker"></i>{{$tour->location}}</small>
+                                    </p>
+                                    <p class="mb0 text-darken"><span class="text-lg lh1em text-color">${{$tour->price}}</span><small> /person</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                        No Tours available
+                        @endforelse
+                    </div>
+                    @endforeach
+                    <div class="gap gap-small"></div>
+                </div>
+            </div>
+        </div>
+@endsection
