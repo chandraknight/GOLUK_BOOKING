@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
    <div class="container">
-            <h1 class="page-title">Search for Hotels</h1>
+            <h1 class="page-title">Popular Hotels</h1>
         </div>
         <div class="container">
             <div class="row">
@@ -68,22 +68,25 @@
                     </aside>
                 </div>
                 <div class="col-md-9">
-                    <h3 class="mb20">Hotels in Popular Destinations</h3>
                     @foreach($hotels->chunk(3) as $h)
                     <div class="row row-wrap">
                         @foreach($h as $hotel)
                         <div class="col-md-4">
                             <div class="thumb">
-                                <a class="hover-img" href="{{route('hotel.show',$hotel->id)}}">
-                                    <img src="{{url('/')}}/storage/hotel_logo/{{$hotel['logo']}}" alt="Image Alternative text" title="{{$hotel->name}}">
-                                    <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
-                                        <div class="text-small">
-                                            <h5>{{$hotel->name}}</h5>
-                                            <p>{{$hotel->contact}}</p>
-                                            <p class="mb0">{{$hotel->email}}</p>
-                                        </div>
-                                    </div>
-                                </a>
+                                <header class="thumb-header">
+                                    <a class="hover-img" href="{{route('hotel.show',$hotel->id)}}">
+                                        <img src="{{url('/')}}/storage/hotel_logo/{{$hotel['logo']}}" alt="{{$hotel->name}}" title="{{$hotel->name}}">
+                                        <h5 class="hover-title-center">Book Now</h5>
+                                    </a>
+                                </header>
+                                <div class="thumb-caption">
+                                   
+                                    <h5 class="thumb-title"><a class="text-darken" href="#">{{$hotel->name}}</a></h5>
+                                    <p class="mb0"><small>{{$hotel->address}}</small>
+                                    </p>
+                                    <p class="mb0 text-darken"><span class="text-lg lh1em">Rs {{collect($hotel->rooms)->min('room_flat_cost')}}</span><small> avg/night</small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         @endforeach

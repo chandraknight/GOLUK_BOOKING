@@ -25,7 +25,7 @@
                             </ul>
                         </div>
                         <div class="col-md-3">
-                            <p class="booking-item-header-price"><small>price</small>  <span class="text-lg">${{$tour->price}}</span><small>/person</small>
+                            <p class="booking-item-header-price"><small>price</small>  <span class="text-lg">Rs {{$tour->price}}</span><small>/person</small>
                             </p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                     {!!$tour->description!!}
                                 </div>
                                 <div class="tab-pane fade" id="tab-3">
-                                    {{$tour->itenary}}
+                                    {!!$tour->itenary!!}
                                 </div>    
                                                                 
                             </div>
@@ -70,7 +70,7 @@
                             <ul class="list dis-table">
                                 <li>For Groups</li>
                                 <li>Size: {{$tour->group_size}}</li>
-                                <li>Group Rate: <p class="booking-item-header-price"><small>price</small>  <span class="text-md">${{$tour->group_price}}</span><small>/person</small>
+                                <li>Group Rate: <p class="booking-item-header-price"><small>price</small>  <span class="text-md">Rs {{$tour->group_price}}</span><small>/person</small>
                             </p> </li>
                             </ul>
                         </div>

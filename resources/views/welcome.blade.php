@@ -324,7 +324,7 @@
                                         <li rel="tooltip" data-placement="top" title="Diesel Vehicle"><i class="im im-diesel"></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
                                         </li>
                                     </ul>
-                                    <p class="text-darken mb0 text-color">${{$vehicle->rate_per_day}}<small> /day</small>
+                                    <p class="text-darken mb0 text-color">Rs {{$vehicle->rate_per_day}}<small> /day</small>
                                     </p>
                                 </div>
                             </div>
@@ -341,9 +341,6 @@
                 <div class="container">
                     <div class="gap gap-big text-center text-white">
                         <h2 class="text-uc mb20">Top Tour Packages</h2>
-                        
-                       
-                       
                     </div>
                 </div>
             </div>

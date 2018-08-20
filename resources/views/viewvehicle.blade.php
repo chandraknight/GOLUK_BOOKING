@@ -24,7 +24,7 @@
                             </ul>
                         </div>
                         <div class="col-md-3">
-                            <p class="booking-item-header-price"><small>price</small>  <span class="text-lg">{{$vehicle->rate_per_day}}</span>/day</p>
+                            <p class="booking-item-header-price"><small>price</small>  <span class="text-lg">Rs {{$vehicle->rate_per_day}}</span>/day</p>
                         </div>
                     </div>
                 </header>
@@ -42,7 +42,7 @@
                                             @forelse($vehicle->vehicleServiceCost as $servicecost)
                                             <div class="checkbox">
                                                 <label>
-                                                    <input class="i-check" type="checkbox" checked disabled>{{$servicecost->vehicleService->service_name}}<span class="pull-right">${{$servicecost->cost_per_day}}</span>
+                                                    <input class="i-check" type="checkbox" checked disabled>{{$servicecost->vehicleService->service_name}}<span class="pull-right">Rs {{$servicecost->cost_per_day}}</span>
                                                 </label>
                                             </div>
                                             @empty
@@ -51,7 +51,7 @@
                                         <div class="col-md-5">
                                             <ul class="list">
                                                 <li>
-                                                    <p>Price Per Day <span>${{$vehicle->rate_per_day}}</span>
+                                                    <p>Price Per Day <span>Rs {{$vehicle->rate_per_day}}</span>
                                                     </p>
                                                 </li>
                                               

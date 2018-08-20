@@ -28,9 +28,9 @@ class FrontEndController extends Controller
     public function welcome()
     {
         
-        $hotels = Hotel::inRandomOrder()->limit(4)->get();
-        $vehicles = Vehicle::inRandomOrder()->limit(4)->get();
-        $tours = TourPackage::inRandomOrder()->limit(4)->get();
+        $hotels = Hotel::inRandomOrder()->where('flag',true)->limit(4)->get();
+        $vehicles = Vehicle::inRandomOrder()->where('flag',true)->limit(4)->get();
+        $tours = TourPackage::inRandomOrder()->where('flag',true)->limit(4)->get();
         return view('welcome',['hotels'=>$hotels,'vehicles'=>$vehicles,'tours'=>$tours]);
     }
 
