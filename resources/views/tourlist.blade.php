@@ -51,7 +51,7 @@
                                     <h5 class="thumb-title"><a class="text-darken" href="#">{{$tour->name}}</a></h5>
                                     <p class="mb0"><small><i class="fa fa-map-marker"></i>{{$tour->location}}</small>
                                     </p>
-                                    <p class="mb0 text-darken"><span class="text-lg lh1em text-color">${{$tour->price}}</span><small> /person</small>
+                                    <p class="mb0 text-darken"><span class="text-lg lh1em text-color">Rs {{$tour->price}}</span><small> /person</small>
                                     </p>
                                 </div>
                             </div>
@@ -65,4 +65,5 @@
                 </div>
             </div>
         </div>
+        
 @endsection

@@ -87,6 +87,9 @@
                       Hotel Name
                     </th>
                     <th>
+                        Hotel Code
+                    </th>
+                    <th>
                       Hotel Commission
                     </th>
                     <th>
@@ -108,6 +111,9 @@
                         </td>
                         <td>
                             {{$commission->hotel->name}}
+                        </td>
+                        <td>
+                            {{$commission->hotel->hotel_code}}
                         </td>
                         <td>
                             {{$commission->hotel->hotelCommission->commission_percent}}
@@ -138,6 +144,9 @@
                       Vehicle Name
                     </th>
                     <th>
+                        Vehicle Code
+                    </th>
+                    <th>
                       Vehicle Commission
                     </th>
                     <th>
@@ -159,6 +168,9 @@
                         </td>
                         <td>
                             {{$commission->vehicle->name}}
+                        </td>
+                        <td>
+                            {{$commission->vehicle->vehicle_code}}
                         </td>
                         <td>
                             {{$commission->vehicle->vehicleCommission->commission_percent}}
@@ -189,6 +201,9 @@
                       Tour Name
                     </th>
                     <th>
+                        Tour Code
+                    </th>
+                    <th>
                       Tour Commission
                     </th>
                     <th>
@@ -210,6 +225,9 @@
                         </td>
                         <td>
                             {{$commission->tourPackage->name}}
+                        </td>
+                        <td>
+                            {{$commission->tourPackage->tour_package_code}}
                         </td>
                         <td>
                             {{$commission->tourPackage->tourPackageCommission->commission_percent}}

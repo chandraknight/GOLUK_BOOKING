@@ -36,6 +36,7 @@ class TourSearchRequest extends FormRequest
             'destination.required'=>'Please enter a valid destination',
             'from.required'=>'Enter valid starting date.',
             'from.date'=>'Please Enter a valid starting date',
+            'from.after'=>'Please provide valid starting date',
             'people.required'=>'Please Specify number of people',
             'people.integer'=>'Enter valid number of people'
         ];

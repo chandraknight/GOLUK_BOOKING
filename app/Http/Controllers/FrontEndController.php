@@ -116,7 +116,6 @@ class FrontEndController extends Controller
         foreach($roomdetails as $r){
             $no_rooms = $no_rooms+$r['no_rooms'];
         }
-        dd($no_rooms);
         $hotel = Hotel::findorfail($request->hotel_id);
         $rooms = Room::where('hotel_id',$hotel->id)->get();
         if ($request->session()->exists('search_id')) {

@@ -19,7 +19,6 @@ use App\AgentVehicleBookingCommission;
 use App\AgentTourPackageBookingCommission;
 use App\Events\PaymentConfirmMailEvent;
 use App\Hotel;
-
 use App\Invoice;
 use App\Notifications\RoomBooked;
 use App\Notifications\TourBookedNotification;

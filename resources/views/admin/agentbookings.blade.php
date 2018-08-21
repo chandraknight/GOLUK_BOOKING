@@ -89,10 +89,10 @@
                           {{\Carbon\Carbon::parse($booking->till_date)->toFormattedDateString()}}
                         </td>
                         <td>
-                          {{$booking->invoice->amount}}
+                          {{$booking->invoice['amount']}}
                         </td>
                         <td>
-                          {{$booking->bookingCommission->commission}}
+                          {{$booking->bookingCommission['commission']}}
                         </td>
                         <td>
                         	{{$booking->agentCommission['commission']}}
@@ -157,13 +157,13 @@
                           {{\Carbon\Carbon::parse($booking->to)->toFormattedDateString()}}
                         </td>
                         <td>
-                          {{$booking->invoice->cost}}
+                          {{$booking->invoice['cost']}}
                         </td>
                         <td>
-                          {{$booking->bookingCommission->commission}}
+                          {{$booking->bookingCommission['commission']}}
                         </td>
                         <td>
-                          {{$booking->agentVehicleBookingCommission->commission}}
+                          {{$booking->agentVehicleBookingCommission['commission']}}
                         </td>
                         
                       </tr>
@@ -225,13 +225,13 @@
                           {{\Carbon\Carbon::parse($booking->till_date)->toFormattedDateString()}}
                         </td>
                         <td>
-                          {{$booking->invoices->amount}}
+                          {{$booking->invoices['amount']}}
                         </td>
                         <td>
-                          {{$booking->tourBookingCommission->commission}}
+                          {{$booking->tourBookingCommission['commission']}}
                         </td>
                         <td>
-                          {{$booking->agentTourBookingCommission->commission}}
+                          {{$booking->agentTourBookingCommission['commission']}}
                         </td>
                         
                       </tr>

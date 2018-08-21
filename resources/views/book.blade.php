@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Date of Birth</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="dob[]" type="date">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="dob[]" type="text">
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
@@ -137,42 +137,42 @@
                                        @foreach($rooms as $room)
                                        @if($room->id == $r['room'])
                                         <p class="booking-item-payment-price-title">{{$days}} Nights</p>
-                                        @if($r['plan']==null)
+                                        @if($r['plan']=="none")
                                        @php
 
                                         $total = $total + ($room->room_flat_cost*$days*$r['no_rooms']);
                                         
                                         @endphp
                                         <input type="hidden" name="rate[]" value="{{$room->room_flat_cost}}">
-                                        <p class="booking-item-payment-price-amount">{{$room->room_flat_cost}}<small>/per day</small>
+                                        <p class="booking-item-payment-price-amount">Rs {{$room->room_flat_cost}}<small>/per day</small>
                                         </p>
                                         @elseif($r['plan']=='ap')
                                          @php
                                         $total = $total + ($room->cost_ap_plan*$days*$r['no_rooms']);
                                         @endphp
                                         <input type="hidden" name="rate[]" value="{{$room->cost_ap_plan}}">
-                                        <p class="booking-item-payment-price-amount">{{$room->cost_ap_plan}}<small>/per day</small>
+                                        <p class="booking-item-payment-price-amount">Rs {{$room->cost_ap_plan}}<small>/per day</small>
                                         </p>
                                          @elseif($r['plan']=='ep')
                                          @php
                                         $total = $total + ($room->cost_ep_plan*$days*$r['no_rooms']);
                                         @endphp
                                         <input type="hidden" name="rate[]" value="{{$room->cost_ep_plan}}">
-                                        <p class="booking-item-payment-price-amount">{{$room->cost_ep_plan}}<small>/per day</small>
+                                        <p class="booking-item-payment-price-amount">Rs {{$room->cost_ep_plan}}<small>/per day</small>
                                         </p>
                                          @elseif($r['plan']=='cp')
                                           @php
                                         $total = $total + ($room->cost_cp_plan*$days*$r['no_rooms']);
                                         @endphp
                                         <input type="hidden" name="rate[]" value="{{$room->cost_cp_plan}}">
-                                        <p class="booking-item-payment-price-amount">{{$room->cost_cp_plan}}<small>/per day</small>
+                                        <p class="booking-item-payment-price-amount">Rs {{$room->cost_cp_plan}}<small>/per day</small>
                                         </p>
                                          @else
                                           @php
                                         $total = $total + ($room->cost_map_plan*$days*$r['no_rooms']);
                                         @endphp
                                         <input type="hidden" name="rate[]" value="{{$room->cost_map_plan}}">
-                                        <p class="booking-item-payment-price-amount">{{$room->cost_map_plan}}<small>/per day</small>
+                                        <p class="booking-item-payment-price-amount">Rs {{$room->cost_map_plan}}<small>/per day</small>
                                         </p>
                                         @endif
                                         @endif

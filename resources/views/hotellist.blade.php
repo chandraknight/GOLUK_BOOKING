@@ -15,11 +15,11 @@
                             <div class="input-daterange" data-date-format="MM d, D">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                     <label>Check in</label>
-                                    <input class="form-control date-pick" name="from_date" type="text">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" type="text">
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                     <label>Check out</label>
-                                    <input class="form-control date-pick" name="till_date" type="text">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date" type="text">
                                 </div>
                             </div>
                             <div class="form-group form-group- form-group-select-plus">
@@ -97,4 +97,5 @@
                 </div>
             </div>
         </div>
+        <div class="gap"></div>
 @endsection

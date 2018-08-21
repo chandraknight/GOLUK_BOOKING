@@ -379,7 +379,7 @@ Route::get('/notification/{id}',function($id){
     })
 ->name('notify.read');
 
-Route::group(['prefix'=>'superadmin','middleware'=>['auth','role:,superadmin','admin']],function(){
+Route::group(['prefix'=>'superadmin','middleware'=>['auth','role:,superadmin,admin']],function(){
 
     /**
      * roles group

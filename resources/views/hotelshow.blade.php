@@ -5,7 +5,7 @@
             <ul class="breadcrumb">
                 <li><a href="{{route('welcome')}}">Home</a>
                 </li>
-                <li></li>
+                <li><a href="{{route('hotel.list')}}">Hotel</a></li>
                 <li class="active">{{$hotel->name}}</li>
             </ul>
             <div class="booking-item-details">
@@ -163,7 +163,7 @@
                                 <label>Select Plan</label>
                                  <div class="radio-inline checked radio-stroke">
                                 <label>
-                                    <input class="i-radio" checked=""  type="radio" name="plan[{{$i}}]" value="null">None<small> Rs {{$room->room_flat_cost}}/night</small></label>
+                                    <input class="i-radio" checked=""  type="radio" name="plan[{{$i}}]" value="none">None<small> Rs {{$room->room_flat_cost}}/night</small></label>
 
                                 </div>
                                 <div class="radio-inline radio-stroke">

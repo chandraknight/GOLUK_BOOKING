@@ -13,40 +13,30 @@
                 	{{csrf_field()}}
                     <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                         <label>Where are you going?</label>
-                        <input class="typeahead form-control" placeholder="City, Airport, Point of Interest, Hotel Name or U.S. Zip Code" name="destination" type="text">
+                        <input class="typeahead form-control" placeholder="City, Airport, Point of Interest, Hotel Name" name="destination" type="text">
                     </div>
                     <div class="input-daterange">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Check-in</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" type="date">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" type="text">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Check-out</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date" type="date">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date" type="text">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-select-plus">
-                                    <label>Rooms</label>
-                                    <div class="btn-group btn-group-select-num" data-toggle="buttons">
-                                        <label class="btn btn-primary active">
-                                            <input type="radio" name="no_childs">1</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="no_childs">2</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="no_childs">3</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="no_childs">3+</label>
-                                    </div>
-                                    <select class="form-control hidden" name="no_childs">
+                                    <label>Children</label>
+                                    <select class="form-control" name="no_childs">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
-                                        <option selected="selected">4</option>
+                                        <option>4</option>
                                         <option>5</option>
                                         <option>6</option>
                                         <option>7</option>
@@ -62,22 +52,13 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-select-plus">
-                                    <label>Guests</label>
-                                    <div class="btn-group btn-group-select-num" data-toggle="buttons">
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="no_adults">1</label>
-                                        <label class="btn btn-primary active">
-                                            <input type="radio" name="no_adults">2</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="no_adults">3</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="no_adults">3+</label>
-                                    </div>
-                                    <select class="form-control hidden" name="no_adults">
+                                    <label>Adults</label>
+                                    
+                                    <select class="form-control" name="no_adults">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
-                                        <option selected="selected">4</option>
+                                        <option>4</option>
                                         <option>5</option>
                                         <option>6</option>
                                         <option>7</option>
@@ -108,15 +89,14 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="booking-item-img-wrap">
-                                            <img src="{{URL::asset('img\hotel_2_800x600.jpg')}}" alt="Image Alternative text" title="hotel 2">
-                                            <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>10</div>
+                                            <img src="{{url('/')}}/storage/hotel_logo/{{$hotel['logo']}}" alt="{{$hotel->name}}" title="{{$hotel->name}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <h5 class="booking-item-title">{{$hotel->name}}</h5>
                                         <p class="booking-item-address"><i class="fa fa-map-marker"></i> {{$hotel->address}}</p>
                                     </div>
-                                    <div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">Rs {{collect($hotel->rooms)->min('room_flat_cost')}}</span><span>/night</span><span class="btn btn-primary">More</span>
+                                    <p><div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">Rs {{collect($hotel->rooms)->min('room_flat_cost')}}<small>/night</small></span></p><p><span class="btn btn-primary">More</span></p>
                                     </div>
                                 </div>
                             </a>

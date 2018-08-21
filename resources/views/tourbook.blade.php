@@ -7,8 +7,8 @@
                 {{csrf_field()}}
                 <input type="hidden" name="tour_package_id" value="{{$tour->id}}">
                  <input type="hidden" name="no_of_people" value="{{$search->people}}">
- <input type="hidden"  name="starting_from" value="{{$search->from}}">
- <input type="hidden"  name="till_date" value="{{$search->to}}">
+                <input type="hidden"  name="starting_from" value="{{$search->from}}">
+                <input type="hidden"  name="till_date" value="{{$search->to}}">
              <div class="col-md-12">
                 <h3>Guest Details</h3>
                             @for($i=0;$i<=$search->people-1;$i++)
@@ -28,7 +28,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Date of Birth</label>
-                                    <input class="form-control" name="dob[]" type="date">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="dob[]" type="text">
                                 </div>
                             </div>
                             <div class="col-md-2">
