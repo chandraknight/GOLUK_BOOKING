@@ -45,7 +45,14 @@
                 </ul>
                 <p class="booking-item-payment-total">Total Amount: <span>${{$booking->invoice['cost']}}</span>
                 </p>
-                <p><a href="{{route('viewvehicleinvoice',$booking->id)}}" class="btn btn-info">Invoice</a>@if($booking->booking_status == 'pending') <a href="{{route('confirmvehiclebooking',$booking->id)}}" class="btn btn-success">Confirm</a> @endif @if($booking->booking_status == 'pending'||$booking->booking_status == 'confirmed') <a href="#" class="btn btn-danger">Cancel</a>@endif</p>
+                <p>
+                    <a href="{{route('viewvehicleinvoice',$booking->id)}}" class="btn btn-info">Invoice</a>
+                    @if($booking->booking_status == 'pending') 
+                    <a href="{{route('confirmvehiclebooking',$booking->id)}}" class="btn btn-success">Confirm</a> 
+                    @endif 
+                    @if($booking->booking_status == 'pending'||$booking->booking_status == 'confirmed') <a href="{{route('cancelvehiclebooking')}}" class="btn btn-danger">Cancel</a>
+                    @endif
+                </p>
             </div>
         </div>
         @empty

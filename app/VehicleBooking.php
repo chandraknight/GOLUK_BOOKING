@@ -38,7 +38,7 @@ class VehicleBooking extends Model
         return $this->hasOne('App\VehicleBookingCommission');
     }
 
-    public function agentVehicleBooking() {
+    public function agentVehicleBookingCommission() {
         return $this->hasOne('App\AgentVehicleBookingCommission');
     }
 

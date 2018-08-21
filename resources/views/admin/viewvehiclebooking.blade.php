@@ -19,6 +19,7 @@
                   <p class="card-description">
                     {{\Carbon\Carbon::parse($booking->created_at)->toFormattedDateString()}}
                   </p>
+                  <p>Vehicle Code: {{$booking->vehicle['vehicle_code']}}</p>
                   <table class="table">
                     <thead>
                       <tr>
@@ -35,7 +36,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href="{{route('vehicle.show',$booking->vehicle->id)}}" target="_blank"> {{$booking->vehicle->name}}</a></td>
+                        <td><a href="{{route('vehicle.show',$booking->vehicle->id)}}" target="_blank"> {{$booking->vehicle['name']}}</a></td>
                         <td>{{$booking->customer_name}}</td>
                         <td><a href="mailto::{{$booking->customer_mail}}"> {{$booking->customer_email}}</a></td>
                         <td>{{$booking->customer_contact}}</td>
@@ -55,7 +56,7 @@
                           @endif
                             
                            @if($booking->booking_status == 'confirmed' || $booking->booking_status == 'pending')
-                            <a href="{{route('admin.cancel.vehicle.booking',$booking->id)}}"><button type="button" class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-close-octagon"></i>
+                            <a href="{{route('cancelvehiclebooking',$booking->id)}}"><button type="button" class="btn btn-gradient-danger btn-rounded btn-icon"><i class="mdi mdi-close-octagon"></i>
                         </button></a>
                             @endif</td>
                       </tr>
@@ -68,9 +69,12 @@
              
 
             
-             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Total: {{$booking->invoice['cost']}}</button>
+             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Total: Rs {{$booking->invoice['cost']}}</button>
               @if($booking->bookingCommission != null)
-             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Commission: {{$booking->bookingCommission->commission}}</button>
+             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Commission: Rs {{$booking->bookingCommission->commission}}</button>
+             @endif
+             @if($booking->agentVehicleBookingCommission != null)
+             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Agent Commission: Rs {{$booking->agentVehicleBookingCommission['commission']}}</button>
              @endif
 	</div>
 </div>

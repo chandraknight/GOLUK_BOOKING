@@ -125,9 +125,12 @@
                 </div>
               </div>
             </div>
-             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Total: {{$booking->invoice['amount']}}</button>
+             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Total: Rs {{$booking->invoice['amount']}}</button>
              @if($booking->bookingCommission != null)
-             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Commission: {{$booking->bookingCommission->commission}}</button>
+             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Commission: Rs {{$booking->bookingCommission['commission']}}</button>
+             @endif
+             @if($booking->agentCommission != null)
+             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Agent Commission: Rs {{$booking->agentCommission['commission']}}</button>
              @endif
 	</div>
 </div>

@@ -536,6 +536,11 @@ Route::group(['prefix'=>'vehicle','middleware'=>['auth','role:,vehicleowner,admi
        'as'=>'confirmvehiclebooking'
    ]);
 
+   Route::get('/vehicle/booking/cancel/{id}',[
+       'uses'=>'BookingController@cancelVehicleBooking',
+       'as'=>'cancelvehiclebooking'
+   ]);
+
    Route::get('/vehicle/booking/invoice/{id}',[
        'uses'=>'BookingController@viewVehicleInvoice',
        'as'=>'viewvehicleinvoice'
@@ -771,35 +776,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
         'as'=>'admin.tour.booking'
     ]);
 
-    
-
-    Route::get('/booking/hotel/cancel/{id}',[
-        'uses'=>'AdminController@cancelHotelBooking',
-        'as'=>'admin.cancel.hotel.booking'
-    ]);
-
     Route::get('/booking/hotel/view/{id}',[
         'uses'=>'AdminController@viewHotelBooking',
         'as'=>'admin.view.hotel.booking'
     ]);
 
-     
-
-    Route::get('/booking/vehicle/cancel/{id}',[
-        'uses'=>'AdminController@cancelVehicleBooking',
-        'as'=>'admin.cancel.vehicle.booking'
-    ]);
-
     Route::get('/booking/vehicle/view/{id}',[
         'uses'=>'AdminController@viewVehicleBooking',
         'as'=>'admin.view.vehicle.booking'
-    ]);
-
-     
-
-    Route::get('/booking/tour/cancel/{id}',[
-        'uses'=>'AdminController@cancelTourBooking',
-        'as'=>'admin.cancel.tour.booking'
     ]);
 
     Route::get('/booking/tour/view/{id}',[

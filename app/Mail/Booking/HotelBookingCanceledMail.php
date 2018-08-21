@@ -6,23 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\TourPackageBooking;
-use App\TourPackage;
+use App\Booking;
 
-class TourBookedConfirm extends Mailable
+class HotelBookingCanceledMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $booking,$tour;
+
+    public $booking;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(TourPackageBooking $booking,TourPackage $tour)
+    public function __construct(Booking $booking)
     {
         $this->booking = $booking;
-        $this->tour = $tour;
     }
 
     /**
@@ -32,6 +31,6 @@ class TourBookedConfirm extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.booking.tourbookedconfirm');
+        return $this->markdown('emails.booking.hotelbookingcancel');
     }
 }

@@ -1,7 +1,7 @@
 @component('mail::message')
-# Introduction
+# Booking Confirmed
 
-The body of your message.
+Your Booking has been Confirmed
 
 @component('mail::button', ['url' => ''])
 Button Text

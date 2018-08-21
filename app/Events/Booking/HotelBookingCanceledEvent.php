@@ -9,25 +9,31 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\TourPackageBooking;
-use App\TourPackage;
+use App\Booking;
 
-class TourBookConfirmEvent
+class HotelBookingCanceledEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $booking,$tour;
+    public $booking;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(TourPackageBooking $booking,TourPackage $tour)
+    public function __construct(Booking $booking)
     {
         $this->booking = $booking;
-        $this->tour = $tour;
     }
 
-    
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn()
+    {
+        return new PrivateChannel('channel-name');
+    }
 }

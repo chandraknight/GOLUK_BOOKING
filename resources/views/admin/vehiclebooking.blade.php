@@ -9,6 +9,7 @@
                         <th>
                           Vehicle Name
                         </th>
+                        <th>Vehicle Code</th>
                         <th>
                           Booked By
                         </th>
@@ -34,6 +35,9 @@
                         </td>
                         <td>
                           {{$booking->vehicle->name}}
+                        </td>
+                        <td>
+                            {{$booking->vehicle['vehicle_code']}}
                         </td>
                         @if($booking->user_id != null)
                         <td>
@@ -61,7 +65,7 @@
                         	@endif
                         	  <a href="{{route('admin.view.vehicle.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-success btn-rounded">View</button></a>
                         	 @if($booking->booking_status == 'confirmed' || $booking->booking_status == 'pending')
-                        	  <a href="{{route('admin.cancel.vehicle.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
+                        	  <a href="{{route('cancelvehiclebooking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
                         	  @endif
                         </td>
                       </tr>

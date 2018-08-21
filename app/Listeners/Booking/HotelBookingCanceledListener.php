@@ -4,11 +4,11 @@ namespace App\Listeners\Booking;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Events\Booking\TourBookConfirmEvent;
-use App\Mail\Booking\TourBookedConfirm;
+use App\Events\Booking\HotelBookingCanceledEvent;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\Booking\HotelBookingCanceledMail;
 
-class TourBookConfirmListener
+class HotelBookingCanceledListener
 {
     /**
      * Create the event listener.
@@ -26,8 +26,8 @@ class TourBookConfirmListener
      * @param  object  $event
      * @return void
      */
-    public function handle(TourBookConfirmEvent $event)
+    public function handle(HotelBookingCanceledEvent $event)
     {
-        Mail::to($event->booking['customer_email'])->send(new TourBookedConfirm($event->booking,$event->tour));
+        Mail::to($event->booking['customer_email'])->send(new HotelBookingCanceledMail($event->booking));
     }
 }

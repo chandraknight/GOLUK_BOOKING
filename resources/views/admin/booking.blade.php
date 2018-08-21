@@ -10,6 +10,9 @@
                           Hotel Name
                         </th>
                         <th>
+                          Hotel Code
+                        </th>
+                        <th>
                           Booked By
                         </th>
                         <th>
@@ -35,9 +38,12 @@
                         <td>
                           {{$booking->hotel->name}}
                         </td>
+                        <td>
+                          {{$booking->hotel['hotel_code']}}
+                        </td>
                         @if($booking->user_id != null)
                         <td>
-                          {{$booking->user->name}}
+                          {{$booking->user['name']}}
                         </td>
                         @else
                         <td>
@@ -61,7 +67,7 @@
                         	@endif
                         	  <a href="{{route('admin.view.hotel.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-success btn-rounded">View</button></a>
                         	 @if($booking->status == 'confirmed' || $booking->status == 'pending')
-                        	  <a href="{{route('admin.cancel.hotel.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
+                        	  <a href="{{route('booking.cancel',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
                         	  @endif
                         </td>
                       </tr>

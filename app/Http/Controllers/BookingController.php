@@ -43,6 +43,9 @@ use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
 use Auth;
+use App\Events\Booking\HotelBookingCanceledEvent;
+use App\Events\Booking\VehicleBookingCanceledEvent;
+use App\Events\Booking\TourBookingCanceledEvent;
 
 class BookingController extends Controller
 {
@@ -295,6 +298,8 @@ class BookingController extends Controller
             'status'=>'canceled'
         ]);
 
+        event(new HotelBookingCanceledEvent($booking));
+
         return redirect()->back()->withSuccess('Booking canceled Successfully');
     }
 
@@ -368,7 +373,6 @@ class BookingController extends Controller
 
         return redirect()->route('view.vehicle.invoice',$vehiclebooking->id)->withSuccess('Your Booking has been sent for Confirmation');
 
-//        return redirect()->route('welcome')->withSuccess('Your booking has been sent for conformation');
 
     }
 
@@ -421,6 +425,18 @@ class BookingController extends Controller
 
         return redirect()->back()->withSuccess('Booking Confirmed');
     }
+
+
+    public function cancelVehicleBooking($id) {
+        $booking = VehicleBooking::findorfail($id);
+       $booking->update([
+           'booking_status'=>'canceled'
+       ]);
+
+       event(new VehicleBookingCanceledEvent($booking));
+       return redirect()->back()->withSuccess('Booking Canceled Successfully');
+   }
+
     public function viewVehicleInvoice($id) {
 
         $booking = VehicleBooking::findorfail($id);
@@ -529,7 +545,7 @@ class BookingController extends Controller
             'booking_status'=>'confirmed'
         ]);
         $c = $tour->tourPackageCommission->commission_percent;
-        $amount = $booking->invoices->amount;
+        $amount = $booking->invoices['amount'];
         $commission = ($c*$amount)/100;
         $bookingcommission = new TourBookingCommission;
 
@@ -579,15 +595,14 @@ class BookingController extends Controller
     }
 
     public function cancelTourBooking($id) {
-        $tourbooking = TourPackageBooking::findorfail($id);
-        if(Auth::user()->hasRole('tourowner')) {
-            $tourbooking->update([
-                'booking_status'=>'canceled'
-            ]);
-            return redirect()->back()->withSuccess('Booking Canceled Successfully');
-        } else {
-            return redirect()->route('welcome');
-        }
+        $booking = TourPackageBooking::findorfail($id);
+        $booking->update([
+            'booking_status'=>'canceled'
+        ]);
+
+        event(new TourBookingCanceledEvent($booking));
+        return redirect()->back()->withSuccess('Booking Canceled Successfully');
+        
     }
 
 }

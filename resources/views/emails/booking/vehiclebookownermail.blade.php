@@ -1,5 +1,5 @@
 @component('mail::message')
-# Introduction
+# New Booking
 
 You have a vehicle booking to be confirmed.
 

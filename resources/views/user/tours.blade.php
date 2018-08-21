@@ -21,7 +21,7 @@
                        
                         <h5 class="booking-item-title">{{$tour->name}}</h5>
                         <p class="booking-item-address"><i class="fa fa-map-marker"></i> {{$tour->location}}</p>
-                        <p class="booking-item-description">{{substr($tour->description,0,100)}}....</p>
+                        <p class="booking-item-description">{!!substr($tour->description,0,100)!!}....</p>
                     </div>
                     <div class="col-md-3"><span class="btn btn-primary">Edit</span>
                     </div>

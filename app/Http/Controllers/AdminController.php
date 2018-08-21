@@ -254,16 +254,6 @@ class AdminController extends Controller
        
     }
 
-    
-    public function cancelHotelBooking($id) {
-        $booking=Booking::findorfail($id);
-        $booking->update([
-            'status'=>'canceled'
-        ]);
-
-        return redirect()->back()->withSuccess('Booking Successfully Canceled');
-    }
-
     public function viewHotelBooking($id) {
         $booking= Booking::findorfail($id);
         
@@ -280,16 +270,6 @@ class AdminController extends Controller
         
     }
 
-    
-
-    public function cancelVehicleBooking($id) {
-         $vehiclebooking = VehicleBooking::findorfail($id);
-        $vehiclebooking->update([
-            'booking_status'=>'canceled'
-        ]);
-        return redirect()->back()->withSuccess('Booking Canceled Successfully');
-    }
-
     public function viewVehicleBooking($id) {
         $vehiclebooking = VehicleBooking::findorfail($id);
         return view('admin.viewvehiclebooking',['booking'=>$vehiclebooking]);
@@ -304,14 +284,6 @@ class AdminController extends Controller
          }
     }
 
-
-    public function cancelTourBooking($id) {
-         $tourbooking = TourPackageBooking::findorfail($id);
-        $tourbooking->update([
-            'booking_status'=>'canceled'
-        ]);
-        return redirect()->back()->withSuccess('Booking Canceled Successfully');
-    }
 
     public function viewTourBooking($id) {
         $tourbooking = TourPackageBooking::findorfail($id);

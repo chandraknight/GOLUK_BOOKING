@@ -24,7 +24,7 @@
                             </ul>
                         </div>
                         <div class="col-md-3">
-                            <p class="booking-item-header-price"><small>price from</small>  <span class="text-lg">{{$room->room_flat_cost}}</span>/night</p>
+                            <p class="booking-item-header-price"><small>price from</small>  <span class="text-lg">Rs {{$room->room_flat_cost}}</span>/night</p>
                         </div>
                     </div>
                 </header>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-md-4 col-md-offset-2">
                         <h4>About the Hotel</h4>
-                        <p class="mb30">Duis justo cubilia penatibus ad nunc euismod netus luctus accumsan velit habitasse platea rutrum volutpat ut erat pellentesque proin sagittis</p>
+                        <p class="mb30">{!!$hotel->description!!}</p>
                     </div>
                    
                 </div>
@@ -91,7 +91,7 @@
                                                 
                                             </ul>
                                         </div>
-                                        <div class="col-md-3"><span class="booking-item-price">${{$otherroom->room_flat_cost}}</span><span>/night</span><span class="btn btn-primary">More</span>
+                                        <div class="col-md-3"><span class="booking-item-price">Rs {{$otherroom->room_flat_cost}}<small>/night</small></span><span class="btn btn-primary">More</span>
                                         </div>
                                     </div>
                                 </a>

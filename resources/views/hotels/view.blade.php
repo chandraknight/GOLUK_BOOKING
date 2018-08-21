@@ -126,7 +126,7 @@
                                             </ul>
                                             
                                         </div>
-                                        <div class="col-md-3"><span class="booking-item-price">${{$room->room_flat_cost}}</span><span>/night</span><span class="btn btn-primary">Edit</span>
+                                        <div class="col-md-3"><span class="booking-item-price">Rs {{$room->room_flat_cost}}<small>/night</small></span><span class="btn btn-primary">Edit</span>
                                         </div>
                                     </div>
                                 </a>

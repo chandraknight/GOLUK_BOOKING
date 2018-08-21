@@ -10,23 +10,21 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\TourPackageBooking;
-use App\TourPackage;
 
-class TourBookConfirmEvent
+class TourBookingCanceledEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $booking,$tour;
+    public $booking;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(TourPackageBooking $booking,TourPackage $tour)
+    public function __construct(TourPackageBooking $booking)
     {
         $this->booking = $booking;
-        $this->tour = $tour;
     }
 
     

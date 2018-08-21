@@ -15,7 +15,8 @@ class TourPackageBooking extends Model
         'customer_name',
         'customer_address',
         'customer_email',
-        'customer_contact'
+        'customer_contact',
+        'user_id'
     ];
 
     public function tourPackage() {
@@ -35,5 +36,9 @@ class TourPackageBooking extends Model
 
     public function agentTourBookingCommission() {
         return $this -> hasOne('App\AgentTourPackageBookingCommission');
+    }
+
+    public function user() {
+        return $this -> belongsTo('App\User');
     }
 }

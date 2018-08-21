@@ -10,6 +10,9 @@
                           Tour Name
                         </th>
                         <th>
+                          Tour Code
+                        </th>
+                        <th>
                           Provider
                         </th>
                         <th>
@@ -39,15 +42,18 @@
                           {{$booking->tourPackage->name}}
                         </td>
                         <td>
+                            {{$booking->tourPackage['tour_package_code']}}
+                        </td>
+                        <td>
                           {{$booking->tourPackage->provider}}
                         </td>
                         @if($booking->user_id != null)
                         <td>
-                          {{$booking->user}}
+                          {{$booking->user['email']}}
                         </td>
                         @else
                         <td>
-                        	{{$booking->customer_name}}
+                        	{{$booking->customer_email}}
                         </td>
                         @endif
                         <td>
@@ -67,7 +73,7 @@
                         	@endif
                         	  <a href="{{route('admin.view.tour.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-success btn-rounded">View</button></a>
                         	 @if($booking->booking_status == 'confirmed' || $booking->booking_status == 'pending')
-                        	  <a href="{{route('admin.cancel.tour.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
+                        	  <a href="{{route('tour.cancel',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
                         	  @endif
                         </td>
                       </tr>

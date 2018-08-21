@@ -1,5 +1,5 @@
 @component('mail::message')
-# Introduction
+# New Booking
 
 Your hotel has new bookings to be confirmed.
 <div class="panel panel-primary">

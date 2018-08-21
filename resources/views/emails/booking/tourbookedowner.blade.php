@@ -1,5 +1,5 @@
 @component('mail::message')
-# Introduction
+# New Booking
 
 The body of your message.
 

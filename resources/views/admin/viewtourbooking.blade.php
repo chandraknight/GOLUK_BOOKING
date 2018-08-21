@@ -89,9 +89,12 @@
                 </div>
               </div>
             </div>
-             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Total: {{$booking->invoices['amount']}}</button>
-            @if($booking->tourBookingCommission != null) 
-              <button type="button" disabled class="btn btn-dark btn-lg btn-block">Commission: {{$booking->tourBookingCommission->commission}}</button>
+             <button type="button" disabled class="btn btn-dark btn-lg btn-block">Total: Rs {{$booking->invoices['amount']}}</button>
+            @if($booking->bookingCommission != null) 
+              <button type="button" disabled class="btn btn-dark btn-lg btn-block">Commission: Rs {{$booking->bookingCommission['commission']}}</button>
+            @endif
+            @if($booking->agentTourBookingCommission != null) 
+              <button type="button" disabled class="btn btn-dark btn-lg btn-block">Agent Commission: Rs {{$booking->agentTourBookingCommission['commission']}}</button>
             @endif
 
 	</div>

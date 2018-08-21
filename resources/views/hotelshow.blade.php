@@ -127,11 +127,13 @@
                                 {{csrf_field()}}
                             @foreach($hotel->rooms as $room)
                             <li>
-                               <!--  <a class="" href="{{route('room.show',$room->id)}}" target="_blank"> -->
+                               
                                     <div class="row booking-item">
+                                            <a class="" href="{{route('room.show',$room->id)}}" target="_blank">
                                         <div class="col-md-3">
                                             <img src="{{url('/')}}/storage/rooms/{{$room->hotel_id}}/{{$room->image}}" alt="Image Alternative text" title="The pool">
                                         </div>
+                                    </a>
                                         <div class="col-md-6">
                                             <h5 class="booking-item-title">{{$room->room_no}}</h5>
                                             <p class="text-small">{!!$room->roomType->description!!}</p>
@@ -185,7 +187,7 @@
                             </div>
                                 </div>
                                     </div>
-                                <!-- </a> -->
+                                 
                                 
                             </li>
                             <div class="gap-small"></div>

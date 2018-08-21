@@ -1,5 +1,5 @@
 @component('mail::message')
-# Introduction
+# Booking Confirmed
 
 Your booking has been confirmed.
 
