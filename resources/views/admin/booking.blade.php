@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
-<table class="table table-bordered table-striped">
+<table id="booking" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>
@@ -30,50 +30,40 @@
                       </tr>
                     </thead>
                     <tbody>
-                    	@forelse($hotelbookings as $booking)
-                      <tr>
-                        <td>
-                          {{$loop->iteration}}
-                        </td>
-                        <td>
-                          {{$booking->hotel->name}}
-                        </td>
-                        <td>
-                          {{$booking->hotel['hotel_code']}}
-                        </td>
-                        @if($booking->user_id != null)
-                        <td>
-                          {{$booking->user['name']}}
-                        </td>
-                        @else
-                        <td>
-                        	{{$booking->customer_name}}
-                        </td>
-                        @endif
-                        <td>
-                          {{\Carbon\Carbon::parse($booking->created_at)->toFormattedDateString()}}
-                        </td>
-                        <td>
-                          {{\Carbon\Carbon::parse($booking->from_date)->toFormattedDateString()}}
-                          <i class="mdi mdi-arrow-right-bold"></i> 
-                          {{\Carbon\Carbon::parse($booking->till_date)->toFormattedDateString()}}
-                        </td>
-                        <td>
-                        	<label class="badge badge-warning">{{ucfirst($booking->status)}}</label>
-                        </td>
-                        <td>
-                        	@if($booking->status == 'pending' || $booking->status == 'canceled')
-                        	<a href="{{route('book.confirm',$booking->id)}}"> <button type="button" class="btn btn-sm btn-gradient-primary btn-rounded">Confirm</button></a>
-                        	@endif
-                        	  <a href="{{route('admin.view.hotel.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-success btn-rounded">View</button></a>
-                        	 @if($booking->status == 'confirmed' || $booking->status == 'pending')
-                        	  <a href="{{route('booking.cancel',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
-                        	  @endif
-                        </td>
-                      </tr>
-                      @empty
-                      No Bookings Yet
-                      @endforelse
+                    
                     </tbody>
                   </table>
+
+                  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+                  <script>
+                      $('#booking').DataTable( {
+                          "processing": true,
+                          "serverSide": true,
+                          "ajax": {
+                            "url":"{{route('admin.hotel.booking.data')}}",
+                            "dataType":"json",
+                            "type":"POST",
+                            "data":{"_token":"<?= csrf_token(); ?>"}
+                          },
+                          "columns":[
+                            {"data":"id","searchable":false,"orderable":false},
+                            {"data":"name"},
+                            {"data":"hotel_code"},
+                            {"data":"customer_name"},
+                            {"data":"created_at"},
+                            {"data":"booking_from","searchable":false,"orderable":false},
+                            {"data":"status"},
+                            {"data":"actions","searchable":false,"orderable":false}
+                          ],
+                          language: {
+                            searchPlaceholder: "By Hotel,Status,Customer"
+                        }
+                      } );
+                  
+                  </script>
 @endsection

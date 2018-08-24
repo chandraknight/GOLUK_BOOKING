@@ -636,6 +636,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
         'as'=>'admin.hotel'
     ]);
 
+    Route::post('/hotels/data',[
+        'uses'=>'AdminController@hotelData',
+        'as'=>'admin.hotel.data'
+    ]);
+
     Route::get('/hotel/{id}',[
         'uses'=>'AdminController@viewHotel',
         'as'=>'admin.hotel.view'
@@ -751,6 +756,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
         'as'=>'admin.user.edit'
     ]);
 
+    Route::post('/users/data',[
+        'uses'=>'AdminController@usersData',
+        'as'=>'admin.user.data'
+    ]);
+
     Route::post('/users/edit',[
         'uses'=>'AdminController@updateUser',
         'as'=>'admin.user.update'
@@ -766,14 +776,29 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
         'as'=>'admin.hotel.booking'
     ]);
 
+    Route::post('/bookings/hotel/data',[
+        'uses'=>'AdminController@hotelBookingsData',
+        'as'=>'admin.hotel.booking.data'
+    ]);
+
     Route::get('/bookings/vehicle',[
         'uses'=>'AdminController@vehicleBookings',
         'as'=>'admin.vehicle.booking'
     ]);
 
+    Route::post('/bookings/vehicle/data',[
+        'uses'=>'AdminController@vehicleBookingsData',
+        'as'=>'admin.vehicle.booking.data'
+    ]);
+
     Route::get('/bookings/tours',[
         'uses'=>'AdminController@tourBookings',
         'as'=>'admin.tour.booking'
+    ]);
+
+    Route::post('/bookings/tours/data',[
+        'uses'=>'AdminController@tourBookingsData',
+        'as'=>'admin.tour.booking.data'
     ]);
 
     Route::get('/booking/hotel/view/{id}',[
@@ -821,6 +846,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
     Route::get('/agents/list',[
         'uses'=>'AdminController@agentList',
         'as'=>'admin.agent.list'
+    ]);
+
+    Route::post('/agents/list/data',[
+        'uses'=>'AdminController@agentListData',
+        'as'=>'admin.agent.list.data'
     ]);
     Route::get('/agents/details/{id}',[
         'uses'=>'AdminController@agentDetails',

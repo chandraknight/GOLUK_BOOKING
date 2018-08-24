@@ -14,4 +14,5 @@
   <link rel="stylesheet" href="{{URL::asset('admin/css/style.css')}}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{URL::asset('admin/images/favicon.png')}}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 </head>

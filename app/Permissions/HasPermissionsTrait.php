@@ -88,6 +88,8 @@ trait HasPermissionsTrait
         return false;
     }
 
+    
+
     protected function hasPermission($permission)
     {
         return (bool) $this->permissions->where('name', $permission->name)->count();
@@ -97,6 +99,8 @@ trait HasPermissionsTrait
     {
         return Permission::whereIn('name', $permissions)->get();
     }
+
+
 
     protected function getAllRoles(array $roles)
     {

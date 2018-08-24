@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
-<table class="table table-bordered table-striped">
+<table id="vehiclebooking" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>
@@ -20,6 +20,9 @@
                           Booking From
                         </th>
                         <th>
+                          Route
+                        </th>
+                        <th>
                         	Status
                         </th>
                         <th>
@@ -28,50 +31,40 @@
                       </tr>
                     </thead>
                     <tbody>
-                    	@forelse($vehiclebookings as $booking)
-                      <tr>
-                        <td>
-                          {{$loop->iteration}}
-                        </td>
-                        <td>
-                          {{$booking->vehicle->name}}
-                        </td>
-                        <td>
-                            {{$booking->vehicle['vehicle_code']}}
-                        </td>
-                        @if($booking->user_id != null)
-                        <td>
-                          {{$booking->user->name}}
-                        </td>
-                        @else
-                        <td>
-                        	{{$booking->customer_name}}
-                        </td>
-                        @endif
-                        <td>
-                          {{\Carbon\Carbon::parse($booking->created_at)->toFormattedDateString()}}
-                        </td>
-                        <td>
-                          {{\Carbon\Carbon::parse($booking->from)->toFormattedDateString()}}
-                          <i class="mdi mdi-arrow-right-bold"></i> 
-                          {{\Carbon\Carbon::parse($booking->to)->toFormattedDateString()}}
-                        </td>
-                        <td>
-                        	{{ucfirst($booking->booking_status)}}
-                        </td>
-                        <td>
-                        	@if($booking->booking_status == 'pending' || $booking->booking_status == 'canceled')
-                        	<a href="{{route('confirmvehiclebooking',$booking->id)}}"> <button type="button" class="btn btn-sm btn-gradient-primary btn-rounded">Confirm</button></a>
-                        	@endif
-                        	  <a href="{{route('admin.view.vehicle.booking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-success btn-rounded">View</button></a>
-                        	 @if($booking->booking_status == 'confirmed' || $booking->booking_status == 'pending')
-                        	  <a href="{{route('cancelvehiclebooking',$booking->id)}}"><button type="button" class="btn btn-sm btn-gradient-danger btn-rounded">Cancel</button></a>
-                        	  @endif
-                        </td>
-                      </tr>
-                      @empty
-                      No Bookings Yet
-                      @endforelse
+                    	
                     </tbody>
                   </table>
+                  <script
+                  src="https://code.jquery.com/jquery-3.3.1.min.js"
+                  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                  crossorigin="anonymous"></script>
+                  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                
+                                  <script>
+                                      $('#vehiclebooking').DataTable( {
+                                          "processing": true,
+                                          "serverSide": true,
+                                          "ajax": {
+                                            "url":"{{route('admin.vehicle.booking.data')}}",
+                                            "dataType":"json",
+                                            "type":"POST",
+                                            "data":{"_token":"<?= csrf_token(); ?>"}
+                                          },
+                                          "columns":[
+                                            {"data":"id","searchable":false,"orderable":false},
+                                            {"data":"name"},
+                                            {"data":"vehicle_code"},
+                                            {"data":"customer_name"},
+                                            {"data":"created_at"},
+                                            {"data":"booking_from","searchable":false,"orderable":false},
+                                            {"data":"route","searchable":false,"orderable":false},
+                                            {"data":"booking_status"},
+                                            {"data":"actions","searchable":false,"orderable":false}
+                                          ],
+                                          language: {
+                                            searchPlaceholder: "By Vehicle,Status,Customer"
+                                        }
+                                      } );
+                                  
+                                  </script>
 @endsection

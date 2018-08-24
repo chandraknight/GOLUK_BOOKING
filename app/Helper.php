@@ -45,5 +45,17 @@ class Helper {
 		$totalbookings = $bookings->count();
 		return $totalbookings;
 	}
+
+	static function getUsersWithRole($role) {
+        $users = User::all();
+        $u =[];
+        foreach($users as $user) {
+            if($user->hasRoles($role)) {
+                $u = $user;
+            }
+		}
+        return $u;
+
+    }
 }
 ?>

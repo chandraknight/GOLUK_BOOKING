@@ -25,6 +25,8 @@
   <!-- Custom js for this page-->
   <script src="{{URL::asset('admin/js/dashboard.js')}}"></script>
   <!-- End custom js for this page-->
+
+  
 </body>
 
 </html>
