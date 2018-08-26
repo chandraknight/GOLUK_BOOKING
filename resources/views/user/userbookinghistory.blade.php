@@ -24,12 +24,13 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab-1">
-                                         <table class="table table-bordered table-striped table-booking-history">
+                                         <table id="hotelbookings" class="table table-bordered table-striped table-booking-history">
 						                <thead>
 						                    <tr>
-						                        <th>Type</th>
-						                        <th>Hotel</th>
-						                        <th>Location</th>
+						                        <th>S.No</th>
+												<th>Hotel Code</th>
+												<th>Name</th>
+						                        <th>Address</th>
 						                        <th>Booked Date</th>
 						                        <th>Booking On</th>
 						                        <th>Cost</th>
@@ -38,7 +39,7 @@
 						                    </tr>
 						                </thead>
 						                <tbody>
-						                	@forelse($hotelBooking as $booking)
+						                	{{--  @forelse($hotelBooking as $booking)
 						                    <tr>
 						                        <td class="booking-history-type"><i class="fa fa-building-o"></i><small>Hotel</small>
 						                        </td>
@@ -60,26 +61,27 @@
 						                    </tr>
 						                    @empty
 						                    No Bookings Yet!!!
-						                    @endforelse
+						                    @endforelse  --}}
 						                </tbody>
 						            </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab-2">
-                                       <table class="table table-bordered table-striped table-booking-history">
+                                       <table id="vehiclebookings" class="table table-bordered table-striped table-booking-history">
 						                <thead>
 						                    <tr>
-						                        <th>Type</th>
+												<th>S.No</th>
+												<th>Vehicle Code</th>
 						                        <th>Vehicle</th>
-						                        <th>Pick-up Location</th>
 						                        <th>Booked Date</th>
-						                        <th>Booking On</th>
+												<th>Booking On</th>
+												<th>Route</th>
 						                        <th>Cost</th>
 						                        <th>Current</th>
 						                        <th>Cancel</th>
 						                    </tr>
 						                </thead>
 						                <tbody>
-						                	@forelse($vehicleBooking as $booking)
+						                	{{--  @forelse($vehicleBooking as $booking)
 						                    <tr>
 				                                <td class="booking-history-type"><i class="fa fa-dashboard"></i><small>car</small>
 				                                </td>
@@ -101,7 +103,7 @@
 				                            </tr>
 						                    @empty
 						                    No Bookings Yet!!!
-						                    @endforelse
+						                    @endforelse  --}}
 						                </tbody>
 						            </table>
                                     </div>
@@ -151,5 +153,68 @@
                 </div>
             </div>
         </div>
+		<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	  
+						<script>
+							$('#hotelbookings').DataTable( {
+								"processing": true,
+								"serverSide": true,
+								"ajax": {
+								  "url":"{{route('userhotelbooking')}}",
+								  "dataType":"json",
+								  "type":"POST",
+								  "data":{"_token":"<?= csrf_token(); ?>"}
+								},
+								"columns":[
+								  {"data":"id","searchable":false,"orderable":false},
+								  {"data":"hotel_code"},
+								  {"data":"name"},
+								  {"data":"address"},
+								  {"data":"created_at"},
+								  {"data":"booking_from","searchable":false,"orderable":false},
+								  {"data":"cost"},
+								  {"data":"current"},
+								  {"data":"actions","searchable":false,"orderable":false}
+								],
+								language: {
+								  searchPlaceholder: "By Name,Email,Address"
+							  }
+							} );
+						
+						</script>
 
+						<script>
+								$(document).ready(function() {
+									$('a[data-toggle="tab-2"]').on( 'shown.myTab.tab-2', function (e) {
+										$.fn.dataTable.vehiclebookings( {visible: true, api: true} ).columns.adjust();
+									} );
+							$('#vehiclebookings').DataTable( {
+								"processing": true,
+								"serverSide": true,
+								"ajax": {
+								  "url":"{{route('uservehiclebooking')}}",
+								  "dataType":"json",
+								  "type":"POST",
+								  "data":{"_token":"<?= csrf_token(); ?>"}
+								},
+								"columns":[
+								  {"data":"id","searchable":false,"orderable":false},
+								  {"data":"vehicle_code"},
+								  {"data":"name"},
+								  {"data":"created_at"},
+								  {"data":"booking_from","searchable":false,"orderable":false},
+								  {"data":"route","searchable":false,"orderable":false},
+								  {"data":"cost"},
+								  {"data":"current","searchable":false,"orderable":false},
+								  {"data":"actions","searchable":false,"orderable":false}
+								],
+								language: {
+								  searchPlaceholder: "By Name,Email,Address"
+							  }
+							} );
+						</script>
 @endsection

@@ -43,38 +43,35 @@ class AdminController extends Controller
             3=>'address',
             4=>'created_at',
             5=>'email',
-            6=>'status',
+            6=>'flag',
             7=>'actions'
         );
-        $totalData = Hotel::all()->count();
+        $totalData = Hotel::count();
         $limit = $request->input('length');
         $start = $request->input('start');
         $order = $columns[$request->input('order.0.column')];
         $dir = $request->input('order.0.dir');
 
         if(empty($request->input('search.value'))){
-            $posts = Hotel::all()
-                    ->offset($start)
+            $posts = Hotel::offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
-            $totalFiltered = Hotel::all()
-                            ->offset($start)
+            $totalFiltered = Hotel::offset($start)
                             ->limit($limit)
                             ->orderBy($order, $dir)
                             ->count();
 		}else{
 			$search = $request->input('search.value');
-            $posts = Hotel::all()
-                     ->where('name', 'like', "%{$search}%")
+            $posts = Hotel::where('name', 'like', "%{$search}%")
                      ->orWhere('hotel_code','like',"%{$search}%")
                      ->orWhere('email','like',"%{$search}%")
+                     ->orWhere('address','like',"%{$search}%")
                      ->offset($start)
                      ->limit($limit)
                      ->orderBy($order, $dir)
                      ->get();
-			$totalFiltered = Hotel::all()
-                            ->where('name', 'like', "%{$search}%")
+			$totalFiltered = Hotel::where('name', 'like', "%{$search}%")
                             ->orWhere('hotel_code','like',"%{$search}%")
                             ->orWhere('email','like',"%{$search}%")
                             ->offset($start)
@@ -87,22 +84,27 @@ class AdminController extends Controller
         $data = array();
         if($posts) {
             $c=1;
-            
+            // dd($posts);
             foreach($posts as $r) {
                 if($r->status == true){
                 $status = URL::to(route('admin.hotel.append',$r->id));
                 }else {
                 $status = URL::to(route('admin.hotel.confirm',$r->id));
                 }
+                $view = URL::to(route('admin.hotel.view',$r->id));
                 $nestedData['id']=$r->id;
                 $nestedData['hotel_code'] = $r->hotel_code;
-                $nestedData['name'] = $r->name;
+                $nestedData['name'] = "<a href=".$view.">".$r->name."</a>";
                 $nestedData['address'] = $r->address;
                 $nestedData['created_at']=Carbon::parse($r->created_at)->toFormattedDateString();
                 $nestedData['email'] = $r->email;
-                $nestedData['status']=ucfirst($r->status);
-                if($r->status == true){
-                $nestedData['actions']="<a href=".$status."> <button type='button' class='btn btn-sm btn-gradient-success btn-rounded'>Deactivate</button></a>";
+                if($r->flag == false){
+                    $nestedData['flag']="Pending";
+                } else {
+                    $nestedData['flag']="Confirmed";
+                }
+                if($r->flag == true){
+                $nestedData['actions']="<a href=".$status."> <button type='button' class='btn btn-sm btn-gradient-warning btn-rounded'>Deactivate</button></a>";
                 } else {
                     $nestedData['actions']="<a href=".$status."> <button type='button' class='btn btn-sm btn-gradient-success btn-rounded'>Activate</button></a>";
                 }
@@ -143,8 +145,93 @@ class AdminController extends Controller
     }
 
     public function vehicles() {
-        $vehicles = Vehicle::all();
-        return view('admin.vehicles',['vehicles'=>$vehicles]);
+        return view('admin.vehicles');
+    }
+
+    public function vehicleData(Request $request) {
+        $columns = array(
+            0=>'id',
+            1=>'vehicle_code',
+            2=>'name',
+            3=>'location',
+            4=>'created_at',
+            5=>'email',
+            6=>'flag',
+            7=>'actions'
+        );
+        $totalData = Vehicle::count();
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        if(empty($request->input('search.value'))){
+            $posts = Vehicle::offset($start)
+                    ->limit($limit)
+                    ->orderBy($order, $dir)
+                    ->get();
+            $totalFiltered = Vehicle::offset($start)
+                            ->limit($limit)
+                            ->orderBy($order, $dir)
+                            ->count();
+		}else{
+			$search = $request->input('search.value');
+            $posts = Vehicle::where('name', 'like', "%{$search}%")
+                     ->orWhere('vehicle_code','like',"%{$search}%")
+                     ->orWhere('email','like',"%{$search}%")
+                     ->orWhere('location','like',"%{$search}%")
+                     ->offset($start)
+                     ->limit($limit)
+                     ->orderBy($order, $dir)
+                     ->get();
+			$totalFiltered = Vehicle::where('name', 'like', "%{$search}%")
+                            ->orWhere('vehicle_code','like',"%{$search}%")
+                            ->orWhere('email','like',"%{$search}%")
+                            ->offset($start)
+                            ->limit($limit)
+                            ->orderBy($order, $dir)
+							->count();
+		}	
+
+
+        $data = array();
+        if($posts) {
+            $c=1;
+            // dd($posts);
+            foreach($posts as $r) {
+                if($r->status == true){
+                $status = URL::to(route('admin.vehicle.append',$r->id));
+                }else {
+                $status = URL::to(route('admin.vehicle.confirm',$r->id));
+                }
+                $view = URL::to(route('admin.vehicle.view',$r->id));
+                $nestedData['id']=$r->id;
+                $nestedData['vehicle_code'] = $r->vehicle_code;
+                $nestedData['name'] = "<a href=".$view.">".$r->name."</a>";
+                $nestedData['location'] = $r->location;
+                $nestedData['created_at']=Carbon::parse($r->created_at)->toFormattedDateString();
+                $nestedData['email'] = $r->email;
+                if($r->flag == false){
+                    $nestedData['flag']="Pending";
+                } else {
+                    $nestedData['flag']="Confirmed";
+                }
+                if($r->flag == true){
+                $nestedData['actions']="<a href=".$status."> <button type='button' class='btn btn-sm btn-gradient-warning btn-rounded'>Deactivate</button></a>";
+                } else {
+                    $nestedData['actions']="<a href=".$status."> <button type='button' class='btn btn-sm btn-gradient-success btn-rounded'>Activate</button></a>";
+                }
+                 $data[]=$nestedData;
+                 $c++;
+            }
+        }
+        $json_data = array(
+            "draw"=>intval($request->input('draw')),
+            "recordsTotal"=>intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"=>$data
+        );
+        echo json_encode($json_data);
     }
 
     public function viewVehicle($id) {
@@ -262,8 +349,98 @@ class AdminController extends Controller
     }
 
     public function tours() {
-        $tours = TourPackage::all();
-        return view('admin.tours',['tours'=>$tours]);
+        return view('admin.tours');
+    }
+
+    public function tourData(Request $request) {
+        $columns = array(
+            0=>'id',
+            1=>'tour_package_code',
+            2=>'name',
+            3=>'location',
+            4=>'provider',
+            5=>'created_at',
+            6=>'email',
+            7=>'flag',
+            8=>'actions'
+        );
+        $totalData = TourPackage::count();
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        if(empty($request->input('search.value'))){
+            $posts = TourPackage::offset($start)
+                    ->limit($limit)
+                    ->orderBy($order, $dir)
+                    ->get();
+            $totalFiltered = TourPackage::offset($start)
+                            ->limit($limit)
+                            ->orderBy($order, $dir)
+                            ->count();
+		}else{
+			$search = $request->input('search.value');
+            $posts = TourPackage::where('name', 'like', "%{$search}%")
+                     ->orWhere('tour_package_code','like',"%{$search}%")
+                     ->orWhere('email','like',"%{$search}%")
+                     ->orWhere('location','like',"%{$search}%")
+                     ->orWhere('provider','like',"%{$search}%")
+                     ->offset($start)
+                     ->limit($limit)
+                     ->orderBy($order, $dir)
+                     ->get();
+			$totalFiltered = TourPackage::where('name', 'like', "%{$search}%")
+                            ->orWhere('tour_package_code','like',"%{$search}%")
+                            ->orWhere('email','like',"%{$search}%")
+                            ->orWhere('location','like',"%{$search}%")
+                            ->orWhere('provider','like',"%{$search}%")
+                            ->offset($start)
+                            ->limit($limit)
+                            ->orderBy($order, $dir)
+							->count();
+		}	
+
+
+        $data = array();
+        if($posts) {
+            $c=1;
+            // dd($posts);
+            foreach($posts as $r) {
+                if($r->status == true){
+                $status = URL::to(route('admin.tour.append',$r->id));
+                }else {
+                $status = URL::to(route('admin.tour.confirm',$r->id));
+                }
+                $view = URL::to(route('admin.tour.view',$r->id));
+                $nestedData['id']=$r->id;
+                $nestedData['tour_package_code'] = $r->tour_package_code;
+                $nestedData['name'] = "<a href=".$view.">".$r->name."</a>";
+                $nestedData['location'] = $r->location;
+                $nestedData['provider'] = $r->provider;
+                $nestedData['created_at']=Carbon::parse($r->created_at)->toFormattedDateString();
+                $nestedData['email'] = $r->email;
+                if($r->flag == false){
+                    $nestedData['flag']="Pending";
+                } else {
+                    $nestedData['flag']="Confirmed";
+                }
+                if($r->flag == true){
+                $nestedData['actions']="<a href=".$status."> <button type='button' class='btn btn-sm btn-gradient-warning btn-rounded'>Deactivate</button></a>";
+                } else {
+                    $nestedData['actions']="<a href=".$status."> <button type='button' class='btn btn-sm btn-gradient-success btn-rounded'>Activate</button></a>";
+                }
+                 $data[]=$nestedData;
+                 $c++;
+            }
+        }
+        $json_data = array(
+            "draw"=>intval($request->input('draw')),
+            "recordsTotal"=>intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"=>$data
+        );
+        echo json_encode($json_data);
     }
 
     public function viewTour($id) {

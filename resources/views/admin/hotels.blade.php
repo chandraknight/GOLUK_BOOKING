@@ -85,7 +85,7 @@
                                           "processing": true,
                                           "serverSide": true,
                                           "ajax": {
-                                            "url":"{{route('admin.hotel.booking.data')}}",
+                                            "url":"{{route('admin.hotel.data')}}",
                                             "dataType":"json",
                                             "type":"POST",
                                             "data":{"_token":"<?= csrf_token(); ?>"}
@@ -97,7 +97,7 @@
                                             {"data":"address"},
                                             {"data":"created_at"},
                                             {"data":"email"},
-                                            {"data":"status"},
+                                            {"data":"flag"},
                                             {"data":"actions","searchable":false,"orderable":false}
                                           ],
                                           language: {

@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
-     <table class="table table-bordered table-striped">
+     <table id="tours" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>
@@ -19,10 +19,10 @@
                           Location
                         </th>
                         <th>
-                          Email
+                          Added on
                         </th>
                         <th>
-                            Added on
+                            Email
                         </th>
                         <th>
                           Status
@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                       
-                     @forelse($tours as $tour)
+                     {{--  @forelse($tours as $tour)
                       <tr>
                         <td>
                           {{$loop->iteration}}
@@ -81,7 +81,42 @@
                       </tr>
                      @empty
                      No Tours available
-                      @endforelse
+                      @endforelse  --}}
                     </tbody>
                   </table>
+
+                  <script
+                  src="https://code.jquery.com/jquery-3.3.1.min.js"
+                  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                  crossorigin="anonymous"></script>
+                  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                
+                                  <script>
+                                      $('#tours').DataTable( {
+                                          "processing": true,
+                                          "serverSide": true,
+                                          "ajax": {
+                                            "url":"{{route('admin.tour.data')}}",
+                                            "dataType":"json",
+                                            "type":"POST",
+                                            "data":{"_token":"<?= csrf_token(); ?>"}
+                                          },
+                                          "columns":[
+                                            {"data":"id","searchable":false,"orderable":false},
+                                            {"data":"tour_package_code"},
+                                            {"data":"name"},
+                                            {"data":"provider"},
+                                            {"data":"location"},
+                                           
+                                            {"data":"created_at"},
+                                            {"data":"email"},
+                                            {"data":"flag"},
+                                            {"data":"actions","searchable":false,"orderable":false}
+                                          ],
+                                          language: {
+                                            searchPlaceholder: "By Name,Email,Address"
+                                        }
+                                      } );
+                                  
+                                  </script>
 @endsection

@@ -176,6 +176,15 @@ Route::group(['prefix'=>'user','middleware'=>'auth'],function(){
         'uses'=>'UserController@commissions',
         'as'=>'commissions'
     ]);
+
+    Route::post('/hotel/booking',[
+        'uses'=>'UserController@userHotelBooking',
+        'as'=>'userhotelbooking'
+    ]);
+    Route::post('/vehicle/booking',[
+        'uses'=>'UserController@userVehicleBooking',
+        'as'=>'uservehiclebooking'
+    ]);
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -661,6 +670,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
         'as'=>'admin.vehicle'
     ]);
 
+    Route::post('/vehicles/data',[
+        'uses'=>'AdminController@vehicleData',
+        'as'=>'admin.vehicle.data'
+    ]);
+
     Route::get('/vehicles/view/{id}',[
         'uses'=>'AdminController@viewVehicle',
         'as'=>'admin.vehicle.view'
@@ -729,6 +743,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
     Route::get('/tours',[
         'uses'=>'AdminController@tours',
         'as'=>'admin.tour'
+    ]);
+
+    Route::post('/tours/data',[
+        'uses'=>'AdminController@tourData',
+        'as'=>'admin.tour.data'
     ]);
 
     Route::get('/tour/view/{id}',[
