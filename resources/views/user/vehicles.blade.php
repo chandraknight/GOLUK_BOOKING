@@ -12,7 +12,7 @@
             	@forelse($vehicles as $vehicle)
                 <li><span class="booking-item-wishlist-title"><i class="fa fa-car"></i> vehicle <span>added on {{\Carbon\Carbon::parse($vehicle->created_at)->toFormattedDateString()}}</span></span>
                    
-                    <a class="booking-item" href="{{route('vehicle.view',$vehicle->id)}}">
+                    <div class="booking-item">
                         <div class="row">
                             <div class="col-md-3">
                                 <img src="{{url('/')}}/storage/vehicle/{{$vehicle['image']}}" alt="{{$vehicle->name}}" title="{{$vehicle->name}}">
@@ -21,10 +21,15 @@
                                 <h5 class="booking-item-title">{{$vehicle->name}}</h5>
                                 <p class="booking-item-address"><i class="fa fa-map-marker"></i> {{$vehicle->location}}</p>
                             </div>
-                            <div class="col-md-3"><span class="btn btn-primary">View</span>
+                            <div class="col-md-3">
+                                <p><a href="{{route('vehicle.view',$vehicle->id)}}"> <span class="btn btn-primary">View</span></a></p>
+                                <p><a href="{{route('vehicle.edit',$vehicle->id)}}"> <span class="btn btn-danger">Edit Details</span></a></p>
+                                @if($vehicle->flag == true)
+                                    <p><a href="{{route('vehicle.booking',$vehicle->id)}}"> <span class="btn btn-success">Bookings</span></a></p>
+                                @endif
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </li>
                 @empty
                 No vehicles Yet

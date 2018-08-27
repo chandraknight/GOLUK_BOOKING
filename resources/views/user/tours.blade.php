@@ -11,11 +11,11 @@
             <ul class="booking-list">
             @forelse($packages as $tour)
            <li><span class="booking-item-wishlist-title"><i class="fa fa-building-o"></i> Tour <span>added on {{\Carbon\Carbon::parse($tour->created_at)->toFormattedDateString()}}</span></span>
-            <a class="booking-item" href="{{route('viewpackage',$tour->id)}}">
+            <div class="booking-item" >
                 <div class="row">
                     
                     <div class="col-md-4">
-                        <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}"" alt="{{$tour->name}}" title="{{$tour->name}}">
+                        <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}" alt="{{$tour->name}}" title="{{$tour->name}}">
                     </div>
                     <div class="col-md-5">
                        
@@ -23,10 +23,15 @@
                         <p class="booking-item-address"><i class="fa fa-map-marker"></i> {{$tour->location}}</p>
                         <p class="booking-item-description">{!!substr($tour->description,0,100)!!}....</p>
                     </div>
-                    <div class="col-md-3"><span class="btn btn-primary">Edit</span>
+                    <div class="col-md-3">
+                        <p><a href="{{route('viewpackage',$tour->id)}}" <span class="btn btn-primary">View</span></a></p>
+                        <p><a href="{{route('editpackage',$tour->id)}}" <span class="btn btn-warning">Edit Details</span></a></p>
+                        @if($tour->flag == true)
+                        <p><a href="{{route('tour.booking',$tour->id)}}" <span class="btn btn-success"> Bookings</span></a></p>
+                        @endif
                     </div>
                 </div>
-            </a>
+            </div>
              </li>
             @empty
             No Tours Registered

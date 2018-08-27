@@ -185,6 +185,11 @@ Route::group(['prefix'=>'user','middleware'=>'auth'],function(){
         'uses'=>'UserController@userVehicleBooking',
         'as'=>'uservehiclebooking'
     ]);
+
+    Route::post('/tour/booking',[
+        'uses'=>'UserController@userTourBooking',
+        'as'=>'usertourbooking'
+    ]);
 });
 Route::get('/home', 'HomeController@index')->name('home');
 

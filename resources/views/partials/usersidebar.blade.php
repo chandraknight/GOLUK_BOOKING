@@ -6,25 +6,25 @@
             <p>Member Since {{\Carbon\Carbon::parse($user->created_at)->toFormattedDateString()}}</p>
         </div>
         <ul class="list user-profile-nav">
-            <li><a href="{{route('profile',$user->id)}}"><i class="fa fa-user"></i>Overview</a>
-                <li><a href="#"><i class="fa fa-credit-card"></i>Payment History</a>
-            </li>
-            </li>
+            <li><a href="{{route('profile',$user->id)}}"><i class="fa fa-user"></i>Overview</a> </li>
+                {{-- <li><a href="#"><i class="fa fa-credit-card"></i>Payment History</a> </li>--}}
+            
+           
             <li><a href="{{route('usersetting',$user->id)}}"><i class="fa fa-cog"></i>Settings</a>
             </li>
         	<li><a href="{{route('userbookinghistory',$user->id)}}"><i class="fa fa-clock-o"></i>Booking History</a>
         	</li>
             
             @role('hotelowner')
-            <li><a href="{{route('hotel.index')}}"><i class="fa fa-credit-card"></i>My Hotels</a>
+            <li><a href="{{route('hotel.index')}}"><i class="fa fa-building"></i>My Hotels</a>
             </li>
             @endrole
             @role('vehicleowner')
-            <li><a href="{{route('vehicle.index')}}"><i class="fa fa-credit-card"></i>My Vehicles</a>
+            <li><a href="{{route('vehicle.index')}}"><i class="fa fa-car"></i>My Vehicles</a>
             </li>
             @endrole
             @role('tourowner')
-            <li><a href="{{route('indexpackage')}}"><i class="fa fa-credit-card"></i>My Tours</a>
+            <li><a href="{{route('indexpackage')}}"><i class="fa fa-bars"></i>My Tours</a>
             </li>
             @endrole
             @role('agent')

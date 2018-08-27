@@ -76,6 +76,7 @@ class HotelController extends Controller
 
     public function edit($id) {
         $hotel = Hotel::findorfail($id);
+        // dd(\Carbon\Carbon::parse($hotel->bookHotel->first()->created_at)->diffForHumans());
         $services = HotelService::all();
         if(Auth()->user()->id == $hotel->created_by){
             $user = Auth::user();

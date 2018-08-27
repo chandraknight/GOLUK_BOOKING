@@ -108,11 +108,12 @@
 						            </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab-3">
-                                       <table class="table table-bordered table-striped table-booking-history">
+                                       <table id="tourbookings" class="table table-bordered table-striped table-booking-history">
 						                <thead>
 						                    <tr>
-						                        <th>Type</th>
-						                        <th>Tour</th>
+						                        <th>S.No</th>
+												<th>Tour Code</th>
+												<th>Name</th>
 						                        <th>Location</th>
 						                        <th>Booked Date</th>
 						                        <th>Booking On</th>
@@ -122,7 +123,7 @@
 						                    </tr>
 						                </thead>
 						                <tbody>
-						                	@forelse($tourBooking as $booking)
+						                	{{-- @forelse($tourBooking as $booking)
 						                	<tr>
 				                                <td class="booking-history-type"><i class="fa fa-bolt"></i><small>activity</small>
 				                                </td>
@@ -144,7 +145,7 @@
 				                            </tr>
 				                            @empty
 				                            No bookings Yet!!!
-				                            @endforelse
+				                            @endforelse --}}
 				                        </tbody>
 				                    </table>
                                     </div>
@@ -176,8 +177,8 @@
 								  {"data":"address"},
 								  {"data":"created_at"},
 								  {"data":"booking_from","searchable":false,"orderable":false},
-								  {"data":"cost"},
-								  {"data":"current"},
+								  {"data":"amount"},
+								  {"data":"current","searchable":false,"orderable":false},
 								  {"data":"actions","searchable":false,"orderable":false}
 								],
 								language: {
@@ -188,10 +189,7 @@
 						</script>
 
 						<script>
-								$(document).ready(function() {
-									$('a[data-toggle="tab-2"]').on( 'shown.myTab.tab-2', function (e) {
-										$.fn.dataTable.vehiclebookings( {visible: true, api: true} ).columns.adjust();
-									} );
+								
 							$('#vehiclebookings').DataTable( {
 								"processing": true,
 								"serverSide": true,
@@ -217,4 +215,31 @@
 							  }
 							} );
 						</script>
+						<script>
+								
+								$('#tourbookings').DataTable( {
+									"processing": true,
+									"serverSide": true,
+									"ajax": {
+									  "url":"{{route('usertourbooking')}}",
+									  "dataType":"json",
+									  "type":"POST",
+									  "data":{"_token":"<?= csrf_token(); ?>"}
+									},
+									"columns":[
+									  {"data":"id","searchable":false,"orderable":false},
+									  {"data":"tour_package_code"},
+									  {"data":"name"},
+									  {"data":"location"},
+									  {"data":"created_at","searchable":false,"orderable":false},
+									  {"data":"booking_from","searchable":false,"orderable":false},
+									  {"data":"cost"},
+									  {"data":"current","searchable":false,"orderable":false},
+									  {"data":"actions","searchable":false,"orderable":false}
+									],
+									language: {
+									  searchPlaceholder: "By Name,Address"
+								  }
+								} );
+							</script>
 @endsection
