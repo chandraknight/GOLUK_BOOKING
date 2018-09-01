@@ -6,16 +6,20 @@
  <div class="container">
     @include('partials.usersidebar')
     <div class="col-md-9">
-    <div class="row">
-        @forelse($bookings as $booking)
+    @foreach($bookings->chunk(3) as $b)
+        <div class="row">
+
+        @forelse($b as $booking)
         <div class="col-md-4">
             <div class="booking-item-payment">
                 <header class="clearfix">
                     <a class="booking-item-payment-img" href="#">
                         <img src="{{url('/')}}/storage/hotel_logo/{{$hotel['logo']}}" alt="{{$hotel->name}}" title="{{$hotel->name}}">
                     </a>
-                    <h5 class="booking-item-payment-title"><a href="#">{{$booking->customer_name}}</a></h5>
+                    <h5 class="booking-item-payment-title"><a href="#">{{$hotel->name}}</a></h5>
+                    
                    <h3 class="booking-item-payment-title">{{$booking->customer_email}}</h3>
+                   <h3 class="booking-item-payment-title">{{$booking->customer_name}}</h3>
                    <h3 class="booking-item-payment-title">{{$booking->customer_phone}}</h3>
                    <h3 class="booking-item-payment-title">{{$booking->customer_address}}</h3>
                 </header>
@@ -70,15 +74,19 @@
                         @endforeach
                     </li>
                 </ul>
-                <p class="booking-item-payment-total">Total Amount: <span>${{$booking->invoice['amount']}}</span>
+                <p class="booking-item-payment-total">Total Amount: <span>Rs {{$booking->invoice['amount']}}</span>
+                    <p class="booking-item-payment-total">Booking Status: <span>{{$booking->status}}</span>
                 </p>
-                <p><a href="{{route('booking.details',$booking->id)}}" class="btn btn-info">Guest Details</a>@if($booking->status == 'pending') <a href="{{route('book.confirm',$booking->id)}}" class="btn btn-success">Confirm</a> @endif @if($booking->status == 'pending'||$booking->status == 'confirmed') <a href="{{route('booking.cancel',$booking->id)}}" class="btn btn-danger">Cancel</a>@endif</p>
+                <p><a href="{{route('booking.details',$booking->id)}}" class="btn btn-sm btn-info">Guest Details</a>@if($booking->status == 'pending') <a href="{{route('book.confirm',$booking->id)}}" class="btn btn-sm btn-success">Confirm</a> @endif @if($booking->status == 'pending'||$booking->status == 'confirmed') <a href="{{route('booking.cancel',$booking->id)}}" class="btn btn-sm btn-danger">Cancel</a>@endif</p>
             </div>
         </div>
+        
         @empty
         No Bookings Yet
         @endforelse
     </div>
+    <br>
+    @endforeach
 </div>
 </div>
 @endsection

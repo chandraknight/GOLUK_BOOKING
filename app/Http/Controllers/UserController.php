@@ -272,12 +272,12 @@ class UserController extends Controller
 		0=>'id',
 		1=>'tour_package_code',
 		2=>'name',
-		2=>'location',
-		3=>'created_at',
-		4=>'booking_from',
-		5=>'cost',
-		6=>'current',
-		7=>'actions'
+		3=>'location',
+		4=>'created_at',
+		5=>'booking_from',
+		6=>'amount',
+		7=>'current',
+		8=>'actions'
 	);
 	$totalData = TourPackageBooking::Where('user_id',Auth::user()->id)->count();
 	$limit = $request->input('length');
@@ -306,31 +306,32 @@ class UserController extends Controller
 						->count();
 	}else{
 		$search = $request->input('search.value');
-		$posts = DB::table('vehicle_bookings')
-				->select('vehicle_bookings.id','vehicles.vehicle_code','vehicles.name','vehicle_bookings.created_at','vehicle_bookings.from','vehicle_bookings.to','vehicle_bookings.location','vehicle_bookings.destination','vehicle_bookings.booking_status','vehicle_booked_invoices.cost')
-				->join('vehicles','vehicle_bookings.vehicle_id','=','vehicles.id')
-				->join('vehicle_booked_invoices','vehicle_bookings.id','=','vehicle_booked_invoices.vehicle_booking_id')				
-				 ->where('vehicle_bookings.user_id',Auth::user()->id)
-				 ->where('name', 'like', "%{$search}%")
-				 ->orWhere('vehicle_code','like',"%{$search}%")
-				 ->orWhere('vehicle_bookings.location','like',"%{$search}%")
-				 ->orWhere('destination','like',"%{$search}%")
+		$posts =  DB::table('tour_package_bookings')
+				->select('tour_package_bookings.id','tour_package_bookings.user_id','tour_packages.tour_package_code','tour_packages.name','tour_package_bookings.created_at','tour_package_bookings.starting_from','tour_package_bookings.till_date','tour_packages.location','tour_package_bookings.booking_status','tour_booked_invoices.amount')
+				->join('tour_packages','tour_package_bookings.tour_package_id','=','tour_packages.id')
+				->join('tour_booked_invoices','tour_package_bookings.id','=','tour_booked_invoices.tour_package_booking_id')
+				->where('tour_package_bookings.user_id',Auth::user()->id)
+				 ->orWhere('name', 'like', "%{$search}%")
+				 ->orWhere('tour_package_code','like',"%{$search}%")
+				 ->orWhere('tour_packages.location','like',"%{$search}%")
 				 ->offset($start)
 				 ->limit($limit)
 				 ->orderBy($order, $dir)
+				 ->groupBy('tour_package_bookings.id')
 				 ->get();
-		$totalFiltered =DB::table('vehicle_bookings')
-						->select('vehicle_bookings.id','vehicles.vehicle_code','vehicles.name','vehicle_bookings.created_at','vehicle_bookings.from','vehicle_bookings.to','vehicle_bookings.location','vehicle_bookings.destination','vehicle_bookings.booking_status','vehicle_booked_invoices.cost')					
-						->join('vehicles','vehicle_bookings.vehicle_id','=','vehicles.id')
-						->join('vehicle_booked_invoices','vehicle_bookings.id','=','vehicle_booked_invoices.vehicle_booking_id')
-						->where('vehicle_bookings.user_id',Auth::user()->id)
-						->where('name', 'like', "%{$search}%")
-						->orWhere('vehicle_code','like',"%{$search}%")
-						->orWhere('vehicle_bookings.location','like',"%{$search}%")
-						->orWhere('destination','like',"%{$search}%")
+				//  dd($posts);
+		$totalFiltered = DB::table('tour_package_bookings')
+						->select('tour_package_bookings.id','tour_package_bookings.user_id','tour_packages.tour_package_code','tour_packages.name','tour_package_bookings.created_at','tour_package_bookings.starting_from','tour_package_bookings.till_date','tour_packages.location','tour_package_bookings.booking_status','tour_booked_invoices.amount')
+						->join('tour_packages','tour_package_bookings.tour_package_id','=','tour_packages.id')
+						->join('tour_booked_invoices','tour_package_bookings.id','=','tour_booked_invoices.tour_package_booking_id')
+						->where('tour_package_bookings.user_id',Auth::user()->id)
+						->orWhere('name', 'like', "%{$search}%")
+						->orWhere('tour_package_code','like',"%{$search}%")
+						->orWhere('tour_packages.location','like',"%{$search}%")
 						->offset($start)
 						->limit($limit)
 						->orderBy($order, $dir)
+						->groupBy('tour_package_bookings.id')
 						->count();
 	}	
 
@@ -347,7 +348,7 @@ class UserController extends Controller
 			$nestedData['location']=$r->location;
 			$nestedData['created_at']=Carbon::parse($r->created_at)->toFormattedDateString();
 			$nestedData['booking_from'] = Carbon::parse($r->starting_from)->toFormattedDateString(). "<i class='fa fa-long-arrow-right'></i>". Carbon::parse($r->till_date)->toFormattedDateString();
-			$nestedData['cost']=$r->amount;
+			$nestedData['amount']=$r->amount;
 			if(Carbon::parse($r->starting_from)->eq(Carbon::yesterday())){
 			$nestedData['current']="<td class='text-center'><i class='fa fa-check'></i></td>";
 			}else{

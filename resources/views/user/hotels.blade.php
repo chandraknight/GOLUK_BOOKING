@@ -28,7 +28,7 @@
                                 <p><a href="{{route('hotel.edit',$hotel->id)}}"> <span class="btn btn-danger">Edit Details</span></a></p>
                                 @if($hotel->flag == true)
                                 <p><a href="{{route('room.add',$hotel->id)}}"> <span class="btn btn-info">Add Room</span></a></p>
-                                <p><a href="{{route('room.add',$hotel->id)}}"> <span class="btn btn-success">Bookings</span></a></p>
+                                <p><a href="{{route('hotel.bookings',$hotel->id)}}"> <span class="btn btn-success">Bookings</span></a></p>
                                 @endif
                             </div>
                         </div>

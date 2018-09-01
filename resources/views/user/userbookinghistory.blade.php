@@ -233,7 +233,7 @@
 									  {"data":"location"},
 									  {"data":"created_at","searchable":false,"orderable":false},
 									  {"data":"booking_from","searchable":false,"orderable":false},
-									  {"data":"cost"},
+									  {"data":"amount"},
 									  {"data":"current","searchable":false,"orderable":false},
 									  {"data":"actions","searchable":false,"orderable":false}
 									],
