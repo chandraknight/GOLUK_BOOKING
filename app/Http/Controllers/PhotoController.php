@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Hotel;
-use Auth;
 use App\Photo;
-use Illuminate\Support\Facades\Storage;
+use Auth;
+use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {

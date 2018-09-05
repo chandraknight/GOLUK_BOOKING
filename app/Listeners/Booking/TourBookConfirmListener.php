@@ -2,8 +2,6 @@
 
 namespace App\Listeners\Booking;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\Booking\TourBookConfirmEvent;
 use App\Mail\Booking\TourBookedConfirm;
 use Illuminate\Support\Facades\Mail;

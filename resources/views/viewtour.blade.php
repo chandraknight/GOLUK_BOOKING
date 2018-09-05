@@ -78,7 +78,7 @@
                         @if(session()->has('search_tour_id'))
                         <a href="{{route('booktour',$tour->id)}}" class="btn btn-primary btn-lg">Add to Trip</a>
                         @else
-                            <small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Reserve</a></small>
+                            <a class="popup-text btn btn-primary" href="#search-dialog" data-effect="mfp-zoom-out">Reserve</a>
                         @endif
                     </div>
                 </div>

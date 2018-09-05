@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\AgentHotelCommission;
+use App\AgentTourPackageCommission;
+use App\AgentVehicleCommission;
+use App\Booking;
 use App\Hotel;
 use App\TourPackage;
+use App\TourPackageBooking;
+use App\User;
 use App\Vehicle;
+use App\VehicleBooking;
 use App\VehicleService;
 use App\VehicleType;
-use App\User;
-use App\Booking;
-use App\VehicleBooking;
-use App\TourPackageBooking;
-use App\HotelCommission;
-use App\Role;
-use App\AgentHotelCommission;
-use App\AgentVehicleCommission;
-use App\AgentTourPackageCommission;
-use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
-use App\Helper;
 
 class AdminController extends Controller
 {

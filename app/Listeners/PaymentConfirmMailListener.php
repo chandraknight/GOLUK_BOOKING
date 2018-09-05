@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\PaymentConfirmMailEvent;
 use App\Mail\PaymentConfirmMail;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class PaymentConfirmMailListener
 {

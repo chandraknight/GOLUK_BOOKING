@@ -1,19 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
 use App\Hotel;
-use App\Photo;
 use App\HotelService;
-use App\RoomService;
-use Illuminate\Http\Request;
 use App\Http\Requests\HotelStoreRequest;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
 use App\Notifications\HotelRegisteredNotification;
-use Illuminate\Notifications\Notification;
-use Illuminate\Notifications;
+use App\Photo;
+use App\RoomService;
+use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 class HotelController extends Controller
 {
      public function index() {

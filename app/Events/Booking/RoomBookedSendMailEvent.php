@@ -2,13 +2,11 @@
 
 namespace App\Events\Booking;
 
-use App\BookedRoom;
 use App\Booking;
-use App\BookingDetail;
 use App\Hotel;
 use App\User;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class RoomBookedSendMailEvent
 {

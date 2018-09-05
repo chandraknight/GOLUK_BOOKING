@@ -74,8 +74,8 @@
                         <div class="col-md-4">
                             <div class="thumb">
                                 <header class="thumb-header">
-                                    <a href="{{route('vehicle.show',$vehicle->id)}}">
-                                        <img src="{{url('/')}}/storage/vehicle/{{$vehicle['image']}}" alt="{{$vehicle->name}}" title="{{$vehicle->name}}">
+                                    <a class="hover-img curved" href="{{route('vehicle.show',$vehicle->id)}}">
+                                        <img src="{{url('/')}}/storage/vehicle/{{$vehicle['image']}}" alt="{{$vehicle->name}}" title="{{$vehicle->name}}"  height="160px">
                                     </a>
                                 </header>
                                 <div class="thumb-caption">

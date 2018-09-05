@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Hotel;
-use App\Vehicle;
-use App\User;
-use App\TourPackage;
-use App\HotelCommission;
-use App\VehicleCommission;
-use App\TourPackageCommission;
 use App\AgentHotelCommission;
-use App\AgentVehicleCommission;
 use App\AgentTourPackageCommission;
+use App\AgentVehicleCommission;
+use App\Hotel;
+use App\HotelCommission;
+use App\TourPackage;
+use App\TourPackageCommission;
+use App\User;
+use App\Vehicle;
+use App\VehicleCommission;
+use Illuminate\Http\Request;
 
 class CommissionController extends Controller
 {

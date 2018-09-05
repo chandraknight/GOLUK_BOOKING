@@ -2,11 +2,10 @@
 
 namespace App\Mail\Booking;
 
+use App\Booking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Booking;
 
 class HotelBookingCanceledMail extends Mailable
 {

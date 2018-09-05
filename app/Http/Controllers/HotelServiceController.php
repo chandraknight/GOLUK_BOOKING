@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
 use App\Hotel;
 use App\HotelService;
+use Auth;
 use Illuminate\Http\Request;
 
 class HotelServiceController extends Controller

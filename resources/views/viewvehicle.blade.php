@@ -129,12 +129,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-daterange" data-date-format="MM d, D">
+                    <div class="input-daterange " >
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Pick-up Date</label>
-                                    <input class="form-control" name="from" type="date">
+                                    <input class="form-control date-pick" data-date-format="MM d, D" name="from">
                                 </div>
                             </div>
                              <div class="col-md-3">
@@ -143,11 +143,11 @@
                                                                     <input class="time-pick form-control" name="pickup_time" value="12:00 AM" type="text">
                                                                 </div>
                                                             </div>
-                           
+
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Drop-off Date</label>
-                                    <input class="form-control" name="till" type="date">
+                                    <input class="form-control date-pick" name="till">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -162,7 +162,7 @@
                                     <input class="form-control" name="passenger" type="number">
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <button class="btn btn-primary btn-lg" type="submit">Reserve</button>

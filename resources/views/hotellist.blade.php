@@ -74,8 +74,8 @@
                         <div class="col-md-4">
                             <div class="thumb">
                                 <header class="thumb-header">
-                                    <a class="hover-img" href="{{route('hotel.show',$hotel->id)}}">
-                                        <img src="{{url('/')}}/storage/hotel_logo/{{$hotel['logo']}}" alt="{{$hotel->name}}" title="{{$hotel->name}}">
+                                    <a class="hover-img curved" href="{{route('hotel.show',$hotel->id)}}">
+                                        <img src="{{url('/')}}/storage/hotel_logo/{{$hotel['logo']}}" alt="{{$hotel->name}}" title="{{$hotel->name}}"  height="160px">
                                         <h5 class="hover-title-center">Book Now</h5>
                                     </a>
                                 </header>
@@ -84,7 +84,7 @@
                                     <h5 class="thumb-title"><a class="text-darken" href="#">{{$hotel->name}}</a></h5>
                                     <p class="mb0"><small>{{$hotel->address}}</small>
                                     </p>
-                                    <p class="mb0 text-darken"><span class="text-lg lh1em">Rs {{collect($hotel->rooms)->min('room_flat_cost')}}</span><small> avg/night</small>
+                                    <p class="mb0 text-darken"><span class="text-lg lh1em text-color">Rs {{collect($hotel->rooms)->min('room_flat_cost')}}</span><small> /night</small>
                                     </p>
                                 </div>
                             </div>

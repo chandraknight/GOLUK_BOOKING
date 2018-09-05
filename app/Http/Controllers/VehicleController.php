@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Request\VehicleStoreRequest;
+use App\Notifications\VehicleRegisteredNotification;
 use App\Vehicle;
 use App\VehicleService;
 use App\VehicleServiceCost;
@@ -9,8 +11,6 @@ use App\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\VehicleRegisteredNotification;
-use App\Http\Request\VehicleStoreRequest;
 
 class VehicleController extends Controller
 {

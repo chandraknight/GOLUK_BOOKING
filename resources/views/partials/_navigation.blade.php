@@ -38,13 +38,13 @@
             <div class="container">
                 <div class="nav">
                     <ul class="slimmenu" id="slimmenu">
-                        <li class="active"><a href="{{route('welcome')}}">Home</a>
+                        <li class="{{Request::is('/') ? 'active' : ''}}"><a href="{{route('welcome')}}">Home</a>
                         </li>
-                        <li><a href="{{route('hotel.list')}}">Hotels</a>
+                        <li class="{{Request::is('hotels') ? 'active' : ''}}"><a href="{{route('hotel.list')}}">Hotels</a>
                         </li>
-                        <li><a href="{{route('vehicle.list')}}">Cars</a>
+                        <li class="{{Request::is('vehicle/list') ? 'active' : ''}}"><a href="{{route('vehicle.list')}}">Vehicles</a>
                         </li>
-                        <li><a href="{{route('listtour')}}">Activities</a>
+                        <li class="{{Request::is('tours') ? 'active' : ''}}"><a href="{{route('listtour')}}">Tours</a>
                         </li>
 
                        

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Hotel;
 use App\RoomService;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class RoomServiceController extends Controller
 {

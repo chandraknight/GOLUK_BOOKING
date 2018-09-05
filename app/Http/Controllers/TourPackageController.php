@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TourPackageStoreRequest;
+use App\Notifications\TourPackageRegisteredNotification;
 use App\TourGallery;
 use App\TourPackage;
 use App\TourPackageBooking;
 use App\TourPackageBookingDetails;
-use App\Notifications\TourPackageRegisteredNotification;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\User;
-use Illuminate\Notifications\Notification;
-use Illuminate\Notifications;
-use App\Http\Requests\TourPackageStoreRequest;
 
 class TourPackageController extends Controller
 {

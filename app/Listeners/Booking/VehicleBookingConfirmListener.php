@@ -4,8 +4,6 @@ namespace App\Listeners\Booking;
 
 use App\Events\Booking\VehicleBookingConfirmEvent;
 use App\Mail\Booking\VehicleBookingConfirmCustomerMail;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
 class VehicleBookingConfirmListener
