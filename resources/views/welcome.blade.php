@@ -3,7 +3,7 @@
     <div class="top-area show-onload">
         <div class="bg-holder full">
             <div class="bg-mask"></div>
-            <div class="bg-parallax" style="background-image:url(img/196_365_2048x1365.jpg);"></div>
+            <div class="bg-parallax" style="background-image:url('img/196_365_2048x1365.jpg');"></div>
             <div class="bg-content">
                 <div class="container">
                     <div class="row">
