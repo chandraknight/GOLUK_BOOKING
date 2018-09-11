@@ -3,10 +3,6 @@
     <div class="container">
             <h1 class="page-title">Search for Rental Cars</h1>
         </div>
-
-
-
-
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -37,7 +33,7 @@
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                                     <label>Drop off Location</label>
-                                    <input class="typeahead form-control" value="Same as pickup" placeholder="City or Airport" name="destination" type="text">
+                                    <input class="typeahead form-control"  placeholder="Same as pickup" name="destination" type="text">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -81,11 +77,20 @@
                                 <div class="thumb-caption">
                                     <h5 class="thumb-title"><a class="text-darken" href="{{route('vehicle.show',$vehicle->id)}}">{{$vehicle->name}}</a></h5><small>{{$vehicle->types['type_name']}}</small>
                                     <ul class="booking-item-features booking-item-features-small booking-item-features-sign clearfix mt5">
-                                        <li rel="tooltip" data-placement="top" title="Passengers"><i class="fa fa-male"></i><span class="booking-item-feature-sign">x {{$vehicle->no_of_people}}</span>
+                                        <li rel="tooltip" data-placement="top" title="Diesel Vehicle" ><i class="im im-diesel"></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
                                         </li>
-                                       
-                                        <li rel="tooltip" data-placement="top" title="Diesel Vehicle"><i class="im im-diesel"></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
+                                        <li rel="tooltip" data-placement="top" title="Passengers" ><i class="fa fa-male"></i><span class="booking-item-feature-sign">x {{$vehicle->no_of_people}}</span>
                                         </li>
+                                        <li rel="tooltip" data-placement="top" title="Vehicle Origin location - {{$vehicle->location}}" class="col-sm-2"><i class="fa fa-map-marker"></i><span class="booking-item-feature-sign">{{$vehicle->location}}</span>
+                                        </li>
+
+                                        <li rel="tooltip" data-placement="top" title="2WD/4WD" ><i class="im im-car-wheel " ></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
+                                        </li>
+                                        <li title="" data-original-title="Car with Driver" data-placement="top" rel="tooltip" class="col-sm-1"><i class="im im-driver"></i> <span class="booking-item-feature-sign">Yes</span>
+                                        </li>
+                                        <li title="" data-original-title="Satellite Navigation" data-placement="top" rel="tooltip" class="col-sm-1"><i class="im im-satellite"></i> <span class="booking-item-feature-sign">NO</span>
+                                        </li>
+
                                     </ul>
                                     <p class="text-darken mb0 text-color">Rs {{$vehicle->rate_per_day}}<small> /day</small>
                                     </p>

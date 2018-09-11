@@ -68,6 +68,7 @@
 
         </div>
     </div>
+
 </footer>
 
 <script src="{{URL::asset('/js/jquery.js')}}"></script>
