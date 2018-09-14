@@ -3,9 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**

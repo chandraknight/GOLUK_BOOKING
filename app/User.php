@@ -2,21 +2,9 @@
 
 namespace App;
 
-use App\Hotel;
-use App\Vehicle;
-use App\TourPackage;
-use App\Booking;
-use App\VehicleBooking;
-use App\TourPackageBooking;
-use App\AgentHotelCommission;
-use App\AgentVehicleCommission;
-use App\AgentTourPackageCommission;
-use App\AgentHotelBookingCommission;
-use App\AgentVehicleBookingCommission;
-use App\AgentTourPackageBookingCommission;
 use App\Permissions\HasPermissionsTrait;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {

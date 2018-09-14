@@ -5,9 +5,9 @@ namespace App\Mail\Booking;
 use App\Booking;
 use App\Hotel;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class RoomBookedMailOwner extends Mailable implements ShouldQueue
 {

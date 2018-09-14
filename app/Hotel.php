@@ -1,9 +1,6 @@
 <?php
 
 namespace App;
-use App\User;
-use App\HotelService;
-use App\FullTextSearch;
 use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model

@@ -47,7 +47,8 @@
                <input type="hidden" name="id" value="{{$hotel->id}}">
                <div class="form-group form-group-icon-left"><i class="fa fa-clock-o input-icon input-icon-bounce"></i>
                   <label>Check out Time</label>
-                  <input class="form-control" value="{{$hotel->check_out_time}}" name="check_out_time" type="time">
+                   <input class="form-control time-pick"  name="check_out_time" type="text" value="{{$hotel->check_out_time}}">
+
               </div>
               <div class="form-group form-group-icon-left"><i class="fa fa-image input-icon input-icon-bounce"></i>
                   <label>Logo</label>

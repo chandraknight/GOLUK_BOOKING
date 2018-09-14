@@ -2,9 +2,6 @@
 
 namespace App;
 
-use App\Hotel;
-use App\BookingDetail;
-use App\BookedRoom;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model

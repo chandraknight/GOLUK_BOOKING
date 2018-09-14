@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Hotel;
+use App\Http\Controllers\Controller;
 use App\Permission;
-use App\Permissions\HasPermissionsTrait;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SuperAdminController extends Controller

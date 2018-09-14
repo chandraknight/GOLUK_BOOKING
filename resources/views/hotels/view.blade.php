@@ -138,7 +138,7 @@
                     </div>
                     <div class="col-md-3">
                         <h4>About the Hotel</h4>
-                        <p class="mb30">{!!$hotel->description!!}</h4>
+                        <p class="mb30">{!!$hotel->description!!}</p>
                         <ul class="booking-item-features booking-item-features-expand mb30 clearfix">
                             @forelse($hotel->hotelservices as $service)
                             <li><i class="fa fa-sm fa-hand-o-right"></i><span class="booking-item-feature-title">{{$service->service_name}}</span>

@@ -1,8 +1,7 @@
 <?php 
 namespace App;
-use App\Hotel;
-use App\Booking;
 use Carbon\Carbon;
+
 class Helper {
 	static function getWeeklyHotelBookings($id) {
 		$hotel = Hotel::findorfail($id);

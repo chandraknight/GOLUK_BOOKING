@@ -2,11 +2,9 @@
 
 namespace App\Listeners\Booking;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\Booking\HotelBookingCanceledEvent;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\Booking\HotelBookingCanceledMail;
+use Illuminate\Support\Facades\Mail;
 
 class HotelBookingCanceledListener
 {

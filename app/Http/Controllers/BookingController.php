@@ -2,28 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\AgentHotelBookingCommission;
+use App\AgentTourPackageBookingCommission;
+use App\AgentVehicleBookingCommission;
 use App\BookedRoom;
 use App\Booking;
 use App\BookingDetail;
-use App\HotelBookingCommission;
-use App\VehicleBookingCommission;
-use App\TourBookingCommission;
 use App\Events\Booking\BookConfirmSendMailEvent;
+use App\Events\Booking\HotelBookingCanceledEvent;
 use App\Events\Booking\RoomBookedSendMailEvent;
+use App\Events\Booking\TourBookConfirmEvent;
 use App\Events\Booking\TourBookedEvent;
+use App\Events\Booking\TourBookingCanceledEvent;
+use App\Events\Booking\VehicleBookingCanceledEvent;
 use App\Events\Booking\VehicleBookingConfirmEvent;
 use App\Events\Booking\VehicleBookingMailOwnerEvent;
-use App\Events\Booking\TourBookConfirmEvent;
-use App\AgentHotelBookingCommission;
-use App\AgentVehicleBookingCommission;
-use App\AgentTourPackageBookingCommission;
 use App\Events\PaymentConfirmMailEvent;
 use App\Hotel;
+use App\HotelBookingCommission;
 use App\Invoice;
 use App\Notifications\RoomBooked;
 use App\Notifications\TourBookedNotification;
 use App\Notifications\VehicleBooked;
 use App\TourBookedInvoice;
+use App\TourBookingCommission;
 use App\TourPackage;
 use App\TourPackageBooking;
 use App\TourPackageBookingDetails;
@@ -32,20 +34,15 @@ use App\User;
 use App\Vehicle;
 use App\VehicleBookedInvoice;
 use App\VehicleBooking;
+use App\VehicleBookingCommission;
 use App\VehicleBookingDetails;
-use App\VehicleServiceCost;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications;
-use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
-use Auth;
-use App\Events\Booking\HotelBookingCanceledEvent;
-use App\Events\Booking\VehicleBookingCanceledEvent;
-use App\Events\Booking\TourBookingCanceledEvent;
 
 class BookingController extends Controller
 {

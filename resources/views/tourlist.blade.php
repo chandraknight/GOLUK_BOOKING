@@ -41,8 +41,8 @@
                         <div class="col-md-4">
                             <div class="thumb">
                                 <header class="thumb-header">
-                                    <a class="hover-img" href="{{route('tour.show',$tour->id)}}">
-                                        <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}" alt="{{$tour->name}}" title="{{$tour->name}}">
+                                    <a class="hover-img curved" href="{{route('tour.show',$tour->id)}}">
+                                        <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}" alt="{{$tour->name}}" title="{{$tour->name}}"  height="160px">
                                         <h5 class="hover-title-center">Book Now</h5>
                                     </a>
                                 </header>

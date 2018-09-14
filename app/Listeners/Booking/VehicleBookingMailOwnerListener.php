@@ -4,8 +4,6 @@ namespace App\Listeners\Booking;
 
 use App\Events\Booking\VehicleBookingMailOwnerEvent;
 use App\Mail\Booking\VehicleBookedOwnerMail;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
 class VehicleBookingMailOwnerListener

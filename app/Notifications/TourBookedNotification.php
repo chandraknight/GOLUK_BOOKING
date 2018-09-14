@@ -5,9 +5,8 @@ namespace App\Notifications;
 use App\TourPackage;
 use App\TourPackageBooking;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class TourBookedNotification extends Notification
 {

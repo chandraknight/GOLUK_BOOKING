@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Hotel;
 use App\Http\Requests\RoomSelectRequest;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\TourSearchRequest;
 use App\Http\Requests\VehicleSearchRequest;
-use App\Http\Requests\BookingRequest;
 use App\Photo;
 use App\Room;
 use App\RoomGallery;
@@ -18,10 +18,7 @@ use App\TourPackage;
 use App\TourSearch;
 use App\Vehicle;
 use App\VehicleSearch;
-use App\Booking;
 use Carbon\Carbon;
-use App\User;
-use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {

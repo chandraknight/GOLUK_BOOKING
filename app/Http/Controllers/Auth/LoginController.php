@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,34 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+//   protected $redirectTo = '/';
+
+    /**
+     * @param Request $request
+     * @param $user
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+
+    public function authenticated(Request $request, $user)
+    {
+        if ($user->hasRoles('superadmin')) {
+            return redirect()->route('admin.index');
+        } elseif($user->hasRole('admin')) {
+            return redirect()->route('admin.index');
+        }elseif($user->hasRole('agent')){
+            return redirect()->route('profile',$user->id);
+        }elseif ($user->hasRole('hotelowner')){
+            return redirect()->route('profile',$user->id);
+        }elseif($user->hasRole('vehicleowner')){
+            return redirect()->route('profile',$user->id);
+        }elseif($user->hasRole('tourowner')){
+            return redirect()->route('profile',$user->id);
+        }
+        else{
+            return redirect('/');
+        }
+
+    }
 
     /**
      * Create a new controller instance.

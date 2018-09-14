@@ -2,12 +2,11 @@
 
 namespace App\Mail\Booking;
 
+use App\TourPackage;
+use App\TourPackageBooking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\TourPackageBooking;
-use App\TourPackage;
 
 class TourBookedConfirm extends Mailable
 {
