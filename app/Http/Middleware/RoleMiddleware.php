@@ -22,7 +22,7 @@ class RoleMiddleware
 
         foreach($roles as $role) {
 
-            if ($request->user()->hasRoles($role)) {
+            if (!$request->user()->hasRoles($role)) {
 
                 return $next($request);
             }

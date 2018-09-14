@@ -209,12 +209,12 @@
                                 <li>
                                     <h5>Check In:</h5>
                                    
-                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>{{$from->toFormattedDateString()}}</p>
+                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>{{$from}}</p>
                                 </li>
                                 <li>
                                     <h5>Check Out:</h5>
                                     
-                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>{{$till->toFormattedDateString()}}</p>
+                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>{{$till}}</p>
                                 </li>
                                 <li>
                                     <h5>Adults:</h5>
