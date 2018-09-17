@@ -14,6 +14,8 @@ use App\Vehicle;
 use App\VehicleBooking;
 use App\VehicleService;
 use App\VehicleType;
+use App\HotelService;
+use App\RoomService;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -1018,10 +1020,6 @@ class AdminController extends Controller
         echo json_encode($json_data);
     }
 
-    
-
-   
-
     public function agentDetails($id) {
         $user = User::findorfail($id);
         $hotels = Hotel::all();
@@ -1039,6 +1037,28 @@ class AdminController extends Controller
         $vehiclebookings = VehicleBooking::where('user_id',$user->id)->get();
         $tourbookings = TourPackageBooking::where('user_id',$user->id)->get();
         return view('admin.agentbookings',['hotelbookings'=>$hotelbookings,'vehiclebookings'=>$vehiclebookings,'tourbookings'=>$tourbookings]);
+    }
+
+    public function hotelServices() {
+        // dd('asdasdas');
+        $services = HotelService::all();
+        return view('admin.hotelservices',['services'=>$services]);
+    }
+
+    public function editHotelService($id) {
+        $service = HotelService::findorfail($id);
+        return view('admin.edithotelservice',['service'=>$service]);
+    }
+
+    public function roomServices() {
+        // dd('roomservices');
+        $services = RoomService::all();
+        return view('admin.roomservices',['services'=>$services]);
+    }
+
+    public function editRoomService($id) {
+        $service = RoomService::findorfail($id);
+        return view('admin.editroomservice',['service'=>$service]);
     }
     
 }

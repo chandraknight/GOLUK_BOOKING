@@ -22,7 +22,7 @@ class HotelController extends Controller
     public function register(){
          if(Auth::user()->hasRole('hotelowner')){
             $user = Auth::user();
-             $services = HotelService::all();
+             $services = HotelService::where('hotel_id',null)->get();
              return view('hotels.register',['hotelservice'=>$services,'user'=>$user]);
          }
 

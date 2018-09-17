@@ -13,7 +13,7 @@ class HotelServiceController extends Controller
             $hotel = Hotel::findorfail($id);
             $user = Auth::user();
         	$services = HotelService::where('hotel_id',$hotel->id);
-        	return view('services.index',['services'=>$services,'user'=>$user,'hotel'=>$hotel]);
+        	return view('',['services'=>$services,'user'=>$user,'hotel'=>$hotel]);
         }
     }
 
@@ -29,10 +29,13 @@ class HotelServiceController extends Controller
         $service->service_remarks = $request->service_remarks;
         $service->service_enable = $request->service_enable;
         $service->service_created_by = Auth()->user()->id;
-        $service->service_last_updated_by = Auth()->user()->id; 
+        $service->service_last_updated_by = Auth()->user()->id;
+        if($request->has('hotel_id')){
+            $service->hotel_id = $request->hotel_id;
+        } 
 
         $service->save();
-        return redirect()->route('service.index')->with('success','Service registered Successfully'); 
+        return redirect()->back()->with('success','Service registered Successfully'); 
     }
 
     public function edit($id){
@@ -48,7 +51,7 @@ class HotelServiceController extends Controller
 
     public function update(Request $request){
         $service = HotelService::findorfail($request->id);
-        if(Auth()->user()->id == $service->service_created_by) {
+        if(true) {
             $service -> update([
                 'service_name' => $request->service_name,
                 'service_type' => $request->service_type,
@@ -60,20 +63,19 @@ class HotelServiceController extends Controller
                 'service_enable' => $request->service_enable,
                 'service_last_updated_by' => Auth()->user()->id,
             ]);
-            return redirect()->route('service.index')->with('success','Service Successfully updated');
+            return redirect()->back()->with('success','Service Successfully updated');
         } else {
-            return redirect()->route('service.index')->with('error','Permission Denied');
+            return redirect()->back()->with('error','Permission Denied');
         }
         
     }
 
     public function delete($id) {
         $service = HotelService::findorfail($id);
-        if(Auth()->user()->id == $service->service_created_by) {
-            $service->delete();
-            return redirect()->route('service.index')->with('success','Successfully Deleted');
+        if($service->delete()) {
+            return redirect()->back()->with('success','Successfully Deleted');
         } else {
-            return redirect()->route('service.index')->with('error','Permission Denied');
+            return redirect()->back()->with('error','Permission Denied');
         }
     }
 }

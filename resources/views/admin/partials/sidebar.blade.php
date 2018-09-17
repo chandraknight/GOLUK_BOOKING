@@ -54,40 +54,43 @@
             </a>
           </li>
          
+         
           <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.hotel')}}">
+            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
               <span class="menu-title">Hotels</span>
-              <i class="mdi mdi-contacts menu-icon"></i>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-medical-bag menu-icon"></i>
             </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('admin.hotel')}}"> Hotels </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('admin.hotelservice')}}">Hotel Services </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('roomtype.index')}}">Room Types</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('admin.roomservice')}}">Room Services</a></li>
+              </ul>
+              </div>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.vehicle')}}">
-              <span class="menu-title">Vehicles</span>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-            </a>
-          </li>
+              <a class="nav-link" data-toggle="collapse" href="#vehicles" aria-expanded="false" aria-controls="vehicles">
+                <span class="menu-title">Vehicles</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-medical-bag menu-icon"></i>
+              </a>
+              <div class="collapse" id="vehicles">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{route('admin.vehicle')}}"> Vehicles </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{route('vehicle.service.index')}}">Vehicle Services </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{route('vehicle.type.index')}}">Vehicle Type</a></li>
+                </ul>
+                </div>
+            </li>
+
+          
           <li class="nav-item">
             <a class="nav-link" href="{{route('admin.tour')}}">
               <span class="menu-title">Tours</span>
               <i class="mdi mdi-chart-bar menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('vehicle.type.index')}}">
-              <span class="menu-title">Vehicle Type</span>
-              <i class="mdi mdi-table-large menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('vehicle.service.index')}}">
-              <span class="menu-title">Vehicle Services</span>
-              <i class="mdi mdi-table-large menu-icon"></i>
-            </a>
-          </li>
-           <li class="nav-item">
-            <a class="nav-link" href="{{route('roomtype.index')}}">
-              <span class="menu-title">Hotel Room Types</span>
-              <i class="mdi mdi-table-large menu-icon"></i>
             </a>
           </li>
            
@@ -100,12 +103,12 @@
 
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+            <a class="nav-link" data-toggle="collapse" href="#bookings" aria-expanded="false" aria-controls="bookings">
               <span class="menu-title">Bookings</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-medical-bag menu-icon"></i>
             </a>
-            <div class="collapse" id="general-pages">
+            <div class="collapse" id="bookings">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('admin.hotel.booking')}}"> Hotel Bookings </a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('admin.vehicle.booking')}}"> Vehicle Bookings </a></li>

@@ -670,6 +670,26 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
         'as'=>'admin.hotel.append'
     ]);
 
+    Route::get('/hotelservice',[
+        'uses'=>'AdminController@hotelServices',
+        'as'=>'admin.hotelservice'
+    ]);
+
+    Route::get('/edit/hotelservice/{id}',[
+        'uses'=>'AdminController@editHotelService',
+        'as'=>'admin.edithotelservice'
+    ]);
+
+    Route::get('/hotel/room/services',[
+        'uses'=>'AdminController@roomServices',
+        'as'=>'admin.roomservice'
+    ]);
+
+    Route::get('/hotel/room/services/edit/{id}',[
+        'uses'=>'AdminController@editRoomService',
+        'as'=>'admin.editroomservice'
+    ]);
+
     Route::get('/vehicles',[
         'uses'=>'AdminController@vehicles',
         'as'=>'admin.vehicle'
@@ -926,7 +946,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
         'uses'=>'AdminController@agentBookings',
         'as'=>'admin.agent.booking'
     ]);
-
 
     
 });

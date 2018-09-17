@@ -23,10 +23,10 @@ class RoomServiceController extends Controller
 
         $roomservice->name = $request->service_name;
         $roomservice->description = $request->service_description;
-        $roomservice->hotel_id = $request->hotel_id;
-
+        if($request->has(hotel_id)){
+            $roomservice->hotel_id = $request->hotel_id;
+        }
         $roomservice->save();
-
         return redirect()->back()->withSuccess('Room Service successfully added');
     }
 
@@ -47,7 +47,7 @@ class RoomServiceController extends Controller
             'name'=>$request->service_name,
             'description'=>$request->service_description
         ]);
-        return redirect()->route('roomservices.index',$roomservice->hotel_id)->withSuccess('Room Service successfully Updated');
+        return redirect()->back()->withSuccess('Room Service successfully Updated');
 
     }
 
@@ -56,6 +56,6 @@ class RoomServiceController extends Controller
         $roomservice = RoomService::findorfail($id);
 
         $roomservice->delete();
-        return redirect()->route('roomservices.index',$roomservice->hotel_id)->withSuccess('Room Service successfully deleted');
+        return redirect()->back()->withSuccess('Room Service successfully deleted');
     }
 }
