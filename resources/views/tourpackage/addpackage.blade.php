@@ -48,6 +48,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Information</label>
+                    <textarea name="info"  cols="30" rows="10" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
                     <label>Duration</label>
                     <input type="text" class="form-control" name="duration">
                 </div>

@@ -68,6 +68,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="thumb-caption">
+                        <ul class="booking-item-features booking-item-features-small booking-item-features-sign clearfix mt5">
+                            <li rel="tooltip" data-placement="top" title="Passengers"><i class="fa fa-male"></i><span class="booking-item-feature-sign">x {{$vehicle->no_of_people}}</span>
+                            </li>
+                          
+                            <li rel="tooltip" data-placement="top" title="Fuel Type"><i class="im im-electric"></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
+                            </li>
+
+                            <li rel="tooltip" data-placement="top" title="Drive Train - {{$vehicle->drive_train}}" ><i class="im im-car-wheel " ></i><span class="booking-item-feature-sign">{{$vehicle->drive_train}}</span>
+                            </li>
+
+                            <li title="" data-original-title="Car with Driver" data-placement="top" rel="tooltip" ><i class="im im-driver"></i> <span class="booking-item-feature-sign">Yes</span>
+                            </li>
+
+                            <li title="" data-original-title="Satellite Navigation - {{ucfirst($vehicle->gps)}}" data-placement="top" rel="tooltip" ><i class="im im-satellite"></i> <span class="booking-item-feature-sign">{{$vehicle->gps}}</span>
+                            </li>
+
+                            <li rel="tooltip" data-placement="top" title="Vehicle Origin location - {{ucfirst($vehicle->location)}}"><i class="fa fa-map-marker"></i><span class="booking-item-feature-sign">{{ucfirst($vehicle->location)}}</span>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
                     <p class="text-small">{!!$vehicle->description!!}</p>
 
                     <hr>

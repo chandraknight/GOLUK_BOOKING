@@ -10,6 +10,7 @@ class TourPackage extends Model
         'name',
         'description',
         'itenary',
+        'info',
         'tag',
         'duration',
         'price',

@@ -65,6 +65,9 @@ class VehicleController extends Controller
         $vehicle->rate_per_day = $request->rate_per_day;
         $vehicle->user_id = Auth::user()->id;
         $vehicle->fuel = $request->fuel;
+        $vehicle->gear = $request->gear;
+        $vehicle->drive_train = $request->drivetrain;
+        $vehicle->gps = $request->gps;
 
        if($vehicle->save()) {
             $vehicle->update([
@@ -155,6 +158,9 @@ class VehicleController extends Controller
                 'no_of_people'=>$request->no_of_people,
                 'rate_per_day'=>$request->rate_per_day,
                 'fuel'=>$request->fuel,
+                'gear'=>$request->gear,
+                'drive_train'=>$request->drivetrain,
+                'gps'=>$request->gps,
                 'vehicle_code'=>"AL-V-".$vehicle->id
             ]);
 

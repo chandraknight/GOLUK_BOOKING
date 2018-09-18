@@ -18,6 +18,9 @@ class Vehicle extends Model
         'sit_pattern',
         'user_id',
         'fuel',
+        'gear',
+        'drive_train',
+        'gps',
         'image',
         'flag',
         'vehicle_code'

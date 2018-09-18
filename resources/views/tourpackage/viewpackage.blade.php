@@ -30,7 +30,7 @@
                     </div>
                 </header>
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <div class="tabbable booking-details-tabbable">
                             <ul class="nav nav-tabs" id="myTab">
                                 <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-camera"></i>Photos</a>
@@ -40,6 +40,8 @@
                                 <li><a href="#details" data-toggle="tab"><i class="fa fa-image"></i>Details</a>
                                 </li>
                                 <li><a href="#itenary" data-toggle="tab"><i class="fa fa-image"></i>Itenary</a>
+                                </li>
+                                <li><a href="#info" data-toggle="tab"><i class="fa fa-image"></i>Information</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -57,7 +59,7 @@
                                         {{csrf_field()}}
                                         <div class="form-group form-group-icon-right"><i class="fa fa-image input-icon"></i>
                                         <label>Select File</label>
-                                        <input type="file" name="image" class="form-control">
+                                        <input type="file" name="image[]" class="form-control" multiple>
                                         </div>
                                         <input type="hidden" name="tour_package_id" value="{{$package->id}}">
                                     </form>
@@ -68,10 +70,13 @@
                                 <div class="tab-pane fade" id="itenary">
                                     {!!$package->itenary!!}
                                 </div>
+                                <div class="tab-pane fade" id="info">
+                                    {!!$package->info!!}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                        <div class="booking-item-meta">
                             <h2 class="lh1em mt40">Exeptional!</h2>
                         </div>
