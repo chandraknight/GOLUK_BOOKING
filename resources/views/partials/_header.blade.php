@@ -40,6 +40,7 @@
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/leather.css')}}" title="leather" media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/denim.css')}}" title="denim" media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/scarlet.css')}}" title="scarlet" media="all">
+
 </head>
 
 <!-- FACEBOOK WIDGET -->

@@ -100,19 +100,19 @@
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>From</label>
-                                    <input class="form-control" name="from" type="date">
+                                    <input class="form-control date-pick" name="from" type="text" >
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Till</label>
-                                    <input class="form-control" name="till" type="date">
+                                    <input class="form-control date-pick" name="till" type="text" >
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-male input-icon input-icon-highlight"></i>
                                     <label>People</label>
-                                    <input class="form-control" name="people" type="text">
+                                    <input class="form-control " name="people" type="text">
                                 </div>
                             </div>
                         </div>

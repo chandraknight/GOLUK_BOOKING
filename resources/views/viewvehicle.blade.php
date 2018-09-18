@@ -145,7 +145,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="input-daterange ">
+                <div class="input-daterange" data-date-format="M d, D">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-icon-left"><i
@@ -158,7 +158,8 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-clock-o input-icon input-icon-highlight"></i>
                                 <label>Pick-up Time</label>
-                                <input class="time-pick form-control" name="pickup_time" value="12:00 AM" type="text">
+
+                                <input class="form-control time-pick" name="pickup_time" value="12:00 AM" type="text">
                             </div>
                         </div>
 
@@ -173,7 +174,7 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-clock-o input-icon input-icon-highlight"></i>
                                 <label>Drop-off Time</label>
-                                <input class="time-pick form-control" name="dropoff_time" value="12:00 AM" type="text">
+                                <input class=" form-control time-pick" name="dropoff_time" value="12:00 AM" type="text">
                             </div>
                         </div>
                         <div class="col-md-3">
