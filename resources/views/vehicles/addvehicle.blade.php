@@ -62,6 +62,35 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="transmission">Transmission: </label>
+                        <div class="radio">
+                            <label><input type="radio" value="manual" name="gear">Manual</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="auto" name="gear">Auto</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fuel">Drive Train: </label>
+                        <div class="radio">
+                            <label><input type="radio" value="2WD" name="drivetrain">2WD</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="4WD" name="drivetrain">4WD</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fuel">GPS: </label>
+                        <div class="radio">
+                            <label><input type="radio" value="yes" name="gps">Available</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="no" name="gps">Not Available</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="image">Image: </label>
                         <input type="file" class="form-control" name="image">
                     </div>

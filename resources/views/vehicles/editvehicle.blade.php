@@ -61,18 +61,40 @@
                     <div class="form-group">
                         <label for="fuel">Select Fuel Type: </label>
                         <div class="radio">
-                            @if($vehicle->fuel == 'diesel')
-                            <label><input type="radio" checked value="diesel" name="fuel">Diesel</label>
-                                @else
-                                <label><input type="radio"  value="diesel" name="fuel">Diesel</label>
-                                @endif
+                            <label><input type="radio" {{($vehicle->fuel='diesel')?'checked':''}} value="diesel" name="fuel">Diesel</label>
+                        </div>
+                        <div class="radio">        
+                            <label><input type="radio" {{($vehicle->fuel='petrol')?'checked':''}} value="petrol" name="fuel">Petrol</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transmission">Transmission: </label>
+                        <div class="radio">
+                            <label><input type="radio" {{($vehicle->gear='manual')?'checked':''}} value="manual" name="gear">Manual</label>
                         </div>
                         <div class="radio">
-                            @if($vehicle->fuel=='petrol')
-                            <label><input type="radio" checked value="petrol" name="fuel">Petrol</label>
-                                @else
-                                <label><input type="radio"  value="petrol" name="fuel">Petrol</label>
-                                @endif
+                            <label><input type="radio" {{($vehicle->gear='auto')?'checked':''}} value="auto" name="gear">Auto</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fuel">Drive Train: </label>
+                        <div class="radio">
+                            <label><input type="radio" {{($vehicle->drive_train = '2WD')?'checked':''}} value="2WD" name="drivetrain">2WD</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" {{($vehicle->drive_train = '4WD')?'checked':''}} value="4WD" name="drivetrain">4WD</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fuel">GPS: </label>
+                        <div class="radio">
+                            <label><input type="radio" {{($vehicle->gps = 'yes')?'checked':''}} value="yes" name="gps">Available</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" {{($vehicle->gps = 'no')?'checked':''}} value="no" name="gps">Not Available</label>
                         </div>
                     </div>
                     <div class="form-group form-group-icon-left"><i class="fa fa-image input-icon input-icon-bounce"></i>

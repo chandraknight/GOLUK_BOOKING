@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label>Contact</label>
-                    <input type="tel" name="contact" class="form-control" value="{{$package->contact}}>
+                    <input type="tel" name="contact" class="form-control" value="{{$package->contact}}">
                 </div>
                 <div class="form-group">
                     <label>Provider</label>
@@ -47,6 +47,11 @@
                 <div class="form-group">
                     <label>Itenary</label>
                     <textarea name="itenary"  cols="30" rows="10" class="form-control">{{$package->itenary}}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Itenary</label>
+                    <textarea name="info"  cols="30" rows="10" class="form-control">{{$package->info}}</textarea>
                 </div>
 
                 <div class="form-group">
