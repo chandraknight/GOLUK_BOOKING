@@ -48,6 +48,7 @@ class TourPackageController extends Controller
             $package->provider_location = $request->provider_location;
             $package->tag = $request->tag;
             $package->itenary = $request->itenary;
+            $package->info = $request->info;
             $package->duration = $request->duration;
             $package->price = $request->price;
             $package->group_price = $request->group_price;
@@ -112,6 +113,7 @@ class TourPackageController extends Controller
                 'provider_location'=>$request->provider_location,
                 'tag'=>$request->tag,
                 'itenary'=>$request->itenary,
+                'info'=>$request->info,
                 'duration'=>$request->duration,
                 'price'=>$request->price,
                 'group_price'=>$request->group_price,
@@ -160,21 +162,18 @@ class TourPackageController extends Controller
     public function addImage(Request $request) {
         $package = TourPackage::findorfail($request->tour_package_id);
         if($package->user_id == Auth::user()->id) {
-            $gallery = new TourGallery;
-
-            if($request->hasFile('image')){
-                $filenamewithext = $request->file('image')->getClientOriginalName();
-                $extension = $request->file('image')->getClientOriginalExtension();
-                $filename = pathinfo($filenamewithext,PATHINFO_FILENAME);
-                $storename = $filename.time().'.'.$extension;
-                $path = $request->file('image')->storeAs('public/tourgallery',$storename);
-                $gallery->image = $storename;
+            $images = $request->file('image');
+            foreach($images as $image){
+                $gallery = new TourGallery;
+                    $filenamewithext = $request->file('image')->getClientOriginalName();
+                    $extension = $request->file('image')->getClientOriginalExtension();
+                    $filename = pathinfo($filenamewithext,PATHINFO_FILENAME);
+                    $storename = $filename.time().'.'.$extension;
+                    $path = $request->file('image')->storeAs('public/tourgallery',$storename);
+                    $gallery->image = $storename;
+                    $gallery->tour_package_id = $request->tour_package_id;
+                    $gallery->save();
             }
-
-            $gallery->tour_package_id = $request->tour_package_id;
-
-            $gallery->save();
-
             return redirect()->route('viewpackage',$package->id)->withSuccess('Image added Successfully');
         } else {
             return redirect()->route('welcome');

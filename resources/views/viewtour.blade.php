@@ -40,6 +40,8 @@
                                 </li>
                                  <li><a href="#tab-3" data-toggle="tab"><i class="fa fa-clock"></i>Itenary</a>
                                 </li>
+                                <li><a href="#tab-4" data-toggle="tab"><i class="fa fa-clock"></i>Information</a>
+                                </li>
 
                             </ul>
                             <div class="tab-content">
@@ -55,6 +57,9 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab-3">
                                     {!!$tour->itenary!!}
+                                </div>  
+                                <div class="tab-pane fade" id="tab-4">
+                                    {!!$tour->info!!}
                                 </div>    
                                                                 
                             </div>
