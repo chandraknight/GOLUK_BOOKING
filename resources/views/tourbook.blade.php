@@ -18,6 +18,7 @@
                                     <label>First & Last Name</label>
                                     <input class="form-control" name="name[]" type="text">
                                 </div>
+                                
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">

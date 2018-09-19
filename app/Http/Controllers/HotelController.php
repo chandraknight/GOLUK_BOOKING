@@ -8,6 +8,7 @@ use App\Notifications\HotelRegisteredNotification;
 use App\Photo;
 use App\RoomService;
 use Auth;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

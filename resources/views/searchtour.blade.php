@@ -15,7 +15,7 @@
                             <div class="col-md-6">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                     <label>Location</label>
-                                    <input class="typeahead form-control" placeholder="City" type="text" name="destination">
+                                    <input class="form-control" placeholder="City" type="text" name="destination">
                                 </div>
                             </div>
                             <div class="col-md-3">

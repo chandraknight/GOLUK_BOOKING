@@ -39,6 +39,8 @@ use App\VehicleBookingDetails;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\TourBookingRequest;
+use App\Http\Requests\BookingRequest;
 use Illuminate\Notifications\Notification;
 use Stripe\Charge;
 use Stripe\Customer;
@@ -109,7 +111,7 @@ class BookingController extends Controller
     }
 
     
-    public function register(Request $request)
+    public function register(BookingRequest $request)
     {
         $hotel = Hotel::where('id', '=', $request->hotel_id)->first();
         $user = User::where('id', '=', $hotel->created_by)->first();
@@ -462,7 +464,7 @@ class BookingController extends Controller
         return view('tourbook',['tour'=>$tour,'search'=>$search,'start'=>$start]);
     }
 
-    public function bookTour(Request $request) {
+    public function bookTour(TourBookingRequest $request) {
         $tour = TourPackage::where('id',$request->tour_package_id)->first();
         $user = User::where('id',$tour->user_id)->first();
         $booking = new TourPackageBooking;

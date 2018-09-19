@@ -53,7 +53,7 @@
                 <div class="bg-mask"></div>
                 <div class="bg-img" style="background-image:url(img/people_on_the_beach_1280x852.jpg);"></div>
                 <div class="bg-holder-content full text-white">
-                    <a class="logo-holder" href="index-2.html">
+                    <a class="logo-holder" href="{{route('welcome')}}">
                         <img src="img\logo-white.png" alt="Image Alternative text" title="Image Title">
                     </a>
                     <div class="full-center">
@@ -61,9 +61,8 @@
                             <div class="row row-wrap" data-gutter="60">
                                 <div class="col-md-4">
                                     <div class="visible-lg">
-                                        <h3 class="mb15">Welcome to Traveler</h3>
-                                        <p>Est nisl facilisis consectetur eget fermentum rutrum suscipit penatibus ultrices eu bibendum mi volutpat mattis cum facilisis nunc platea tincidunt vehicula laoreet montes parturient urna magnis eu etiam eget integer</p>
-                                        <p>Nullam consectetur fames erat scelerisque ac conubia orci mauris facilisi</p>
+                                        <h3 class="mb15">Welcome to Yatritime</h3>
+                                        <p>Book hotels, vacation rental, resort, apartment, guest house or treehouse, vehicles, perfect tour packages and many more !</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -157,9 +156,9 @@
                         </li>
                         <li><a href="#">Media</a>
                         </li>
-                        <li><a href="#">Developers</a>
+                        <li><a href="{{route('registeragent')}}">Register as Agent</a>
                         </li>
-                        <li><a href="#">Advertise</a>
+                        <li><a href="{{route('registerbusiness')}}">Register Your Business</a>
                         </li>
                     </ul>
                 </div>

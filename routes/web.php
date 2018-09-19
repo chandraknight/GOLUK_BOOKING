@@ -1,6 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
+Route::get('/register/business',[
+    'uses'=>'FrontEndController@registerBusiness',
+    'as'=>'registerbusiness'
+]);
+
+Route::post('/add/business',[
+    'uses'=>'UserController@registerBusiness',
+    'as'=>'businessregister'
+]);
+
+Route::get('/register/agent',[
+    'uses'=>'FrontEndController@registerAgent',
+    'as'=>'registeragent'
+]);
 
 Route::post('/book/vehicle',[
     'uses'=>'FrontEndController@bookVehicleWithoutSession',
@@ -191,7 +205,6 @@ Route::group(['prefix'=>'user','middleware'=>'auth'],function(){
         'as'=>'usertourbooking'
     ]);
 });
-Route::get('/home', 'HomeController@index')->name('home');
 
 /**
  * Hotel route group

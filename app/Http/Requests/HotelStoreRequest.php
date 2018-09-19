@@ -31,7 +31,7 @@ class HotelStoreRequest extends FormRequest
             'address'=>'required',
             'no_rooms'=>'required',
             'contact'=>'required',
-            'logo'=>'image|max:1999'
+            'logo'=>'required|image|max:1999'
         ];
     }
 

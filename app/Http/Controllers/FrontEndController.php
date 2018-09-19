@@ -269,5 +269,13 @@ class FrontEndController extends Controller
         return view('viewtour',['tour'=>$tour,'galleries'=>$galleries]);
     }
 
+    public function registerBusiness() {
+        return view('auth.regbusiness');
+    }
+
+    public function registerAgent() {
+        return view('auth.regagent');
+    }
+
     
 }
