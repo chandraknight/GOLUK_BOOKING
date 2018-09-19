@@ -6,6 +6,7 @@ use App\Booking;
 use App\TourPackageBooking;
 use App\User;
 use App\VehicleBooking;
+use App\UserDetail;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -368,4 +369,71 @@ class UserController extends Controller
 	);
 	echo json_encode($json_data);
    }
+
+   public function registerBusiness(Request $request) {
+		dd($request);
+		if($request->has('userid')) {
+			$user=User::findorfail($request->userid);
+			if(Hash::make($request->password) == $user->password) {
+				$userdetail = new UserDetail;
+				$userdetail->user_id = $request->userid;
+				$userdetail->address = $request->address;
+				$userdetail->contact = $request->contact;
+
+				$filenamewithextension = $request->file('logo')->getClientOriginalName();
+				$filename = pathinfo($filenamewithextension,PATHINFO_FILENAME);
+				$extension = $request->file('logo')->getClientOriginalExtension();
+				$storename = $filename.time().'.'.$extension;
+				$path = $request->file('logo')->storeAs('public/'.$user->id,$storename);
+				$userdetail->logo = $storename;
+
+				$filenamewithextension = $request->file('business_certificate')->getClientOriginalName();
+				$filename = pathinfo($filenamewithextension,PATHINFO_FILENAME);
+				$extension = $request->file('business_certificate')->getClientOriginalExtension();
+				$storename = $filename.time().'.'.$extension;
+				$path = $request->file('business_certificate')->storeAs('public/'.$user->id,$storename);
+				$userdetail->business_certificate = $storename;
+
+				$userdetail->business_type = $request->businesstype;
+
+				$userdetail->save();
+				return redirect()->route('welcome')->withSuccess('Your Business has been sent for approval');
+				
+			}
+		} else {
+
+			$user = new User;
+			$user->name = $request->name;
+			$user->email = $request->email;
+			$user->password = Hash::make($request->password);
+
+			if($user->save()) {
+				$userDetail = new UserDetail;
+				$userdetail->user_id = $user->id;
+				$userdetail->address = $request->address;
+				$userdetail->contact = $request->contact;
+				$userdetail->business_type = $request->businesstype;
+
+				$filenamewithextension = $request->file('logo')->getClientOriginalName();
+				$filename = pathinfo($filenamewithextension,PATHINFO_FILENAME);
+				$extension = $request->file('logo')->getClientOriginalExtension();
+				$storename = $filename.time().'.'.$extension;
+				$path = $request->file('logo')->storeAs('public/'.$user->id,$storename);
+				$userdetail->logo = $storename;
+
+				$filenamewithextension = $request->file('business_certificate')->getClientOriginalName();
+				$filename = pathinfo($filenamewithextension,PATHINFO_FILENAME);
+				$extension = $request->file('business_certificate')->getClientOriginalExtension();
+				$storename = $filename.time().'.'.$extension;
+				$path = $request->file('business_certificate')->storeAs('public/'.$user->id,$storename);
+				$userdetail->business_certificate = $storename;
+
+				$userdetail->save();
+
+			}
+
+			return redirect()->route('welcome')->withSuccess('Your Business has been sent for approval');
+		}
+   }
+    
 }

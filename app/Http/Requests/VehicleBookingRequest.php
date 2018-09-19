@@ -25,17 +25,19 @@ class VehicleBookingRequest extends FormRequest
     {
         return [
             'customer_name'=>'required',
-            'customer_address'>'required',
+            'customer_address'=>'required',
             'customer_email'=>'required|email',
             'customer_contact'=>'required'
         ];
     }
 
     public function messages() {
+        return [
         'customer_name.required'=>'Provide your full name',
         'customer_address.required'=>'Provide your full Address',
         'customer_email.required'=>'Provide your email address',
         'customer_email.email'=>'Provide a valid email address',
         'customer_contact'=>'Provide your contact number'
+        ];
     }
 }

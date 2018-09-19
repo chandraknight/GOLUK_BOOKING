@@ -14,6 +14,11 @@ class UserDetail extends Model
         'citizenship',
         'business_certificate',
         'owner_name',
-        'business_logo'
+        'business_logo',
+        'business_type',
     ];
+
+    public function user() {
+        return $this -> belongsTo('App\User');
+    }
 }

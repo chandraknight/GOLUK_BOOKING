@@ -100,16 +100,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h3 class="mb15">Register Your Business</h3>
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="POST" action="{{ route('businessregister') }}">
                                         {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
                                                     <label>Your Name</label>
-                                                    <input class="form-control" value="{{(Auth::user())?Auth::user()->name:''}}" type="text" name="name">                                                    @if ($errors->has('name')) }
+                                                    <input class="form-control" value="{{(Auth::user())?Auth::user()->name:''}}" type="text" name="name">        @if ($errors->has('name')) }
                                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span> @endif
+                                                    <strong> {{ $errors->first('name') }}</strong>
+                                                    </span> @endif
                                                 </div>
                                                 @auth
                                                 <input type="hidden" name="userid" value="{{Auth::user()->id}}">
@@ -137,7 +137,15 @@
                                     </span> @endif
                                                 </div>
                                                 @endguest
-
+                                               
+                                                <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                                    <label>Select Business Type</label>
+                                                    <select class="form-control" name="businesstype">
+                                                        <option value="hotel">Hotel</option>
+                                                        <option value="vehicle">Vehicle</option>
+                                                        <option value="tour">Tour</option>    
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>

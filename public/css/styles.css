@@ -3850,6 +3850,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   border: 1px solid rgba(0,0,0,0.2);
 }
 .bootstrap-timepicker-widget.dropdown-menu {
+  z-index: 2000;
   padding: 7px 10px;
   -webkit-border-radius: 0;
   border-radius: 0;
