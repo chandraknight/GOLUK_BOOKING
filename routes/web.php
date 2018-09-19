@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
+Route::get('/register/business',[
+    'uses'=>'FrontEndController@registerBusiness',
+    'as'=>'registerbusiness'
+]);
+
+Route::get('/register/agent',[
+    'uses'=>'FrontEndController@registerAgent',
+    'as'=>'registeragent'
+]);
 
 Route::post('/book/vehicle',[
     'uses'=>'FrontEndController@bookVehicleWithoutSession',

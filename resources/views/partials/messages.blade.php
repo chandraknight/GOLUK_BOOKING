@@ -1,10 +1,9 @@
 <div class="container text-center"> 
 @if(count($errors)>0)
-	@foreach($errors->all() as $error)
+	@php $error = $errors->first(); @endphp 
 		<div class="alert">
 			{{$error}}
 		</div>
-	@endforeach
 @endif
 
 @if(session('success'))

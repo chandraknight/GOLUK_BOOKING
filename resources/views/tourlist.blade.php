@@ -11,7 +11,7 @@
                         <form method="get" action="{{route('toursearch')}}">
                             <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                                 <label>Where</label>
-                                <input class="typeahead form-control" placeholder="City or U.S. Zip Code" type="text" name="destination">
+                                <input class="form-control" placeholder="City" type="text" name="destination">
                             </div>
                             <div class="input-daterange" data-date-format="MM d, D">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>

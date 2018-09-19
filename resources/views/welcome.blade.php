@@ -31,8 +31,8 @@
                                                 <div class="form-group form-group-lg form-group-icon-left"><i
                                                             class="fa fa-map-marker input-icon"></i>
                                                     <label>Where are you going?</label>
-                                                    <input class="typeahead form-control"
-                                                           placeholder="City, Airport, Point of Interest or U.S. Zip Code"
+                                                    <input class="form-control"
+                                                           placeholder="City, Point of Interest"
                                                            type="text" name="destination">
                                                 </div>
                                                 <div class="input-daterange" data-date-format="M d, D">
@@ -115,8 +115,8 @@
                                                         <div class="form-group form-group-lg form-group-icon-left"><i
                                                                     class="fa fa-map-marker input-icon"></i>
                                                             <label>Pick-up Location</label>
-                                                            <input class="typeahead form-control"
-                                                                   placeholder="City, Airport, U.S. Zip" type="text"
+                                                            <input class="form-control"
+                                                                   placeholder="City" type="text"
                                                                    name="location">
                                                         </div>
                                                     </div>
@@ -124,8 +124,8 @@
                                                         <div class="form-group form-group-lg form-group-icon-left"><i
                                                                     class="fa fa-map-marker input-icon"></i>
                                                             <label>Drop-off Location</label>
-                                                            <input class="typeahead form-control"
-                                                                   placeholder="City, Airport, U.S. Zip" type="text"
+                                                            <input class="form-control"
+                                                                   placeholder="City" type="text"
                                                                    name="destination">
                                                         </div>
                                                     </div>
@@ -192,8 +192,8 @@
                                                             <div class="form-group form-group-lg form-group-icon-left">
                                                                 <i class="fa fa-map-marker input-icon"></i>
                                                                 <label>Where are you going?</label>
-                                                                <input class="typeahead form-control"
-                                                                       placeholder="City, Airport, Point of Interest or U.S. Zip Code"
+                                                                <input class="form-control"
+                                                                       placeholder="City, Point of Interest "
                                                                        type="text" name="destination">
                                                             </div>
                                                         </div>

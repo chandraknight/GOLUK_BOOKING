@@ -44,10 +44,10 @@
 
     <!-- FACEBOOK WIDGET -->
     <div id="fb-root"></div>
-    
+
     <!-- /FACEBOOK WIDGET -->
     <div class="global-wrap">
-       
+
         <div class="full-page">
             <div class="bg-holder full">
                 <div class="bg-mask"></div>
@@ -61,9 +61,9 @@
                             <div class="row row-wrap" data-gutter="60">
                                 <div class="col-md-4">
                                     <div class="visible-lg">
-                                        <h3 class="mb15">Welcome to Traveler</h3>
-                                        <p>Est nisl facilisis consectetur eget fermentum rutrum suscipit penatibus ultrices eu bibendum mi volutpat mattis cum facilisis nunc platea tincidunt vehicula laoreet montes parturient urna magnis eu etiam eget integer</p>
-                                        <p>Nullam consectetur fames erat scelerisque ac conubia orci mauris facilisi</p>
+                                        <h3 class="mb15">Welcome to Yatritime</h3>
+                                        <p>Book hotels, vacation rental, resort, apartment, guest house or treehouse, vehicles,
+                                            perfect tour packages and many more !</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -72,22 +72,18 @@
                                         {{csrf_field()}}
                                         <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
                                             <label>Email</label>
-                                            <input class="form-control" placeholder="e.g. johndoe@gmail.com" name="email" type="email">
-                                            @if ($errors->has('email'))
-                                        
-                                    <span class="invalid-feedback">
+                                            <input class="form-control" placeholder="e.g. johndoe@gmail.com" name="email" type="email">                                            @if ($errors->has('email'))
+
+                                            <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                    </span> @endif
                                         </div>
                                         <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
                                             <label>Password</label>
-                                            <input class="form-control" type="password" placeholder="my secret password" name="password">
-                                            @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
+                                            <input class="form-control" type="password" placeholder="my secret password" name="password">                                            @if ($errors->has('password'))
+                                            <span class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                    </span> @endif
                                         </div>
                                         <input class="btn btn-primary" type="submit" value="Sign in">
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -101,40 +97,31 @@
                                         {{csrf_field()}}
                                         <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
                                             <label>Full Name</label>
-                                            <input class="form-control" placeholder="e.g. John Doe" type="text" name="name">
-                                            @if ($errors->has('name'))
-                                        }
-                                    <span class="invalid-feedback">
+                                            <input class="form-control" placeholder="e.g. John Doe" type="text" name="name">                                            @if ($errors->has('name')) }
+                                            <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                                    </span> @endif
                                         </div>
                                         <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
                                             <label>Email</label>
-                                            <input class="form-control" placeholder="e.g. johndoe@gmail.com" type="email" name="email">
-                                             @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
+                                            <input class="form-control" placeholder="e.g. johndoe@gmail.com" type="email" name="email">                                            @if ($errors->has('email'))
+                                            <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                    </span> @endif
                                         </div>
                                         <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
                                             <label>Password</label>
-                                            <input class="form-control" type="password" placeholder="my secret password" name="password">
-                                            @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
+                                            <input class="form-control" type="password" placeholder="my secret password" name="password">                                            @if ($errors->has('password'))
+                                            <span class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                    </span> @endif
                                         </div>
-                                         <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                        <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
                                             <label>Confirm Password</label>
-                                            <input class="form-control" type="password" placeholder="my secret password" name="password_confirmation">
-                                            @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
+                                            <input class="form-control" type="password" placeholder="my secret password" name="password_confirmation">                                            @if ($errors->has('password'))
+                                            <span class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                    </span> @endif
                                         </div>
                                         <input class="btn btn-primary" type="submit" value="Sign up for Traveler">
                                     </form>
@@ -157,9 +144,9 @@
                         </li>
                         <li><a href="#">Media</a>
                         </li>
-                        <li><a href="#">Developers</a>
+                        <li><a href="{{route('registeragent')}}">Register as Agent</a>
                         </li>
-                        <li><a href="#">Advertise</a>
+                        <li><a href="{{route('registerbusiness')}}">Register your Business</a>
                         </li>
                     </ul>
                 </div>
@@ -193,6 +180,3 @@
 </body>
 
 </html>
-
-
-

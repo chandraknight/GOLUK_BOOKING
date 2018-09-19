@@ -13,7 +13,7 @@
                 	{{csrf_field()}}
                     <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                         <label>Where are you going?</label>
-                        <input class="typeahead form-control" placeholder="City, Airport, Point of Interest, Hotel Name" name="destination" type="text">
+                        <input class="form-control" placeholder="City, Hotel Name" name="destination" type="text">
                     </div>
                     <div class="input-daterange">
                         <div class="row">

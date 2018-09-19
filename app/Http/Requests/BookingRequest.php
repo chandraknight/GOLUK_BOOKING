@@ -23,22 +23,14 @@ class BookingRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'customer_name'=>'required',
-            'customer_email'=>'required|email',
-            'customer_phone'=>'required',
-            'customer_address'=>'required',
-        ];
-        
-    }
-
-    public function messages(){
         return [
-            'customer_name.required'=>'Provide your Full Name',
+           'customer_name'=>'required'
         ];
     }
 
-    public function checkRoom($room){
-
+    public function messages() {
+        return [
+            'customer_name.required'=>'Provide your full name'
+        ];
     }
 }

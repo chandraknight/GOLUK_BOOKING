@@ -13,13 +13,13 @@
                         <div class="col-md-6">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                 <label>Pick-up From</label>
-                                <input class="typeahead form-control" placeholder="City, Airport or U.S. Zip Code" type="text" name="location">
+                                <input class="form-control" placeholder="City" type="text" name="location">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                 <label>Drop-off To</label>
-                                <input class="typeahead form-control" placeholder="City, Airport or U.S. Zip Code" value="Same as Pick-up" name="destination" type="text">
+                                <input class="form-control" placeholder="City" placeholder="Same as Pick-up" name="destination" type="text">
                             </div>
                         </div>
                     </div>

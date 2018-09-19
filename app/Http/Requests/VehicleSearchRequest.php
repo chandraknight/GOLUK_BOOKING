@@ -27,10 +27,8 @@ class VehicleSearchRequest extends FormRequest
             'location'=>'required|string',
             'destination'=>'required|string',
             'from_date'=>'date|required|after:today',
-            'till_date'=>'date|required|after:from_date',
-            'passenger'=>'required|integer',
-            'pickup_time'=>'required',
-            'dropoff_time'=>'required'
+            'till_date'=>'date|required',
+            'passenger'=>'required|integer'
         ];
     }
 
@@ -44,9 +42,8 @@ class VehicleSearchRequest extends FormRequest
           'from_date.after'=>'Enter valid pick up date',
           'till_date.after'=>'Enter valid drop date',
           'passenger.required'=>'Please provide number of people',
-          'passenger.integer'=>'Please provide valid number of people',
-          'pickup_time.required'=>'Enter Valid Pick Up Time',
-          'dropoff_time.required'=>'Enter Valid Drop off Time'
+          'passenger.integer'=>'Please provide valid number of people'
+          
         ];
     }
 }

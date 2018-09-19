@@ -11,6 +11,7 @@ use App\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\User;
 
 class VehicleController extends Controller
 {
