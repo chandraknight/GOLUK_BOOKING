@@ -174,7 +174,7 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Pick-up Date</label>
-                                <input class="form-control date-pick"  name="from">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -190,7 +190,7 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Drop-off Date</label>
-                                <input class="form-control date-pick" name="till">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date">
                             </div>
                         </div>
                         <div class="col-md-3">

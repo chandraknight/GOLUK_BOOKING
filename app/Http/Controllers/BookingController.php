@@ -40,6 +40,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\TourBookingRequest;
+use App\Http\Requests\VehicleBookingRequest;
 use App\Http\Requests\BookingRequest;
 use Illuminate\Notifications\Notification;
 use Stripe\Charge;

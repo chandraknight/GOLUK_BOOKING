@@ -214,10 +214,10 @@ class FrontEndController extends Controller
         $search = new VehicleSearch;
         $search->location = $request->location;
         $search->destination = $request->destination;
-        $search->from = $request->from;
+        $search->from = $request->from_date;
         $search->pickup_time = $request->pickup_time;
         $search->dropoff_time = $request->dropoff_time;
-        $search->till = $request->till;
+        $search->till = $request->till_date;
         $search->passengers = $request->passenger;
         $search->save();
 
