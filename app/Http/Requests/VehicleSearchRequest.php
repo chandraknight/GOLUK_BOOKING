@@ -25,7 +25,6 @@ class VehicleSearchRequest extends FormRequest
     {
         return [
             'location'=>'required|string',
-            'destination'=>'required|string',
             'from_date'=>'date|required|after:today',
             'till_date'=>'date|required',
             'passenger'=>'required|integer'
@@ -37,8 +36,6 @@ class VehicleSearchRequest extends FormRequest
         return [
           'location.required'=>'Please provide pick up location.',
           'location.string'=>'Please enter valid place',
-          'destination.required'=>'Please Provide drop destination',
-          'destination.string'=>'Please enter valid location',
           'from_date.after'=>'Enter valid pick up date',
           'till_date.after'=>'Enter valid drop date',
           'passenger.required'=>'Please provide number of people',
