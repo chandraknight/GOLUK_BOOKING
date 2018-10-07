@@ -97,21 +97,22 @@
                     <div class="input-daterange" data-date-format="MM d, D">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
+                                <div class="form-group form-group-lg form-group-icon-left">
+                                    <i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                     <label>Location</label>
-                                    <input class="typeahead form-control" placeholder="City, Country or U.S. Zip Code" type="text" value="{{$tour->location}}" name="destination">
+                                    <input class="form-control" placeholder="" type="text" value="{{$tour->location}}" name="destination">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>From</label>
-                                    <input class="form-control date-pick" name="from" type="text" >
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from" type="text" >
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Till</label>
-                                    <input class="form-control date-pick" name="till" type="text" >
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till" type="text" >
                                 </div>
                             </div>
                             <div class="col-md-3">

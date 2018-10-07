@@ -189,7 +189,12 @@ class FrontEndController extends Controller
         $querypas = $request->passenger;
         $search = new VehicleSearch;
         $search->location = $request->location;
-        $search->destination = $request->destination;
+        if($request->destination == null || empty($request->destination) ){
+            $search->destination = "Same as Pickup Location";
+        } else {
+            $search->destination = $request->destination;
+        }
+
         $search->from = $request->from_date;
         $search->pickup_time = $request->pickup_time;
         $search->dropoff_time = $request->dropoff_time;
@@ -207,6 +212,11 @@ class FrontEndController extends Controller
     public function showVehicle($id)
     {
         $vehicle = Vehicle::findorfail($id);
+        if(session()->has('search_vehicle_id')){
+            $search_id = session()->get('search_vehicle_id');
+            $search = VehicleSearch::where('id', $search_id)->first();
+            return view('viewvehicle', ['vehicle' => $vehicle,'search'=>$search]);
+        }
         return view('viewvehicle', ['vehicle' => $vehicle]);
     }
 

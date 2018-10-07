@@ -59,7 +59,7 @@
                     <button class="btn btn-primary btn-lg" type="submit">Search for Vehicles</button>
                 </form>
             </div>
-            <h3 class="booking-title">{{$vehicles->count()}} Rental Vehicles in {{$search->destination}} on {{\Carbon\Carbon::parse($search->from)->toFormattedDateString()}} -{{\Carbon\Carbon::parse($search->till)->toFormattedDateString()}}<small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
+            <h3 class="booking-title">{{$vehicles->count()}} Rental Vehicles in {{$search->location}} on {{\Carbon\Carbon::parse($search->from)->toFormattedDateString()}} -{{\Carbon\Carbon::parse($search->till)->toFormattedDateString()}}<small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
               
                 <div class="col-md-9">
                    

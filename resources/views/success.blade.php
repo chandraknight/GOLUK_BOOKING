@@ -15,7 +15,7 @@
                                     </p>
                                 </div>
                                 <div class="col-xs-3">
-                                    <p class="text-right"><span class="text-lg">${{$invoice->amount}}</span>
+                                    <p class="text-right"><span class="text-lg">Rs {{$invoice->amount}}</span>
                                     </p>
                                 </div>
                             </div>

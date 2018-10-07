@@ -67,7 +67,7 @@ class VehicleRegisteredNotification extends Notification
             'data'=>$this->user->name
             .' has registered new '.
             $this->vehicle->name
-            .' vehicle '.,
+            .' vehicle ',
             'vehicle_id'=>$this->vehicle->id
         ];
     }

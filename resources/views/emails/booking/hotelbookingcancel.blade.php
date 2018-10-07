@@ -8,9 +8,7 @@ Please contact us for further information.
 Email: {{$booking->hotel['email']}}<br>
 Contact Number: {{$booking->hotel['contact']}}
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+
 
 Thanks,<br>
 {{ config('app.name') }}
