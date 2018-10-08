@@ -45,7 +45,18 @@
             <div class="row">
                 
                 <div class="col-md-9">
-                   
+                    <div class="nav-drop booking-sort">
+                        <h5 class="booking-sort-title"><a href="#">Sort: Ranking<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
+                        <ul class="nav-drop-menu">
+                            <li><a href="#" id="sort1" value="price-high-low">Price (high to low)</a>
+                            </li>
+                            <li><a href="#" id="sort2" value="price-low-high">Price (low to high)</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="loader"></div>
+                    <div class="change">
                     <div class="row row-wrap">
                        @forelse($tours as $tour) 
                        <div class="col-md-4">
@@ -70,6 +81,7 @@
                         No Tours available
                         @endforelse
                     </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             
@@ -83,4 +95,68 @@
             </div>
             <div class="gap"></div>
         </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $(".loader").css("display", "none");
+            $('.loader').hide();
+
+            $('#sort1').on('click',function(){
+                // alert($(this).attr("value"));
+                let sort1 = $(this).attr('value');
+                // alert(sort1);
+                let search ='<?php  echo $search ?>';
+                // alert(search);
+
+                $.ajax({
+                    method: 'get',
+                    dataType: 'json',
+                    url: '{{route('ajaxsorttour')}}',
+                    data: {sort: sort1, search: search},
+                    beforeSend: function () {
+                        $(".loader").css("display", "block");
+                        $('.loader').show();
+                        $('.change').hide();
+                    },
+                    success: function(data) {
+                        $('.change').html(data.output);
+                    },
+                    complete: function(data) {
+                        $(".loader").css("display", "none");
+                        $('.loader').hide();
+                        $('.change').show();
+                    }
+                });
+            });
+            $('#sort2').on('click',function(){
+                // alert($(this).attr("value"));
+                let sort2 = $(this).attr('value');
+                // alert(sort2);
+                let search ='<?php  echo $search ?>';
+                // alert(search);
+
+                $.ajax({
+                    method: 'get',
+                    dataType: 'json',
+                    url: '{{route('ajaxsorttour')}}',
+                    data: {sort: sort2, search: search},
+                    beforeSend: function () {
+                        $(".loader").css("display", "block");
+                        $('.loader').show();
+                        $('.change').hide();
+                    },
+                    success: function (data) {
+                        $('.change').html(data.output);
+                    },
+                    complete: function(data) {
+                        $(".loader").css("display", "none");
+                        $('.loader').hide();
+                        $('.change').show();
+                    }
+                });
+            });
+
+        });
+    </script>
 @endsection

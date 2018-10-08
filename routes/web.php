@@ -158,6 +158,21 @@ Route::get('/tour/book/invoice/{id}',[
     'as'=>'tourinvoice'
 ]);
 
+Route::get('/ajax/sort/hotel',[
+    'uses'=>'FrontEndController@ajaxSortHotel',
+    'as'=>'ajaxsorthotel'
+]);
+
+Route::get('/ajax/sort/vehicle',[
+    'uses'=>'FrontEndController@ajaxSortVehicle',
+    'as'=>'ajaxsortvehicle'
+]);
+
+Route::get('/ajax/sort/tour',[
+    'uses'=>'FrontEndController@ajaxSortActivity',
+    'as'=>'ajaxsorttour'
+]);
+
 Auth::routes();
 Route::group(['prefix'=>'user','middleware'=>'auth'],function(){
     Route::get('/profile/{id}',[

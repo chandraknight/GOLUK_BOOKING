@@ -40,6 +40,34 @@
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/leather.css')}}" title="leather" media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/denim.css')}}" title="denim" media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/scarlet.css')}}" title="scarlet" media="all">
+    <style>
+        .loader {
+            margin:0 auto;
+            border: 10px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #555;
+            width: 75px;
+            height: 75px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loader p{
+            margin:2px auto;
+            background: #ffffff;
+            color: #0b0b0b;
+            padding: 5px;
+            text-align: center;
+            font-size: small;
+            width:100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+    </style>
 
 </head>
 

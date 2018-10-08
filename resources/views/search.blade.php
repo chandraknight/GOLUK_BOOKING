@@ -85,7 +85,25 @@
         <div class="row">
 
             <div class="col-md-12">
-
+                @if($hotels->count()>0)
+                <div class="nav-drop booking-sort">
+                    <h5 class="booking-sort-title">
+                        <a href="#">Sort: By
+                            <i class="fa fa-angle-down"></i>
+                            <i class="fa fa-angle-up"></i>
+                        </a>
+                    </h5>
+                    <ul class="nav-drop-menu">
+                        <li>
+                            <a href="#" id="sort1"  value="price-low-high">Price (low to high)</a>
+                        </li>
+                        <li>
+                            <a href="#" id="sort2" value="price-high-low">Price (high to low)</a>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+                <div class="loader"></div>
                 <ul class="booking-list">
                     @forelse($hotels as $hotel)
                         <li>
@@ -119,4 +137,60 @@
             </div>
         </div>
     </div>
+
+
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $(".loader").css("display", "none");
+            $('.loader').hide();
+
+            $('#sort1').on('click',function(){
+                // alert($(this).attr("value"));
+                let sort1 = $(this).attr('value');
+                // alert(sort1);
+                let search ='<?php  echo $search ?>';
+                // alert(search);
+
+                $.ajax({
+                    method: 'get',
+                    dataType: 'json',
+                    url: '{{route('ajaxsorthotel')}}',
+                    data: {sort: sort1, search: search},
+                    beforeSend: function () {
+                        $(".loader").css("display", "block");
+                        $('.loader').show();
+                        $('.booking-list').hide();
+                    },
+                    success: function(data) {
+                        $('.booking-list').html(data.output);
+                    },
+                    complete: function(data) {
+                        $(".loader").css("display", "none");
+                        $('.loader').hide();
+                        $('.booking-list').show();
+                    }
+                });
+            });
+            $('#sort2').on('click',function(){
+                // alert($(this).attr("value"));
+                let sort2 = $(this).attr('value');
+                // alert(sort2);
+                let search ='<?php  echo $search ?>';
+                // alert(search);
+
+                $.ajax({
+                    method: 'get',
+                    dataType: 'json',
+                    url: '{{route('ajaxsorthotel')}}',
+                    data: {sort: sort2, search: search},
+                    success: function (data) {
+                        $('.booking-list').html(data.output);
+                    }
+                });
+            });
+
+        });
+    </script>
 @endsection
