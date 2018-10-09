@@ -4,7 +4,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <a class="logo" href="{{route('welcome')}}">
-                        <h4 style="color:#fff">Yatritime</h4> <!--<img src="{{URL::asset('/img/logo-invert.png')}}" alt="Image Alternative text" title="Image Title">-->
+                        <!--    <h4 style="color:#fff">Yatritime</h4>--> <img src="{{URL::asset('/img/Yatritime.png')}}"
+                                                                              alt="Yatri Time" title="Yatri Time">
                     </a>
                 </div>
                 <div class="col-md-3 col-md-offset-2">
@@ -19,11 +20,13 @@
                             @if(Auth::user())
                                 <li class="top-user-area-avatar">
                                     <a href="{{route('profile',Auth::user()->id)}}">
-                                        <img class="origin round" src="{{URL::asset('/img/amaze_40x40.jpg')}}" alt="Image Alternative text" title="AMaze">{{ Auth::user()->name }}</a>
+                                        <img class="origin round" src="{{URL::asset('/img/amaze_40x40.jpg')}}"
+                                             alt="Image Alternative text" title="AMaze">{{ Auth::user()->name }}</a>
                                 </li>
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Sign Out</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
                                 </li>
@@ -36,13 +39,15 @@
         </div>
     </div>
     <div class="container">
+
         <div class="nav">
             <ul class="slimmenu" id="slimmenu">
                 <li class="{{Request::is('/') ? 'active' : ''}}"><a href="{{route('welcome')}}">Home</a>
                 </li>
                 <li class="{{Request::is('hotels') ? 'active' : ''}}"><a href="{{route('hotel.list')}}">Hotels</a>
                 </li>
-                <li class="{{Request::is('vehicle/list') ? 'active' : ''}}"><a href="{{route('vehicle.list')}}">Vehicles</a>
+                <li class="{{Request::is('vehicle/list') ? 'active' : ''}}"><a
+                            href="{{route('vehicle.list')}}">Vehicles</a>
                 </li>
                 <li class="{{Request::is('tours') ? 'active' : ''}}"><a href="{{route('listtour')}}">Tours</a>
                 </li>
@@ -78,7 +83,7 @@
                 @endrole
 
                 @role('admin')
-                <li><a href="{{route('admin.index')}}">Admin</a> </li>
+                <li><a href="{{route('admin.index')}}">Admin</a></li>
                 @endrole
             </ul>
         </div>

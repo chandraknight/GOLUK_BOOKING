@@ -71,7 +71,6 @@ class BookingController extends Controller
         return view('hotels.bookdetails', ['bookingdetails' => $bookingdetails, 'booking' => $booking,'user'=>$user]);
     }
 
-    
     public function bookConfirm($id)
     {
         $booking = Booking::findorfail($id);

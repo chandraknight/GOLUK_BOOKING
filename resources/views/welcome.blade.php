@@ -379,18 +379,24 @@
                                 </h5>
                                 <small>{{$vehicle->types['type_name']}}</small>
                                 <ul class="booking-item-features booking-item-features-small booking-item-features-sign clearfix mt5">
-                                    <li rel="tooltip" data-placement="top" title="Diesel Vehicle" ><i class="im im-diesel"></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
-                                    </li>
-                                    <li rel="tooltip" data-placement="top" title="Passengers" ><i class="fa fa-male"></i><span class="booking-item-feature-sign">x {{$vehicle->no_of_people}}</span>
-                                    </li>
-                                    <li rel="tooltip" data-placement="top" title="Vehicle Origin location - {{$vehicle->location}}" class="col-sm-2"><i class="fa fa-map-marker"></i><span class="booking-item-feature-sign">{{$vehicle->location}}</span>
+                                    <li rel="tooltip" data-placement="top" title="{{ucfirst($vehicle->fuel)}} Vehicle" ><i class="im im-diesel"></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
                                     </li>
 
-                                    <li rel="tooltip" data-placement="top" title="2WD/4WD" ><i class="im im-car-wheel " ></i><span class="booking-item-feature-sign">{{$vehicle->fuel}}</span>
+                                    <li rel="tooltip" data-placement="top" title="Number of Passengers - {{$vehicle->no_of_people}} " ><i class="fa fa-male"></i><span class="booking-item-feature-sign">x {{$vehicle->no_of_people}}</span>
                                     </li>
-                                    <li title="" data-original-title="Car with Driver" data-placement="top" rel="tooltip" class="col-sm-1"><i class="im im-driver"></i> <span class="booking-item-feature-sign">Yes</span>
+
+
+
+                                    <li rel="tooltip" data-placement="top" title="Drive Train - {{$vehicle->drive_train}}" ><i class="im im-car-wheel " ></i><span class="booking-item-feature-sign">{{$vehicle->drive_train}}</span>
                                     </li>
-                                    <li title="" data-original-title="Satellite Navigation" data-placement="top" rel="tooltip" class="col-sm-1"><i class="im im-satellite"></i> <span class="booking-item-feature-sign">NO</span>
+
+                                    <li title="" data-original-title="Car with Driver" data-placement="top" rel="tooltip" ><i class="im im-driver"></i> <span class="booking-item-feature-sign">Yes</span>
+                                    </li>
+
+                                    <li title="" data-original-title="Satellite Navigation - {{ucfirst($vehicle->gps)}}" data-placement="top" rel="tooltip" ><i class="im im-satellite"></i> <span class="booking-item-feature-sign">{{$vehicle->gps}}</span>
+                                    </li>
+
+                                    <li rel="tooltip" data-placement="top" title="Vehicle Origin location - {{ucfirst($vehicle->location)}}"><i class="fa fa-map-marker"></i><span class="booking-item-feature-sign">{{ucfirst($vehicle->location)}}</span>
                                     </li>
                                 </ul>
                                 <p class="text-darken mb0 text-color">Rs {{$vehicle->rate_per_day}}

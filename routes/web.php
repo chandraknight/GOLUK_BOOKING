@@ -307,6 +307,7 @@ Route::group(['prefix'=>'hotel','middleware'=>['auth','role:,hotelowner,admin,su
         'uses'=>'BookingController@bookingDetails',
         'as'=>'booking.details'
     ]);
+
     Route::get('/rooms/booking/confirm/{id}',[
         'uses'=>'BookingController@bookConfirm',
         'as'=>'book.confirm'
