@@ -50,7 +50,7 @@
                     @if($booking->booking_status == 'pending') 
                     <a href="{{route('confirmvehiclebooking',$booking->id)}}" class="btn btn-success">Confirm</a> 
                     @endif 
-                    @if($booking->booking_status == 'pending'||$booking->booking_status == 'confirmed') <a href="{{route('cancelvehiclebooking')}}" class="btn btn-danger">Cancel</a>
+                    @if($booking->booking_status == 'pending'||$booking->booking_status == 'confirmed') <a href="{{route('cancelvehiclebooking',$booking->id)}}" class="btn btn-danger">Cancel</a>
                     @endif
                 </p>
             </div>

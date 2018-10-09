@@ -62,8 +62,19 @@
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @forelse( Auth::user()->unreadnotifications as $notification)
-                            <div class="well well-sm dropdown-item"><a
-                                        href="{{route('view.booking',$notification->data['booking_id'])}}">{{$notification->data['data']}}</a>
+                            <div class="well well-sm dropdown-item">
+                                @if($notification->type == 'App\Notifications\RoomBooked')
+                                    <a href="{{route('view.booking',$notification->data['booking_id'])}}">{{$notification->data['data']}}</a>
+                                @endif
+
+                                @if($notification->type == 'App\Notifications\TourBookedNotification')
+                                    <a href="{{route('tour.book.details',$notification->data['booking_id'])}}">{{$notification->data['data']}}</a>
+                                @endif
+
+                                @if($notification->type == 'App\Notifications\VehicleBooked')
+                                    <a href="{{route('viewvehicleinvoice',$notification->data['booking_id'])}}">{{$notification->data['data']}}</a>
+                                @endif
+
                                 <a href="{{route('notify.read',$notification->id)}}">Mark as read</a></div>
                         @empty
                             No new bookings yet.

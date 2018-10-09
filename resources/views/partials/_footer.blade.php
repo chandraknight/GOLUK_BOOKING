@@ -93,6 +93,7 @@
 <script src="{{URL::asset('/js/custom.js')}}"></script>
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 <script>tinymce.init({selector: 'textarea'});</script>
+@yield('script')
 </div>
 </body>
 

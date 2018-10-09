@@ -11,7 +11,7 @@
                             <div class="input-daterange" data-date-format="m/d">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                                     <label>Pickup Location</label>
-                                    <input class="typeahead form-control" placeholder="City or Airport" name="location" type="text">
+                                    <input class="form-control" placeholder="City or Airport" name="location" type="text">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                                     <label>Drop off Location</label>
-                                    <input class="typeahead form-control"  placeholder="Same as pickup" name="destination" type="text">
+                                    <input class="form-control"  placeholder="Same as pickup" name="destination" type="text">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">

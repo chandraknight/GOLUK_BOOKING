@@ -26,7 +26,7 @@ class VehicleSearchRequest extends FormRequest
         return [
             'location'=>'required|string',
             'from_date'=>'date|required|after:today',
-            'till_date'=>'date|required',
+            'till_date'=>'date|required|after:today',
             'passenger'=>'required|integer'
         ];
     }

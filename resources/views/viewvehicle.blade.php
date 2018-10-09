@@ -113,7 +113,8 @@
                 <div class="col-md-3">
 
                     <div class="booking-item-deails-date-location">
-                        @if(session()->has('vehicle_search_id'))
+                        @if(session()->has('search_vehicle_id'))
+
                             <ul>
                                 <li>
                                     <h5>Location:</h5>
@@ -122,20 +123,19 @@
                                 <li>
                                     <h5>Pick Up:</h5>
                                     <p>
-                                        <i class="fa fa-map-marker box-icon-inline box-icon-gray"></i>{{$location->destination}}
+                                        <i class="fa fa-map-marker box-icon-inline box-icon-gray"></i>{{$search->location}}
                                     </p>
-                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>Sunday, April 13 2014
+                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>{{\Carbon\Carbon::parse($search->from)->toFormattedDateString()}}
                                     </p>
                                 </li>
                                 <li>
                                     <h5>Drop Off:</h5>
-                                    <p><i class="fa fa-map-marker box-icon-inline box-icon-gray"></i>JFK International
-                                        Airport</p>
-                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>Sunday, April 20 2014
+                                    <p><i class="fa fa-map-marker box-icon-inline box-icon-gray"></i>{{$search->destination}}</p>
+                                    <p><i class="fa fa-calendar box-icon-inline box-icon-gray"></i>{{\Carbon\Carbon::parse($search->till)->toFormattedDateString()}}
                                     </p>
                                 </li>
                             </ul>
-                            <a href="#" class="btn btn-primary">Change Location & Date</a>
+                            <a href="{{route('reservevehicle',$vehicle->id)}}" class="btn btn-primary">Reserve</a>
                         @else
                             <a class="popup-text btn btn-primary" href="#search-dialog" data-effect="mfp-zoom-out">Reserve</a>
                         @endif

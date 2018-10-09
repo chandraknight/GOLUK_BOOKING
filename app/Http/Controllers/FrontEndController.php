@@ -19,12 +19,13 @@ use App\TourSearch;
 use App\Vehicle;
 use App\VehicleSearch;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
     public function welcome()
     {
-        
+
         $hotels = Hotel::inRandomOrder()->where('flag',true)->limit(4)->get();
         $vehicles = Vehicle::inRandomOrder()->where('flag',true)->limit(4)->get();
         $tours = TourPackage::inRandomOrder()->where('flag',true)->limit(4)->get();
@@ -44,10 +45,11 @@ class FrontEndController extends Controller
         $search->save();
         $search_id = $search->id;
         $request->session()->put('search_id', $search_id);
-       
-        
-            $hotels = Hotel::where('address', 'like', '%' . $query . '%')->where('flag',true)->paginate(15);
-       
+
+
+        $hotels = Hotel::where('address', 'like', '%' . $query . '%')
+            ->where('flag',true)
+            ->paginate(15);
 
         return view('search', ['hotels' => $hotels,'search'=>$search]);
     }
@@ -102,8 +104,8 @@ class FrontEndController extends Controller
         $test = [];
         foreach ($roomdetails as $roomdetail) {
             if ($roomdetail['no_rooms'] != null) {
-                $test[] = $roomdetail; 
-            } 
+                $test[] = $roomdetail;
+            }
         }
         if($test == null){
             return redirect()->back()->with('error','Please provide number of rooms');
@@ -142,20 +144,20 @@ class FrontEndController extends Controller
     {
         $hotel = Hotel::findorfail($id);
         if(session()->has('search_id')) {
-             $search_id = session()->get('search_id');
+            $search_id = session()->get('search_id');
             $search = Search::where('id', '=', $search_id)->first();
-             $from = Carbon::parse($search->from_date)->toFormattedDateString();
+            $from = Carbon::parse($search->from_date)->toFormattedDateString();
             $till = Carbon::parse($search->till_date)->toFormattedDateString();
             $photos = Photo::where('hotel_id', '=', $hotel->id)->get();
-        $rooms = Room::where('hotel_id',$hotel->id)->get();
-        $min = collect($rooms)->min('room_flat_cost');
+            $rooms = Room::where('hotel_id',$hotel->id)->get();
+            $min = collect($rooms)->min('room_flat_cost');
             return view('hotelshow', ['hotel' => $hotel, 'photos' => $photos,'search'=>$search,'min'=>$min,'from'=>$from,'till'=>$till]);
         }
-       
+
         $photos = Photo::where('hotel_id', '=', $hotel->id)->get();
         $rooms = Room::where('hotel_id',$hotel->id)->get();
-         $min = collect($rooms)->min('room_flat_cost');
-        
+        $min = collect($rooms)->min('room_flat_cost');
+
         return view('hotelshow', ['hotel' => $hotel, 'photos' => $photos,'min'=>$min]);
     }
 
@@ -189,7 +191,12 @@ class FrontEndController extends Controller
         $querypas = $request->passenger;
         $search = new VehicleSearch;
         $search->location = $request->location;
-        $search->destination = $request->destination;
+        if($request->destination == null || empty($request->destination) ){
+            $search->destination = "Same as Pickup Location";
+        } else {
+            $search->destination = $request->destination;
+        }
+
         $search->from = $request->from_date;
         $search->pickup_time = $request->pickup_time;
         $search->dropoff_time = $request->dropoff_time;
@@ -199,7 +206,7 @@ class FrontEndController extends Controller
         $search->save();
         $search_id = $search->id;
         $request->session()->put('search_vehicle_id', $search_id);
-        $vehicles = Vehicle::where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>', $querypas)->where('flag',true)->paginate(5);
+        $vehicles = Vehicle::where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)->paginate(5);
         return view('searchvehicle', ['vehicles' => $vehicles,'search'=>$search]);
 
     }
@@ -207,6 +214,11 @@ class FrontEndController extends Controller
     public function showVehicle($id)
     {
         $vehicle = Vehicle::findorfail($id);
+        if(session()->has('search_vehicle_id')){
+            $search_id = session()->get('search_vehicle_id');
+            $search = VehicleSearch::where('id', $search_id)->first();
+            return view('viewvehicle', ['vehicle' => $vehicle,'search'=>$search]);
+        }
         return view('viewvehicle', ['vehicle' => $vehicle]);
     }
 
@@ -224,8 +236,8 @@ class FrontEndController extends Controller
         $from = Carbon::parse($search->from);
         $till = Carbon::parse($search->till);
 
-         $days = $from->diffInDays($till);
-       
+        $days = $from->diffInDays($till);
+
 
         $vehicle = Vehicle::findorfail($request->vehicle_id);
         return view('reservevehicle',['search'=>$search,'vehicle'=>$vehicle,'from'=>$from,'till'=>$till,'days'=>$days]);
@@ -236,9 +248,9 @@ class FrontEndController extends Controller
         $vehicle = Vehicle::findorfail($id);
         $search_id = session()->get('search_vehicle_id');
         $search = VehicleSearch::where('id', $search_id)->first();
-         $from = Carbon::parse($search->from);
+        $from = Carbon::parse($search->from);
         $till = Carbon::parse($search->till);
-         $days = $from->diffInDays($till);
+        $days = $from->diffInDays($till);
         return view('reservevehicle', ['vehicle' => $vehicle, 'search' => $search,'from'=>$from,'till'=>$till,'days'=>$days]);
     }
 
@@ -277,5 +289,101 @@ class FrontEndController extends Controller
         return view('auth.regagent');
     }
 
-    
+    public function ajaxSortHotel(Request $request) {
+//        dd($request);
+        $sort = $request->sort;
+//        dd($sort);
+        $search = json_decode($request->search,true);
+//        dd($search);
+        if($request->ajax()) {
+            $hotels = Hotel::query();
+            if($sort == "price-low-high") {
+//               dd($request->sort);
+                $hotels
+                    ->join('rooms','rooms.hotel_id','=','hotels.id')
+                    ->where('hotels.address','like','%'.$search['destination'].'%')
+                    ->orderBy('rooms.room_flat_cost','asc')
+                    ->get();
+            }
+            elseif ($sort == "price-high-low") {
+//                dd($request->sort);
+                $hotels
+                    ->join('rooms','rooms.hotel_id','=','hotels.id')
+                    ->where('hotels.address','like','%'.$search['destination'].'%')
+                    ->orderBy('rooms.room_flat_cost','desc')
+                    ->get();
+
+            } else {
+                $hotels->where('address','like','%'.$search['destination'].'%')
+                    ->get();
+            }
+
+            $hotels = $hotels->get();
+        }
+        $output = view('sorthotel', ['hotels' => $hotels])->render();
+        return response()->json(['output'=>$output]);
+    }
+
+    public function ajaxSortVehicle(Request $request) {
+
+        if($request->ajax()) {
+            $sort = $request->sort;
+            $search = json_decode($request->search,true);
+//            dd($search);
+            $queryloc = $search['location'];
+            $querypas = $search['passengers'];
+            if($sort == "price-low-high") {
+//               dd($request->sort);
+                $vehicles = Vehicle::
+                where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)
+                    ->orderBy('rate_per_day','ASC')
+                    ->get();
+            }
+            elseif ($sort == "price-high-low") {
+//                dd($request->sort);
+                $vehicles = Vehicle::
+                where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)
+                    ->orderBy('rate_per_day','DESC')
+                    ->get();
+
+            } else {
+                $vehicles = Vehicle::where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)
+                    ->get();
+            }
+
+        }
+        $output = view('sortvehicle', ['vehicles' => $vehicles])->render();
+        return response()->json(['output'=>$output]);
+    }
+
+    public function ajaxSortActivity(Request $request) {
+
+        if($request->ajax()) {
+            $sort = $request->sort;
+            $search = json_decode($request->search,true);
+//            dd($search);
+            $query = $search['destination'];
+            if($sort == "price-low-high") {
+//               dd($request->sort);
+                $tours = TourPackage::
+                where('location','like','%'.$query.'%')->where('flag',true)
+                    ->orderBy('price','ASC')
+                    ->get();
+            }
+            elseif ($sort == "price-high-low") {
+//                dd($request->sort);
+                $tours = TourPackage::
+                where('location','like','%'.$query.'%')->where('flag',true)
+                    ->orderBy('price','DESC')
+                    ->get();
+
+            } else {
+                $tours = TourPackage::where('location','like','%'.$query.'%')->where('flag',true)
+                    ->get();
+            }
+
+        }
+        $output = view('sorttour', ['tours' => $tours])->render();
+        return response()->json(['output'=>$output]);
+    }
 }

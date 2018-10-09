@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\VehicleStoreRequest;
+use App\Http\Requests\VehicleStoreRequest;
 use App\Notifications\VehicleRegisteredNotification;
 use App\Vehicle;
 use App\VehicleService;
@@ -34,7 +34,7 @@ class VehicleController extends Controller
 
 
     public function registerVehicle(VehicleStoreRequest $request){
-       dd($request);
+//       dd($request);
         $vehicle = new Vehicle;
         if($request->has('image')){
             $filenamewithext = $request->file('image')->getClientOriginalName();

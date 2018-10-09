@@ -7,9 +7,7 @@
 Email:: {{$booking->tourPackage['email']}}<br>
 Contact Number:: {{$booking->tourPackage['contact']}}<br>
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+
 
 Thanks,<br>
 {{ config('app.name') }}
