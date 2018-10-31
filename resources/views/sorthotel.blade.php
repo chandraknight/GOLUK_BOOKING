@@ -1,5 +1,5 @@
 @forelse($hotels as $hotel)
-    @if($hotel->rooms->count()>0)
+{{--    @if($hotel->rooms->count()>0)--}}
     <li>
         <a class="booking-item" href="{{route('hotel.show',$hotel->id)}}">
             <div class="row">
@@ -24,7 +24,7 @@
             </div>
         </a>
     </li>
-    @endif
+    {{--@endif--}}
 @empty
     No Hotels Available
 @endforelse
