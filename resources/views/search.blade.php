@@ -185,8 +185,18 @@
                     dataType: 'json',
                     url: '{{route('ajaxsorthotel')}}',
                     data: {sort: sort2, search: search},
+                    beforeSend: function () {
+                        $(".loader").css("display", "block");
+                        $('.loader').show();
+                        $('.booking-list').hide();
+                    },
                     success: function (data) {
                         $('.booking-list').html(data.output);
+                    },
+                    complete: function(data) {
+                        $(".loader").css("display", "none");
+                        $('.loader').hide();
+                        $('.booking-list').show();
                     }
                 });
             });

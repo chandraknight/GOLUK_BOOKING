@@ -290,27 +290,34 @@ class FrontEndController extends Controller
     }
 
     public function ajaxSortHotel(Request $request) {
-//        dd($request);
         $sort = $request->sort;
-//        dd($sort);
         $search = json_decode($request->search,true);
-//        dd($search);
         if($request->ajax()) {
             $hotels = Hotel::query();
             if($sort == "price-low-high") {
-//               dd($request->sort);
-                $hotels
+                $hotels->with('rooms')
+//                    ->whereHas('rooms',function($query) use($search){
+//                    $query->where('hotels.address','like','%'.$search['destination'].'%')->orderBy('room_flat_cost','asc');
+//                })->get();
+//                dd($hotels);
                     ->join('rooms','rooms.hotel_id','=','hotels.id')
+                    ->whereExists(function ($query) {
+                        $query->select("rooms.room_flat_cost")
+                            ->from('rooms')
+                            ->whereRaw('rooms.hotel_id = hotels.id');})
                     ->where('hotels.address','like','%'.$search['destination'].'%')
-                    ->orderBy('rooms.room_flat_cost','asc')
-                    ->get();
+                    ->orderBy('rooms.room_flat_cost','ASC');
+//                    ->get();
             }
             elseif ($sort == "price-high-low") {
-//                dd($request->sort);
                 $hotels
-                    ->join('rooms','rooms.hotel_id','=','hotels.id')
+
                     ->where('hotels.address','like','%'.$search['destination'].'%')
-                    ->orderBy('rooms.room_flat_cost','desc')
+                    ->whereHas('rooms',function($query){
+                        $query->select('rooms.room_flat_cost')->whereIn('rooms.hotel_id','=','hotels.id');
+                    })
+                    ->where('flag',true)
+                    ->orderBy('room_flat_cost','DESC')
                     ->get();
 
             } else {
@@ -319,6 +326,7 @@ class FrontEndController extends Controller
             }
 
             $hotels = $hotels->get();
+//            dd($hotels);
         }
         $output = view('sorthotel', ['hotels' => $hotels])->render();
         return response()->json(['output'=>$output]);
@@ -329,18 +337,15 @@ class FrontEndController extends Controller
         if($request->ajax()) {
             $sort = $request->sort;
             $search = json_decode($request->search,true);
-//            dd($search);
             $queryloc = $search['location'];
             $querypas = $search['passengers'];
             if($sort == "price-low-high") {
-//               dd($request->sort);
                 $vehicles = Vehicle::
                 where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)
                     ->orderBy('rate_per_day','ASC')
                     ->get();
             }
             elseif ($sort == "price-high-low") {
-//                dd($request->sort);
                 $vehicles = Vehicle::
                 where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)
                     ->orderBy('rate_per_day','DESC')
@@ -361,10 +366,8 @@ class FrontEndController extends Controller
         if($request->ajax()) {
             $sort = $request->sort;
             $search = json_decode($request->search,true);
-//            dd($search);
             $query = $search['destination'];
             if($sort == "price-low-high") {
-//               dd($request->sort);
                 $tours = TourPackage::
                 where('location','like','%'.$query.'%')->where('flag',true)
                     ->orderBy('price','ASC')
