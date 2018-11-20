@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <a class="logo" href="{{route('welcome')}}">
                         <!--    <h4 style="color:#fff">Yatritime</h4>--> <img src="{{URL::asset('/img/Yatritime.png')}}"
-                                                                              alt="Yatri Time" title="Yatri Time">
+                                                                              alt="Yatri Time" title="Yatri Time" width="300" height="60">
                     </a>
                 </div>
                 <div class="col-md-3 col-md-offset-2">

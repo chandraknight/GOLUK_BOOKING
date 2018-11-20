@@ -3,8 +3,10 @@
         <div class="row row-wrap">
             <div class="col-md-3">
                 <a class="logo" href="{{route('welcome')}}">
-                <img src="{{URL::asset('img\logo-invert.png')}}" alt="Image Alternative text" title="Image Title">
-                <!--   <h4> Yatritime </h4>-->
+                    <img src="{{URL::asset('/img/Yatritime.png')}}"
+                         alt="Yatri Time" title="Yatri Time" width="300" height="60">
+
+                    <!--   <h4> Yatritime </h4>-->
                 </a>
                 <p class="mb20">
                     Book hotels, vacation rental, resort, apartment, guest house or treehouse, vehicles, perfect tour
