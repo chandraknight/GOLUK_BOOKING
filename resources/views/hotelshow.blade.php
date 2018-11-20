@@ -188,7 +188,9 @@
                                                 <input type="hidden" name="room[]" value="{{$room->id}}">
                                                 <input type="hidden" name="hotel_id" value="{{$hotel->id}}">
                                                 <div class="gap-mini"></div>
-                                                <label>Select Plan</label>
+                                                    <div class="radio-inline ">
+                                                        <h4>Select Plan</h4>
+                                                    </div>
                                                 @if(isset($room->room_flat_cost))
                                                     <div class="radio-inline checked radio-stroke">
                                                         <label>
