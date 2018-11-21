@@ -147,7 +147,7 @@ class FrontEndController extends Controller
             $search_id = session()->get('search_id');
             $search = Search::where('id', '=', $search_id)->first();
             $from = Carbon::parse($search->from_date)->toFormattedDateString();
-            $till = Carbon::parse($search->till_date)->toFormattedDateString();
+            $till = Carbon::parse($search->to_date)->toFormattedDateString();
             $photos = Photo::where('hotel_id', '=', $hotel->id)->get();
             $rooms = Room::where('hotel_id',$hotel->id)->get();
             $min = collect($rooms)->min('room_flat_cost');

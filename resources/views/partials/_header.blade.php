@@ -25,12 +25,16 @@
     <script src="{{URL::asset('/js/modernizr.js')}}"></script>
 
 
-    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/bright-turquoise.css')}}" title="bright-turquoise" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/turkish-rose.css')}}" title="turkish-rose" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/bright-turquoise.css')}}" title="bright-turquoise"
+        media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/turkish-rose.css')}}" title="turkish-rose"
+        media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/salem.css')}}" title="salem" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/hippie-blue.css')}}" title="hippie-blue" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/hippie-blue.css')}}" title="hippie-blue"
+        media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/mandy.css')}}" title="mandy" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/green-smoke.css')}}" title="green-smoke" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/green-smoke.css')}}" title="green-smoke"
+        media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/horizon.css')}}" title="horizon" media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/cerise.css')}}" title="cerise" media="all">
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/brick-red.css')}}" title="brick-red" media="all">
@@ -42,28 +46,34 @@
     <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('/css/schemes/scarlet.css')}}" title="scarlet" media="all">
     <style>
         .loader {
-            margin:0 auto;
+            margin: 0 auto;
             border: 10px solid #f3f3f3;
             border-radius: 50%;
             border-top: 5px solid #555;
             width: 75px;
             height: 75px;
-            -webkit-animation: spin 2s linear infinite; /* Safari */
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
             animation: spin 2s linear infinite;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        .loader p{
-            margin:2px auto;
+
+        .loader p {
+            margin: 2px auto;
             background: #ffffff;
             color: #0b0b0b;
             padding: 5px;
             text-align: center;
             font-size: small;
-            width:100%;
+            width: 100%;
             height: 100%;
             border-radius: 50%;
         }
@@ -82,6 +92,7 @@
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
 </script>
 <!-- /FACEBOOK WIDGET -->
 <div class="global-wrap">

@@ -86,7 +86,7 @@
                                         <a href="{{route('booking.cancel',$booking->id)}}" class="btn btn-sm btn-danger">Cancel</a>
                                     @endif
 
-                                    <a href="{{route('booking.change',$booking->id)}}" class="btn btn-success">Change</a>
+                                    {{--<a href="{{route('booking.change',$booking->id)}}" class="btn btn-success">Change</a>--}}
                                 </p>
                             </div>
                         </div>
