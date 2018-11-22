@@ -13,26 +13,27 @@
                 {{csrf_field()}}
                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                     <label>Where are you going?</label>
-                    <input class="form-control" placeholder="City, Hotel Name" name="destination" type="text">
+                    <input class="form-control" name="destination" value="{{$search->destination}}" type="text">
                 </div>
                 <div class="input-daterange">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Check-in</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" type="text">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" value="{{$search->from_date}}" type="text">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Check-out</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date" type="text">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd"  value="{{$search->to_date}}"  name="till_date" type="text">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-select-plus">
                                 <label>Children</label>
                                 <select class="form-control" name="no_childs">
+                                    <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>

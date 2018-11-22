@@ -1,4 +1,4 @@
-<div class="container text-center"> 
+<div class="container text-center">
 @if(count($errors)>0)
 	@php $error = $errors->first(); @endphp 
 		<div class="alert">

@@ -34,6 +34,9 @@
                                                     <input class="form-control"
                                                            placeholder="City, Point of Interest"
                                                            type="text" name="destination">
+                                                    @if($errors->has('destination'))
+                                                    <span style="color:red">{{$errors->first('destination')}}</span>
+                                                    @endif
                                                 </div>
                                                 <div class="input-daterange" data-date-format="M d, D">
                                                     <div class="row">
@@ -44,6 +47,9 @@
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" name="from_date"
                                                                        type="text">
+                                                                @if($errors->has('from_date'))
+                                                                    <span style="color:red">{{$errors->first('from_date')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -53,6 +59,9 @@
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" name="till_date"
                                                                        type="text">
+                                                                @if($errors->has('till_date'))
+                                                                    <span style="color:red">{{$errors->first('till_date')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -76,6 +85,9 @@
                                                                     <option>13</option>
                                                                     <option>14</option>
                                                                 </select>
+                                                                @if($errors->has('no_childs'))
+                                                                    <span style="color:red">{{$errors->first('no_childs')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -98,6 +110,9 @@
                                                                     <option>13</option>
                                                                     <option>14</option>
                                                                 </select>
+                                                                @if($errors->has('no_adults'))
+                                                                    <span style="color:red">{{$errors->first('no_adults')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -118,6 +133,9 @@
                                                             <input class="form-control"
                                                                    placeholder="City" type="text"
                                                                    name="location">
+                                                            @if($errors->has('location'))
+                                                                <span style="color:red">{{$errors->first('location')}}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -127,6 +145,9 @@
                                                             <input class="form-control"
                                                                    placeholder="City" type="text"
                                                                    name="destination">
+                                                            @if($errors->has('destination'))
+                                                                <span style="color:red">{{$errors->first('destination')}}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -139,6 +160,9 @@
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" name="from_date"
                                                                        type="text">
+                                                                @if($errors->has('from_date'))
+                                                                    <span style="color:red">{{$errors->first('from_date')}}</span>
+                                                                @endif
                                                             </div>
 
                                                         </div>
@@ -148,6 +172,9 @@
                                                                 <label>Pick-up Time</label>
                                                                 <input class="time-pick form-control" name="pickup_time"
                                                                        value="12:00 AM" type="text">
+                                                                @if($errors->has('pickup_time'))
+                                                                    <span style="color:red">{{$errors->first('pickup_time')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
 
@@ -158,6 +185,9 @@
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" type="text"
                                                                        name="till_date">
+                                                                @if($errors->has('till_date'))
+                                                                    <span style="color:red">{{$errors->first('till_date')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -174,6 +204,9 @@
                                                                 <label>Passengers</label>
                                                                 <input class="form-control" type="text"
                                                                        name="passenger">
+                                                                @if($errors->has('passenger'))
+                                                                    <span style="color:red">{{$errors->first('passenger')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -195,6 +228,9 @@
                                                                 <input class="form-control"
                                                                        placeholder="City, Point of Interest "
                                                                        type="text" name="destination">
+                                                                @if($errors->has('destination'))
+                                                                    <span style="color:red">{{$errors->first('destination')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
 

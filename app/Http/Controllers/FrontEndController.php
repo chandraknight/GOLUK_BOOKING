@@ -49,6 +49,7 @@ class FrontEndController extends Controller
 
         $hotels = Hotel::where('address', 'like', '%' . $query . '%')
             ->where('flag',true)
+            ->has('rooms','>',1)
             ->paginate(15);
 
         return view('search', ['hotels' => $hotels,'search'=>$search]);

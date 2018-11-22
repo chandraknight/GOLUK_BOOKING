@@ -6,7 +6,7 @@ Your Tour Activity has new Booking.
 @component('mail::table')
     | S.No          | Title                | Details  |
     | ------------- |:--------------------:| --------:|
-    | 1             | Activity Code        | {{$activity->code}}     |
+    | 1             | Activity Code        | {{$tour->code}}     |
     | 2             | Name                 | {{$booking->customer_name}}      |
     | 3             | Email                | {{$booking->customer_email}}      |
     | 4             | Contact              | {{$booking->customer_contact}}      |
