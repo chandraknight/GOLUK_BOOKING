@@ -15,7 +15,7 @@
                 <p>
                 <div class="col-md-3">
                     <span class="booking-item-price-from">from</span>
-                    <span class="booking-item-price">Rs {{collect($hotel->rooms)->min('room_flat_cost')}}
+                    <span class="booking-item-price">Rs {{$hotel['room_flat_cost']}}
                         <small>/night</small>
                                             </span>
                 </div>

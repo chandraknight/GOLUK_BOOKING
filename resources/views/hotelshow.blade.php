@@ -182,7 +182,7 @@
                                                 </h3>
                                                 <label>Enter Required rooms</label>
                                                 <input class="form-control" type="number" max="{{$room->no_of_rooms}}"
-                                                       placeholder="{{$room->no_of_rooms}} Available" name="no_rooms[]">
+                                                       placeholder="{{$room->no_of_rooms}} Available" min="0" name="no_rooms[]">
                                                 <input type="hidden" name="room_type[]"
                                                        value="{{$room->roomType->name}}">
                                                 <input type="hidden" name="room[]" value="{{$room->id}}">

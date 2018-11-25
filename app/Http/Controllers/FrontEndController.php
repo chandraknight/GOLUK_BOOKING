@@ -48,6 +48,8 @@ class FrontEndController extends Controller
 
 
         $hotels = Hotel::where('address', 'like', '%' . $query . '%')
+            ->orWhere('name','like','%'.$query.'%')
+            ->orWhere('email','like','%'.$query.'%')
             ->where('flag',true)
             ->has('rooms','>',1)
             ->paginate(15);
@@ -189,6 +191,7 @@ class FrontEndController extends Controller
     public function searchVehicle(VehicleSearchRequest $request)
     {
         $queryloc = $request->location;
+
         $querypas = $request->passenger;
         $search = new VehicleSearch;
         $search->location = $request->location;
@@ -205,9 +208,16 @@ class FrontEndController extends Controller
         $search->passengers = $request->passenger;
 
         $search->save();
+        $querydes = $search->destination;
         $search_id = $search->id;
         $request->session()->put('search_vehicle_id', $search_id);
-        $vehicles = Vehicle::where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)->paginate(5);
+        $vehicles = Vehicle::where('location', 'like', '%' . $queryloc . '%')
+            ->orWhere('name','like','%'.$queryloc.'%')
+            ->orWhere('name','like','%'.$querydes.'%')
+            ->orWhere('code','like','%'.$queryloc.'%')
+            ->where('no_of_people', '>=', $querypas)
+            ->where('flag',true)->paginate(5)
+            ->get();
         return view('searchvehicle', ['vehicles' => $vehicles,'search'=>$search]);
 
     }
@@ -297,32 +307,39 @@ class FrontEndController extends Controller
             $hotels = Hotel::query();
             if($sort == "price-low-high") {
                 $hotels->with('rooms')
-//                    ->whereHas('rooms',function($query) use($search){
-//                    $query->where('hotels.address','like','%'.$search['destination'].'%')->orderBy('room_flat_cost','asc');
-//                })->get();
-//                dd($hotels);
+
                     ->join('rooms','rooms.hotel_id','=','hotels.id')
                     ->whereExists(function ($query) {
                         $query->select("rooms.room_flat_cost")
                             ->from('rooms')
                             ->whereRaw('rooms.hotel_id = hotels.id');})
+
                     ->where('hotels.address','like','%'.$search['destination'].'%')
-                    ->orderBy('rooms.room_flat_cost','ASC');
-//                    ->get();
+                    ->orWhere('hotels.name','like','%'.$search['destination'].'%')
+                    ->orWhere('hotels.email','like','%'.$search['destination'].'%')
+                    ->where('flag',true)
+                    ->orderBy('rooms.room_flat_cost','ASC')
+                    ->get();
             }
             elseif ($sort == "price-high-low") {
                 $hotels
-
+                    ->join('rooms','rooms.hotel_id','=','hotels.id')
                     ->where('hotels.address','like','%'.$search['destination'].'%')
-                    ->whereHas('rooms',function($query){
-                        $query->select('rooms.room_flat_cost')->whereIn('rooms.hotel_id','=','hotels.id');
-                    })
+                    ->whereExists(function ($query) {
+                        $query->select("rooms.room_flat_cost")
+                            ->from('rooms')
+                            ->whereRaw('rooms.hotel_id = hotels.id');})
+                    ->orWhere('hotels.name','like','%'.$search['destination'].'%')
+                    ->orWhere('hotels.email','like','%'.$search['destination'].'%')
                     ->where('flag',true)
                     ->orderBy('room_flat_cost','DESC')
                     ->get();
 
             } else {
                 $hotels->where('address','like','%'.$search['destination'].'%')
+                    ->orWhere('name','like','%'.$search['destination'].'%')
+                    ->orWhere('email','like','%'.$search['destination'].'%')
+                    ->where('flag',true)
                     ->get();
             }
 

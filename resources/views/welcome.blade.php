@@ -3,7 +3,7 @@
     <div class="top-area show-onload">
         <div class="bg-holder full">
             <div class="bg-mask"></div>
-            <div class="bg-parallax" style="background-image:url('img/196_365_2048x1365.jpg');"></div>
+            <div class="bg-parallax" style="background-image:url({{URL::asset('img/196_365_2048x1365.jpg')}});"></div>
             <div class="bg-content">
                 <div class="container">
                     <div class="row">
@@ -33,7 +33,7 @@
                                                     <label>Where are you going?</label>
                                                     <input class="form-control"
                                                            placeholder="City, Point of Interest"
-                                                           type="text" name="destination">
+                                                           type="text" name="destination" required>
                                                     @if($errors->has('destination'))
                                                     <span style="color:red">{{$errors->first('destination')}}</span>
                                                     @endif
@@ -46,7 +46,7 @@
                                                                 <label>Check-in</label>
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" name="from_date"
-                                                                       type="text">
+                                                                       type="text" required>
                                                                 @if($errors->has('from_date'))
                                                                     <span style="color:red">{{$errors->first('from_date')}}</span>
                                                                 @endif
@@ -58,7 +58,7 @@
                                                                 <label>Check-out</label>
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" name="till_date"
-                                                                       type="text">
+                                                                       type="text" required>
                                                                 @if($errors->has('till_date'))
                                                                     <span style="color:red">{{$errors->first('till_date')}}</span>
                                                                 @endif
@@ -94,7 +94,7 @@
                                                             <div class="form-group form-group-lg form-group-select-plus">
                                                                 <label>Guests</label>
 
-                                                                <select class="form-control" name="no_adults">
+                                                                <select class="form-control" name="no_adults" required>
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
@@ -132,7 +132,7 @@
                                                             <label>Pick-up Location</label>
                                                             <input class="form-control"
                                                                    placeholder="City" type="text"
-                                                                   name="location">
+                                                                   name="location" required>
                                                             @if($errors->has('location'))
                                                                 <span style="color:red">{{$errors->first('location')}}</span>
                                                             @endif
@@ -144,7 +144,7 @@
                                                             <label>Drop-off Location</label>
                                                             <input class="form-control"
                                                                    placeholder="City" type="text"
-                                                                   name="destination">
+                                                                   name="destination" required>
                                                             @if($errors->has('destination'))
                                                                 <span style="color:red">{{$errors->first('destination')}}</span>
                                                             @endif
@@ -159,7 +159,7 @@
                                                                 <label>Pick-up Date</label>
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" name="from_date"
-                                                                       type="text">
+                                                                       type="text" required>
                                                                 @if($errors->has('from_date'))
                                                                     <span style="color:red">{{$errors->first('from_date')}}</span>
                                                                 @endif
@@ -184,7 +184,7 @@
                                                                 <label>Drop-off Date</label>
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" type="text"
-                                                                       name="till_date">
+                                                                       name="till_date" required>
                                                                 @if($errors->has('till_date'))
                                                                     <span style="color:red">{{$errors->first('till_date')}}</span>
                                                                 @endif
@@ -203,7 +203,7 @@
                                                                 <i class="fa fa-male input-icon input-icon-highlight"></i>
                                                                 <label>Passengers</label>
                                                                 <input class="form-control" type="text"
-                                                                       name="passenger">
+                                                                       name="passenger" required>
                                                                 @if($errors->has('passenger'))
                                                                     <span style="color:red">{{$errors->first('passenger')}}</span>
                                                                 @endif
@@ -227,7 +227,7 @@
                                                                 <label>Where are you going?</label>
                                                                 <input class="form-control"
                                                                        placeholder="City, Point of Interest "
-                                                                       type="text" name="destination">
+                                                                       type="text" name="destination" required>
                                                                 @if($errors->has('destination'))
                                                                     <span style="color:red">{{$errors->first('destination')}}</span>
                                                                 @endif
@@ -240,7 +240,7 @@
                                                                 <label>From</label>
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" name="from"
-                                                                       type="text">
+                                                                       type="text" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -256,7 +256,7 @@
                                                             <div class="form-group form-group-lg form-group-icon-left">
                                                                 <i class="fa fa-male input-icon input-icon-highlight"></i>
                                                                 <label>People</label>
-                                                                <input class="form-control" name="people" type="text">
+                                                                <input class="form-control" name="people" type="text" required>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -26,8 +26,7 @@ class RoomSelectRequest extends FormRequest
 
         return [
             'no_rooms'=>'required:arrayValidate',
-
-
+            'no_rooms.*'=>'min:1'
         ];
     }
 
