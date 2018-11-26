@@ -33,9 +33,9 @@
                                                     <label>Where are you going?</label>
                                                     <input class="form-control"
                                                            placeholder="City, Point of Interest"
-                                                           type="text" name="destination" required>
-                                                    @if($errors->has('destination'))
-                                                    <span style="color:red">{{$errors->first('destination')}}</span>
+                                                           type="text" name="hoteldestination" required>
+                                                    @if($errors->has('hoteldestination'))
+                                                    <span style="color:red">{{$errors->first('hoteldestination')}}</span>
                                                     @endif
                                                 </div>
                                                 <div class="input-daterange" data-date-format="M d, D">
@@ -45,10 +45,10 @@
                                                                 <i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                 <label>Check-in</label>
                                                                 <input class="form-control date-pick"
-                                                                       data-date-format="yyyy-mm-dd" name="from_date"
+                                                                       data-date-format="yyyy-mm-dd" name="hotelfrom_date"
                                                                        type="text" required>
-                                                                @if($errors->has('from_date'))
-                                                                    <span style="color:red">{{$errors->first('from_date')}}</span>
+                                                                @if($errors->has('hotelfrom_date'))
+                                                                    <span style="color:red">{{$errors->first('hotelfrom_date')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -57,10 +57,10 @@
                                                                 <i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                 <label>Check-out</label>
                                                                 <input class="form-control date-pick"
-                                                                       data-date-format="yyyy-mm-dd" name="till_date"
+                                                                       data-date-format="yyyy-mm-dd" name="hoteltill_date"
                                                                        type="text" required>
-                                                                @if($errors->has('till_date'))
-                                                                    <span style="color:red">{{$errors->first('till_date')}}</span>
+                                                                @if($errors->has('hoteltill_date'))
+                                                                    <span style="color:red">{{$errors->first('hoteltill_date')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -68,7 +68,7 @@
                                                             <div class="form-group form-group-lg form-group-select-plus">
                                                                 <label>Children</label>
 
-                                                                <select class="form-control" name="no_childs">
+                                                                <select class="form-control" name="hotelno_childs">
                                                                     <option>0</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
@@ -85,8 +85,8 @@
                                                                     <option>13</option>
                                                                     <option>14</option>
                                                                 </select>
-                                                                @if($errors->has('no_childs'))
-                                                                    <span style="color:red">{{$errors->first('no_childs')}}</span>
+                                                                @if($errors->has('hotelno_childs'))
+                                                                    <span style="color:red">{{$errors->first('hotelno_childs')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -94,7 +94,7 @@
                                                             <div class="form-group form-group-lg form-group-select-plus">
                                                                 <label>Guests</label>
 
-                                                                <select class="form-control" name="no_adults" required>
+                                                                <select class="form-control" name="hotelno_adults" required>
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
@@ -110,8 +110,8 @@
                                                                     <option>13</option>
                                                                     <option>14</option>
                                                                 </select>
-                                                                @if($errors->has('no_adults'))
-                                                                    <span style="color:red">{{$errors->first('no_adults')}}</span>
+                                                                @if($errors->has('hotelno_adults'))
+                                                                    <span style="color:red">{{$errors->first('hotelno_adults')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>

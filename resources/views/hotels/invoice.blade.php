@@ -43,12 +43,12 @@
                     <td>{{$days_between}}</td>
                     @php $amount = (int)$room->rate * $room->no_of_rooms * $days_between @endphp
                     <td>Rs. {{$amount}}</td>
-                    @php $total += $amount @endphp
+
                 </tr>
             @endforeach
             <tr>
                 <td colspan="3"><strong>Total</strong></td>
-                <td colspan="3" align="right"><strong>Rs. {{$total}} </strong>{{$invoice->payment_status}}</td>
+                <td colspan="3" align="right"><strong>Rs. {{$booking->invoice['amount']}} </strong>{{$invoice->payment_status}}</td>
             </tr>
             </tbody>
         </table>

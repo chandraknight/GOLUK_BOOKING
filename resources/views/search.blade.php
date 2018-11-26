@@ -13,26 +13,35 @@
                 {{csrf_field()}}
                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                     <label>Where are you going?</label>
-                    <input class="form-control" name="destination" value="{{$search->destination}}" type="text">
+                    <input class="form-control" name="hoteldestination" value="{{$search->destination}}" type="text" required>
+                    @if($errors->has('hoteldestination'))
+                        <span style="color:red">{{$errors->first('hoteldestination')}}</span>
+                    @endif
                 </div>
                 <div class="input-daterange">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Check-in</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" value="{{$search->from_date}}" type="text">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="hotelfrom_date" value="{{$search->from_date}}" type="text" required>
+                                @if($errors->has('hotelfrom_date'))
+                                    <span style="color:red">{{$errors->first('hotelfrom_date')}}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Check-out</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd"  value="{{$search->to_date}}"  name="till_date" type="text">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd"  value="{{$search->to_date}}"  name="hoteltill_date" type="text" required>
+                                @if($errors->has('hoteltill_date'))
+                                    <span style="color:red">{{$errors->first('hoteltill_date')}}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-select-plus">
                                 <label>Children</label>
-                                <select class="form-control" name="no_childs">
+                                <select class="form-control" name="hotelno_childs">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -49,13 +58,16 @@
                                     <option>13</option>
                                     <option>14</option>
                                 </select>
+                                @if($errors->has('hotelno_childs'))
+                                    <span style="color:red">{{$errors->first('hotelno_childs')}}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-select-plus">
                                 <label>Adults</label>
 
-                                <select class="form-control" name="no_adults">
+                                <select class="form-control" name="hotelno_adults" required>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -71,6 +83,9 @@
                                     <option>13</option>
                                     <option>14</option>
                                 </select>
+                                @if($errors->has('hotelno_adults'))
+                                    <span style="color:red">{{$errors->first('hotelno_adults')}}</span>
+                                @endif
                             </div>
                         </div>
                     </div>

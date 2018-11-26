@@ -34,13 +34,13 @@ class FrontEndController extends Controller
 
     public function searchHotel(SearchRequest $request)
     {
-        $query = strtolower($request->destination);
+        $query = strtolower($request->hoteldestination);
         $search = new Search;
-        $search->destination = $request->destination;
-        $search->from_date = $request->from_date;
-        $search->to_date = $request->till_date;
-        $search->no_adults = $request->no_adults;
-        $search->no_childs = $request->no_childs;
+        $search->destination = $request->hoteldestination;
+        $search->from_date = $request->hotelfrom_date;
+        $search->to_date = $request->hoteltill_date;
+        $search->no_adults = $request->hotelno_adults;
+        $search->no_childs = $request->hotelno_childs;
 
         $search->save();
         $search_id = $search->id;
@@ -59,11 +59,11 @@ class FrontEndController extends Controller
 
     public function bookHotelWithoutSession(SearchRequest $request) {
         $search = new Search;
-        $search->destination = $request->destination;
-        $search->from_date = $request->from_date;
-        $search->to_date = $request->till_date;
-        $search->no_adults = $request->no_adults;
-        $search->no_childs = $request->no_childs;
+        $search->destination = $request->hoteldestination;
+        $search->from_date = $request->hotelfrom_date;
+        $search->to_date = $request->hoteltill_date;
+        $search->no_adults = $request->hotelno_adults;
+        $search->no_childs = $request->hotelno_childs;
 
         $search->save();
         $search_id = $search->id;

@@ -52,23 +52,11 @@
                                                 </li>
                                                 <li>
                                                     <p class="booking-item-payment-price-title">Rate</p>
-                                                    @if($room->plan == null)
-                                                        <p class="booking-item-payment-price-amount">{{$room->rooms->room_flat_cost}}<small>/per day</small>
+
+                                                        <p class="booking-item-payment-price-amount">Rs {{$room->rate}}<small>/per day</small>
                                                         </p>
 
-                                                    @elseif($room->plan == 'ap')
-                                                        <p class="booking-item-payment-price-amount">{{$room->rooms->cost_ap_plan}}<small>/per day</small>
-                                                        </p>
-                                                    @elseif($room->plan == 'cp')
-                                                        <p class="booking-item-payment-price-amount">{{$room->rooms->cost_cp_plan}}<small>/per day</small>
-                                                        </p>
-                                                    @elseif($room->plan == 'ep')
-                                                        <p class="booking-item-payment-price-amount">{{$room->rooms->cost_ep_plan}}<small>/per day</small>
-                                                        </p>
-                                                    @elseif($room->plan == 'map')
-                                                        <p class="booking-item-payment-price-amount">{{$room->rooms->cost_map_plan}}<small>/per day</small>
-                                                        </p>
-                                                    @endif
+
                                                 </li>
                                             </ul>
                                         @endforeach

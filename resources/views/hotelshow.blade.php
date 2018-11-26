@@ -311,8 +311,8 @@
                             class="fa fa-map-marker input-icon input-icon-highlight"></i>
                     <label>Where are you going?</label>
                     <input class="typeahead form-control"
-                           placeholder="City, Airport, Point of Interest, Hotel Name or U.S. Zip Code"
-                           name="destination" value="{{$hotel->address}}" type="text">
+                           placeholder="City, Point of Interest or Hotel Name "
+                           name="hoteldestination" value="{{$hotel->address}}" type="text">
                 </div>
                 <div class="input-daterange">
                     <div class="row">
@@ -320,7 +320,7 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Check-in</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date"
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="hotelfrom_date"
                                        type="text">
                             </div>
                         </div>
@@ -328,7 +328,7 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Check-out</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date"
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="hoteltill_date"
                                        type="text">
                             </div>
                         </div>
@@ -336,7 +336,7 @@
                             <div class="form-group form-group-lg form-group-select-plus">
                                 <label>Children</label>
 
-                                <select class="form-control" name="no_childs">
+                                <select class="form-control" name="hotelno_childs">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -359,7 +359,7 @@
                             <div class="form-group form-group-lg form-group-select-plus">
                                 <label>Guests</label>
 
-                                <select class="form-control" name="no_adults">
+                                <select class="form-control" name="hotelno_adults">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>

@@ -10,22 +10,31 @@
                         <form  method="get" action="{{route('hotelsearch.index')}}">
                             <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                                 <label>Where</label>
-                                <input class="form-control" placeholder="City, Hotel Name" type="text" name="destination">
+                                <input class="form-control" placeholder="City, Hotel Name" type="text" name="hoteldestination" required>
+                                @if($errors->has('hoteldestination'))
+                                    <span style="color:red">{{$errors->first('hoteldestination')}}</span>
+                                @endif
                             </div>
                             <div class="input-daterange" data-date-format="MM d, D">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                     <label>Check in</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" type="text">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="hotelfrom_date" type="text" required>
+                                    @if($errors->has('hotelfrom_date'))
+                                        <span style="color:red">{{$errors->first('hotelfrom_date')}}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                     <label>Check out</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date" type="text">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="hoteltill_date" type="text" required>
+                                    @if($errors->has('hoteltill_date'))
+                                        <span style="color:red">{{$errors->first('hoteltill_date')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group form-group- form-group-select-plus">
                                 <label>Guests</label>
                                 
-                                <select class="form-control" name="no_adults">
+                                <select class="form-control" name="hotelno_adults" required>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -41,11 +50,14 @@
                                     <option>13</option>
                                     <option>14</option>
                                 </select>
+                                @if($errors->has('hotelno_adults'))
+                                    <span style="color:red">{{$errors->first('hotelno_adults')}}</span>
+                                @endif
                             </div>
                             <div class="form-group form-group-select-plus">
                                 <label>Children</label>
                                
-                                <select class="form-control" name="no_childs">
+                                <select class="form-control" name="hotelno_childs">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -62,6 +74,9 @@
                                     <option>13</option>
                                     <option>14</option>
                                 </select>
+                                @if($errors->has('hotelno_childs'))
+                                    <span style="color:red">{{$errors->first('hotelno_childs')}}</span>
+                                @endif
                             </div>
                             <input class="btn btn-primary mt10" type="submit" value="Search for Hotels">
                         </form>
