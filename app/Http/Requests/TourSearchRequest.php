@@ -24,21 +24,21 @@ class TourSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'destination' => 'required|string',
-            'from' => 'required|date|after:today',
-            'people' => 'required|integer'
+            'activitydestination' => 'required|string',
+            'activityfrom' => 'required|date|after:today',
+            'activitypeople' => 'required|integer'
         ];
     }
 
     public function messages()
     {
         return [
-            'destination.required'=>'Please enter a valid destination',
-            'from.required'=>'Enter valid starting date.',
-            'from.date'=>'Please Enter a valid starting date',
-            'from.after'=>'Please provide valid starting date',
-            'people.required'=>'Please Specify number of people',
-            'people.integer'=>'Enter valid number of people'
+            'activitydestination.required'=>'Please enter a valid destination',
+            'activityfrom.required'=>'Enter valid starting date.',
+            'activityfrom.date'=>'Please Enter a valid starting date',
+            'activityfrom.after'=>'Please provide valid starting date',
+            'activitypeople.required'=>'Please Specify number of people',
+            'activitypeople.integer'=>'Enter valid number of people'
         ];
     }
 }

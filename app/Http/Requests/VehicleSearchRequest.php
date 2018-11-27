@@ -26,22 +26,22 @@ class VehicleSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'location'=>'required|string',
-            'from_date'=>'date|required|after:today',
-            'till_date'=>'date|required|after:today',
-            'passenger'=>'required|integer'
+            'vehiclelocation'=>'required|string',
+            'vehiclefrom_date'=>'date|required|after:today',
+            'vehicletill_date'=>'date|required|after:today',
+            'vehiclepassenger'=>'required|integer'
         ];
     }
 
     public function messages()
     {
         return [
-          'location.required'=>'Please provide pick up location.',
-          'location.string'=>'Please enter valid place',
-          'from_date.after'=>'Enter valid pick up date',
-          'till_date.after'=>'Enter valid drop date',
-          'passenger.required'=>'Please provide number of people',
-          'passenger.integer'=>'Please provide valid number of people'
+          'vehiclelocation.required'=>'Please provide pick up location.',
+          'vehiclelocation.string'=>'Please enter valid place',
+          'vehiclefrom_date.after'=>'Enter valid pick up date',
+          'vehicletill_date.after'=>'Enter valid drop date',
+          'vehiclepassenger.required'=>'Please provide number of people',
+          'vehiclepassenger.integer'=>'Please provide valid number of people'
           
         ];
     }

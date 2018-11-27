@@ -100,25 +100,37 @@
                                 <div class="form-group form-group-lg form-group-icon-left">
                                     <i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                     <label>Location</label>
-                                    <input class="form-control" placeholder="" type="text" value="{{$tour->location}}" name="destination">
+                                    <input class="form-control" placeholder="" type="text" readonly  value="{{$tour->location}}" name="activitydestination">
+                                    @if($errors->has('activitydestination'))
+                                        <span style="color:red">{{$errors->first('activitydestination')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>From</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from" type="text" >
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="activityfrom" type="text" >
+                                    @if($errors->has('activityfrom'))
+                                        <span style="color:red">{{$errors->first('activityfrom')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Till</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till" type="text" >
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="activitytill" type="text">
+                                    @if($errors->has('activitypeople'))
+                                        <span style="color:red">{{$errors->first('activitypeople')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-male input-icon input-icon-highlight"></i>
                                     <label>People</label>
-                                    <input class="form-control " name="people" type="text">
+                                    <input class="form-control " name="activitypeople" type="text">
+                                    @if($errors->has('activitypeople'))
+                                        <span style="color:red">{{$errors->first('activitypeople')}}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

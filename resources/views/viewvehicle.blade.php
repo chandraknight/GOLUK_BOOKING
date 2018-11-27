@@ -155,7 +155,7 @@
                         <div class="form-group form-group-lg form-group-icon-left"><i
                                     class="fa fa-map-marker input-icon input-icon-highlight"></i>
                             <label>Pick-up From</label>
-                            <input class="typeahead form-control" name="location" value="{{$vehicle->location}}"
+                            <input class="typeahead form-control" name="vehiclelocation" value="{{$vehicle->location}}"
                                    placeholder="City" type="text">
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                         <div class="form-group form-group-lg form-group-icon-left"><i
                                     class="fa fa-map-marker input-icon input-icon-highlight"></i>
                             <label>Drop-off To</label>
-                            <input class="typeahead form-control" name="destination"
+                            <input class="form-control" name="vehicledestination"
                                    placeholder="Same as Pick-up"  type="text">
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Pick-up Date</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="vehiclefrom_date">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -182,7 +182,7 @@
                                         class="fa fa-clock-o input-icon input-icon-highlight"></i>
                                 <label>Pick-up Time</label>
 
-                                <input class="form-control time-pick" name="pickup_time" value="12:00 AM" type="text">
+                                <input class="form-control time-pick" name="vehiclepickup_time" value="12:00 AM" type="text">
                             </div>
                         </div>
 
@@ -190,21 +190,21 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-calendar input-icon input-icon-highlight"></i>
                                 <label>Drop-off Date</label>
-                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date">
+                                <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="vehicletill_date">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-clock-o input-icon input-icon-highlight"></i>
                                 <label>Drop-off Time</label>
-                                <input class=" form-control time-pick" name="dropoff_time" value="12:00 AM" type="text">
+                                <input class=" form-control time-pick" name="vehicledropoff_time" value="12:00 AM" type="text">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-male input-icon input-icon-highlight"></i>
                                 <label>Passenger</label>
-                                <input class="form-control" name="passenger" type="number">
+                                <input class="form-control" name="vehiclepassenger" type="number">
                             </div>
                         </div>
 

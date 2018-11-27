@@ -132,9 +132,9 @@
                                                             <label>Pick-up Location</label>
                                                             <input class="form-control"
                                                                    placeholder="City" type="text"
-                                                                   name="location" required>
-                                                            @if($errors->has('location'))
-                                                                <span style="color:red">{{$errors->first('location')}}</span>
+                                                                   name="vehiclelocation" required>
+                                                            @if($errors->has('vehiclelocation'))
+                                                                <span style="color:red">{{$errors->first('vehiclelocation')}}</span>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -144,9 +144,9 @@
                                                             <label>Drop-off Location</label>
                                                             <input class="form-control"
                                                                    placeholder="City" type="text"
-                                                                   name="destination" required>
-                                                            @if($errors->has('destination'))
-                                                                <span style="color:red">{{$errors->first('destination')}}</span>
+                                                                   name="vehicledestination" required>
+                                                            @if($errors->has('vehicledestination'))
+                                                                <span style="color:red">{{$errors->first('vehicledestination')}}</span>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -158,10 +158,10 @@
                                                                 <i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                 <label>Pick-up Date</label>
                                                                 <input class="form-control date-pick"
-                                                                       data-date-format="yyyy-mm-dd" name="from_date"
+                                                                       data-date-format="yyyy-mm-dd" name="vehiclefrom_date"
                                                                        type="text" required>
-                                                                @if($errors->has('from_date'))
-                                                                    <span style="color:red">{{$errors->first('from_date')}}</span>
+                                                                @if($errors->has('vehiclefrom_date'))
+                                                                    <span style="color:red">{{$errors->first('vehiclefrom_date')}}</span>
                                                                 @endif
                                                             </div>
 
@@ -170,10 +170,10 @@
                                                             <div class="form-group form-group-lg form-group-icon-left">
                                                                 <i class="fa fa-clock-o input-icon input-icon-highlight"></i>
                                                                 <label>Pick-up Time</label>
-                                                                <input class="time-pick form-control" name="pickup_time"
+                                                                <input class="time-pick form-control" name="vehiclepickup_time"
                                                                        value="12:00 AM" type="text">
-                                                                @if($errors->has('pickup_time'))
-                                                                    <span style="color:red">{{$errors->first('pickup_time')}}</span>
+                                                                @if($errors->has('vehiclepickup_time'))
+                                                                    <span style="color:red">{{$errors->first('vehiclepickup_time')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -184,9 +184,9 @@
                                                                 <label>Drop-off Date</label>
                                                                 <input class="form-control date-pick"
                                                                        data-date-format="yyyy-mm-dd" type="text"
-                                                                       name="till_date" required>
-                                                                @if($errors->has('till_date'))
-                                                                    <span style="color:red">{{$errors->first('till_date')}}</span>
+                                                                       name="vehicletill_date" required>
+                                                                @if($errors->has('vehicletill_date'))
+                                                                    <span style="color:red">{{$errors->first('vehicletill_date')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -195,7 +195,7 @@
                                                                 <i class="fa fa-clock-o input-icon input-icon-highlight"></i>
                                                                 <label>Drop-off Time</label>
                                                                 <input class="time-pick form-control"
-                                                                       name="dropoff_time" value="12:00 AM" type="text">
+                                                                       name="vehicledropoff_time" value="12:00 AM" type="text">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -203,9 +203,9 @@
                                                                 <i class="fa fa-male input-icon input-icon-highlight"></i>
                                                                 <label>Passengers</label>
                                                                 <input class="form-control" type="text"
-                                                                       name="passenger" required>
-                                                                @if($errors->has('passenger'))
-                                                                    <span style="color:red">{{$errors->first('passenger')}}</span>
+                                                                       name="vehiclepassenger" required>
+                                                                @if($errors->has('vehiclepassenger'))
+                                                                    <span style="color:red">{{$errors->first('vehiclepassenger')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -227,9 +227,9 @@
                                                                 <label>Where are you going?</label>
                                                                 <input class="form-control"
                                                                        placeholder="City, Point of Interest "
-                                                                       type="text" name="destination" required>
-                                                                @if($errors->has('destination'))
-                                                                    <span style="color:red">{{$errors->first('destination')}}</span>
+                                                                       type="text" name="activitydestination" required>
+                                                                @if($errors->has('activitydestination'))
+                                                                    <span style="color:red">{{$errors->first('activitydestination')}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -239,8 +239,11 @@
                                                                 <i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                 <label>From</label>
                                                                 <input class="form-control date-pick"
-                                                                       data-date-format="yyyy-mm-dd" name="from"
+                                                                       data-date-format="yyyy-mm-dd" name="activityfrom"
                                                                        type="text" required>
+                                                                @if($errors->has('activityfrom'))
+                                                                    <span style="color:red">{{$errors->first('activityfrom')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -248,15 +251,21 @@
                                                                 <i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                 <label>Till</label>
                                                                 <input class="form-control date-pick"
-                                                                       data-date-format="yyyy-mm-dd" name="till"
+                                                                       data-date-format="yyyy-mm-dd" name="activitytill"
                                                                        type="text">
+                                                                @if($errors->has('activitytill'))
+                                                                    <span style="color:red">{{$errors->first('activitytill')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group form-group-lg form-group-icon-left">
                                                                 <i class="fa fa-male input-icon input-icon-highlight"></i>
                                                                 <label>People</label>
-                                                                <input class="form-control" name="people" type="text" required>
+                                                                <input class="form-control" name="activitypeople" type="text" required>
+                                                                @if($errors->has('activitypeople'))
+                                                                    <span style="color:red">{{$errors->first('activitypeople')}}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>

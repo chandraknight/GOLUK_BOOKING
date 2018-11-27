@@ -13,13 +13,19 @@
                         <div class="col-md-6">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                 <label>Pick-up From</label>
-                                <input class="form-control" placeholder="City" type="text" name="location">
+                                <input class="form-control" placeholder="City" type="text" name="vehiclelocation">
+                                @if($errors->has('vehiclelocation'))
+                                    <span style="color:red">{{$errors->first('vehiclelocation')}}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                 <label>Drop-off To</label>
-                                <input class="form-control" placeholder="City" placeholder="Same as Pick-up" name="destination" type="text">
+                                <input class="form-control"  placeholder="Same as Pick-up" name="vehicledestination" type="text">
+                                @if($errors->has('vehicledestination'))
+                                    <span style="color:red">{{$errors->first('vehicledestination')}}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -27,32 +33,47 @@
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Pick-up Date</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="from_date" type="text">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="vehiclefrom_date" type="text">
+                                    @if($errors->has('vehiclefrom_date'))
+                                        <span style="color:red">{{$errors->first('vehiclefrom_date')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="   fa fa-clock-o input-icon input-icon-highlight"></i>
                                     <label>Pick-up Time</label>
-                                    <input class="time-pick form-control" name="pickup_time" value="12:00 AM" type="text">
+                                    <input class="time-pick form-control" name="vehiclepickup_time" value="12:00 AM" type="text">
+                                    @if($errors->has('vehiclepickup_time'))
+                                        <span style="color:red">{{$errors->first('vehiclepickup_time')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                     <label>Drop-off Date</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="till_date" type="text">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="vehicletill_date" type="text">
+                                    @if($errors->has('vehicletill_date'))
+                                        <span style="color:red">{{$errors->first('vehicletill_date')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-clock-o input-icon input-icon-highlight"></i>
                                     <label>Drop-off Time</label>
-                                    <input class="time-pick form-control" name="dropoff_time" value="12:00 AM" type="text">
+                                    <input class="time-pick form-control" name="vehicledropoff_time" value="12:00 AM" type="text">
+                                    @if($errors->has('vehicledropoff_time'))
+                                        <span style="color:red">{{$errors->first('vehicledropoff_time')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-male input-icon input-icon-highlight"></i>
                                     <label>Passenger</label>
-                                    <input class="form-control" name="passenger" type="number">
+                                    <input class="form-control" name="vehiclepassenger" type="number">
+                                    @if($errors->has('vehiclepassenger'))
+                                        <span style="color:red">{{$errors->first('vehiclepassenger')}}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -74,10 +74,10 @@ class FrontEndController extends Controller
 
     public function bookTourWithoutSession(TourSearchRequest $request) {
         $search = new TourSearch;
-        $search->destination = $request->destination;
-        $search->from = $request->from;
-        $search->to = $request->till;
-        $search->people = $request->people;
+        $search->destination = $request->activitydestination;
+        $search->from = $request->activityfrom;
+        $search->to = $request->activitytill;
+        $search->people = $request->activitypeople;
 
         $search->save();
         $search_id = $search->id;
@@ -190,22 +190,22 @@ class FrontEndController extends Controller
 
     public function searchVehicle(VehicleSearchRequest $request)
     {
-        $queryloc = $request->location;
+        $queryloc = $request->vehiclelocation;
 
-        $querypas = $request->passenger;
+        $querypas = $request->vehiclepassenger;
         $search = new VehicleSearch;
-        $search->location = $request->location;
-        if($request->destination == null || empty($request->destination) ){
+        $search->location = $request->vehiclelocation;
+        if($request->vehicledestination == null || empty($request->vehicledestination) ){
             $search->destination = "Same as Pickup Location";
         } else {
-            $search->destination = $request->destination;
+            $search->destination = $request->vehicledestination;
         }
 
-        $search->from = $request->from_date;
-        $search->pickup_time = $request->pickup_time;
-        $search->dropoff_time = $request->dropoff_time;
-        $search->till = $request->till_date;
-        $search->passengers = $request->passenger;
+        $search->from = $request->vehiclefrom_date;
+        $search->pickup_time = $request->vehiclepickup_time;
+        $search->dropoff_time = $request->vehicledropoff_time;
+        $search->till = $request->vehicletill_date;
+        $search->passengers = $request->vehiclepassenger;
 
         $search->save();
         $querydes = $search->destination;
@@ -235,13 +235,13 @@ class FrontEndController extends Controller
 
     public function bookVehiclewithoutSession(VehicleSearchRequest $request) {
         $search = new VehicleSearch;
-        $search->location = $request->location;
-        $search->destination = $request->destination;
-        $search->from = $request->from_date;
-        $search->pickup_time = $request->pickup_time;
-        $search->dropoff_time = $request->dropoff_time;
-        $search->till = $request->till_date;
-        $search->passengers = $request->passenger;
+        $search->location = $request->vehiclelocation;
+        $search->destination = $request->vehicledestination;
+        $search->from = $request->vehiclefrom_date;
+        $search->pickup_time = $request->vehiclepickup_time;
+        $search->dropoff_time = $request->vehicledropoff_time;
+        $search->till = $request->vehicletill_date;
+        $search->passengers = $request->vehiclepassenger;
         $search->save();
 
         $from = Carbon::parse($search->from);
@@ -273,13 +273,13 @@ class FrontEndController extends Controller
     public function searchTour(TourSearchRequest $request) {
         $search = new TourSearch;
 
-        $search->destination = $request->destination;
-        $search->from = $request->from;
-        $search->to = $request->till;
-        $search->people = $request->people;
+        $search->destination = $request->activitydestination;
+        $search->from = $request->activityfrom;
+        $search->to = $request->activitytill;
+        $search->people = $request->activitypeople;
 
         $search->save();
-        $query = $request->destination;
+        $query = $request->activitydestination;
         session()->put('search_tour_id',$search->id);
 
         $tours = TourPackage::where('location','like','%'.$query.'%')->where('flag',true)->get();
