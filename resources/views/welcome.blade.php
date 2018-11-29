@@ -349,7 +349,7 @@
     </div>
     <div class="bg-holder">
         <div class="bg-mask"></div>
-        <div class="bg-parallax" style="background-image:url(img/hotel_the_cliff_bay_spa_suite_2048x1310.jpg);"></div>
+        <div class="bg-parallax" style="background-image:url({{URL::asset('img/hotel_the_cliff_bay_spa_suite_2048x1310.jpg')}});"></div>
         <div class="bg-content">
             <div class="container">
                 <div class="gap gap-big text-center text-white">
@@ -393,7 +393,7 @@
 
     <div class="bg-holder">
         <div class="bg-mask"></div>
-        <div class="bg-parallax" style="background-image:url(img/hotel_the_cliff_bay_spa_suite_2048x1310.jpg);"></div>
+        <div class="bg-parallax" style="background-image:url({{URL::asset('img/hotel_the_cliff_bay_spa_suite_2048x1310.jpg')}});"></div>
         <div class="bg-content">
             <div class="container">
                 <div class="gap gap-big text-center text-white">
@@ -457,7 +457,7 @@
 
     <div class="bg-holder">
         <div class="bg-mask"></div>
-        <div class="bg-parallax" style="background-image:url(img/hotel_the_cliff_bay_spa_suite_2048x1310.jpg);"></div>
+        <div class="bg-parallax" style="background-image:url({{URL::asset('img/hotel_the_cliff_bay_spa_suite_2048x1310.jpg')}});"></div>
         <div class="bg-content">
             <div class="container">
                 <div class="gap gap-big text-center text-white">
@@ -476,7 +476,7 @@
                         <div class="thumb ">
                             <header class="thumb-header">
                                 <a class="hover-img curved" href="{{route('tour.show',$tour->id)}}">
-                                    <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}"
+                                    <img src="{{URL::asset('/storage/tourpackage/'.$tour->image)}}"
                                          title="{{$tour->name}}" height="160px">
                                     <i class="fa fa-plus box-icon-white box-icon-border hover-icon-top-right round"></i>
                                 </a>

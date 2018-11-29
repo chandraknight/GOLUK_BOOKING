@@ -155,7 +155,7 @@
                         <div class="form-group form-group-lg form-group-icon-left"><i
                                     class="fa fa-map-marker input-icon input-icon-highlight"></i>
                             <label>Pick-up From</label>
-                            <input class="typeahead form-control" name="vehiclelocation" value="{{$vehicle->location}}"
+                            <input class="form-control" name="vehiclelocation" value="{{$vehicle->location}}"
                                    placeholder="City" type="text">
                         </div>
                     </div>

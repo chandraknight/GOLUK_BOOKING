@@ -83,7 +83,8 @@ class FrontEndController extends Controller
         $search_id = $search->id;
         session()->put('search_tour_id',$search_id);
         $tour = TourPackage::findorfail($request->tour_id);
-        return redirect()->route('tour.show',$tour->id);
+        $start = Carbon::parse($search->from);
+        return view('tourbook',['search'=>$search,'tour'=>$tour,'start'=>$start]);
 
     }
 
@@ -236,7 +237,12 @@ class FrontEndController extends Controller
     public function bookVehiclewithoutSession(VehicleSearchRequest $request) {
         $search = new VehicleSearch;
         $search->location = $request->vehiclelocation;
-        $search->destination = $request->vehicledestination;
+        if($request->vehicledestination == null) {
+            $search->destination = $search->location;
+        } else {
+            $search->destination = $request->vehicledestination;
+        }
+
         $search->from = $request->vehiclefrom_date;
         $search->pickup_time = $request->vehiclepickup_time;
         $search->dropoff_time = $request->vehicledropoff_time;

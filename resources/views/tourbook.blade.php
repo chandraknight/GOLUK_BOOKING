@@ -115,20 +115,20 @@
                                 <h5>{{$start->toFormattedDateString()}}</h5>
                             </li>
                             <li>
-                                <h5>Event ({{$search->people}} Guests)</h5>
+                                <h5>Total ({{$search->people}} Guests)</h5>
                                 <ul class="booking-item-payment-price">
                                     @if($search->people < $tour->group_size)
                                     @php $total = $total + ($search->people * $tour->price); @endphp
                                     <li>
                                         <p class="booking-item-payment-price-title">{{$search->people}} guests</p>
-                                        <p class="booking-item-payment-price-amount">${{$tour->price}}<small>/per guest</small>
+                                        <p class="booking-item-payment-price-amount">Rs {{$tour->price}}<small>/per guest</small>
                                         </p>
                                     </li>
                                     @else
                                     @php $total = $total + ($search->people * $tour->group_price); @endphp
                                         <li>
                                         <p class="booking-item-payment-price-title">{{$search->people}} guests</p>
-                                        <p class="booking-item-payment-price-amount">${{$tour->group_price}}<small>/per guest</small>
+                                        <p class="booking-item-payment-price-amount">Rs {{$tour->group_price}}<small>/per guest</small>
                                         </p>
 
                                     </li>
@@ -138,7 +138,7 @@
                             </li>
 
                         </ul>
-                        <p class="booking-item-payment-total">Total trip: <span>${{$total}}</span>
+                        <p class="booking-item-payment-total">Total trip: <span>Rs {{$total}}</span>
                         </p>
                         <input type="submit" class="btn btn-primary btn-block" value="Confirm">
                     </div>
