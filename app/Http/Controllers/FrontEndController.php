@@ -215,7 +215,7 @@ class FrontEndController extends Controller
         $vehicles = Vehicle::where('location', 'like', '%' . $queryloc . '%')
             ->orWhere('name','like','%'.$queryloc.'%')
             ->orWhere('name','like','%'.$querydes.'%')
-            ->orWhere('code','like','%'.$queryloc.'%')
+            ->orWhere('vehicle_code','like','%'.$queryloc.'%')
             ->where('no_of_people', '>=', $querypas)
             ->where('flag',true)->paginate(5)
             ->get();
@@ -377,6 +377,7 @@ class FrontEndController extends Controller
 
             } else {
                 $vehicles = Vehicle::where('location', 'like', '%' . $queryloc . '%')->where('no_of_people', '>=', $querypas)->where('flag',true)
+                    ->orWhere('vehicle_code','like','%'.$queryloc.'%')
                     ->get();
             }
 
