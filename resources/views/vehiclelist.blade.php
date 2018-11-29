@@ -11,7 +11,7 @@
                             <div class="input-daterange" data-date-format="m/d">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                                     <label>Pickup Location</label>
-                                    <input class="form-control" placeholder="City or Airport" name="vehiclelocation" type="text">
+                                    <input class="form-control"  name="vehiclelocation" type="text" value="{{old('vehiclelocation')}}">
                                     @if($errors->has('vehiclelocation'))
                                         <span style="color:red">{{$errors->first('vehiclelocation')}}</span>
                                     @endif
@@ -32,7 +32,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group form-group-icon-left"><i class="fa fa-clock-o input-icon input-icon-hightlight"></i>
                                             <label>Pick up Time</label>
-                                            <input class="form-control time-pick" name="vehiclepickup_time" type="text">
+                                            <input class="form-control time-pick" name="vehiclepickup_time" type="text" value="{{old('vehiclepickup_time')}}">
                                             @if($errors->has('vehiclepickup_time'))
                                                 <span style="color:red">{{$errors->first('vehiclepickup_time')}}</span>
                                             @endif

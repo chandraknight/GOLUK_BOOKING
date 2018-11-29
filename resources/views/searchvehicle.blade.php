@@ -13,7 +13,7 @@
                         <div class="col-md-6">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                 <label>Pick-up From</label>
-                                <input class="form-control" placeholder="City" type="text" name="vehiclelocation">
+                                <input class="form-control" value="{{$search->location}}" type="text" name="vehiclelocation">
                                 @if($errors->has('vehiclelocation'))
                                     <span style="color:red">{{$errors->first('vehiclelocation')}}</span>
                                 @endif
@@ -22,7 +22,7 @@
                         <div class="col-md-6">
                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-highlight"></i>
                                 <label>Drop-off To</label>
-                                <input class="form-control"  placeholder="Same as Pick-up" name="vehicledestination" type="text">
+                                <input class="form-control"  name="vehicledestination" type="text" value="{{$search->destination}}">
                                 @if($errors->has('vehicledestination'))
                                     <span style="color:red">{{$errors->first('vehicledestination')}}</span>
                                 @endif
@@ -70,7 +70,7 @@
                             <div class="col-md-3">
                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-male input-icon input-icon-highlight"></i>
                                     <label>Passenger</label>
-                                    <input class="form-control" name="vehiclepassenger" type="number">
+                                    <input class="form-control" name="vehiclepassenger" type="number" value="{{$search->passengers}}">
                                     @if($errors->has('vehiclepassenger'))
                                         <span style="color:red">{{$errors->first('vehiclepassenger')}}</span>
                                     @endif

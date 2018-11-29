@@ -218,7 +218,7 @@ class FrontEndController extends Controller
             ->orWhere('vehicle_code','like','%'.$queryloc.'%')
             ->where('no_of_people', '>=', $querypas)
             ->where('flag',true)->paginate(5)
-            ->get();
+            ;
         return view('searchvehicle', ['vehicles' => $vehicles,'search'=>$search]);
 
     }

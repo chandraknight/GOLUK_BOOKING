@@ -1,5 +1,5 @@
 @include('partials._header')
-@include('partials.messages')
+
     <div id="app">
         @include('partials._navigation')
 
