@@ -24,6 +24,10 @@ class TourBookingRequest extends FormRequest
     public function rules()
     {
         return [
+            'customer_name'=>'required',
+            'customer_contact'=>'required',
+            'customer_email'=>'required|email',
+            'customer_address'=>'required',
             'name.*'=>'required',
             'contact.*'=>'required',
             'dob.*'=>'required',
@@ -34,6 +38,11 @@ class TourBookingRequest extends FormRequest
 
     public function messages() {
         return [
+            'customer_name.required'=>'Provide Your Name',
+            'customer_contact.required'=>'Provide Your Contact Number',
+            'customer_email.required'=>'Provide Your Email Address',
+            'customer_email.email'=>'Provide a valid Email Address',
+            'customer_address.required'=>'Provide Your Address',
             'name.*.required'=>'Provide name of all People',
             'contact.*.required'=>'Provide Contact Number of all People',
             'dob.*'=>'Provide Date of Birth of all People',

@@ -2,6 +2,7 @@
 @section('content')
    @php $total=0; @endphp
 
+
     <div class="container">
            <form action="{{route('tourbook')}}" method="post">
                 {{csrf_field()}}
@@ -15,8 +16,9 @@
                                  <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>First & Last Name</label>
+                                    <label>Full Name</label>
                                     <input class="form-control" name="name[]" type="text">
+
                                 </div>
                                 
                             </div>
@@ -70,24 +72,36 @@
                                 <div class="form-group">
                                     <label>Full Name</label>
                                     <input class="form-control" name="customer_name" type="text" value="{{(Auth::user())?Auth::user()->name:''}}" placeholder="Your Name">
+                                    @if($errors->has('customer_name'))
+                                        <span style="color:red">{{$errors->first('customer_name')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input class="form-control" name="customer_contact" type="text">
+                                    <input class="form-control" name="customer_contact" type="text" value="{{old('customer_contact')}}">
+                                    @if($errors->has('customer_contact'))
+                                        <span style="color:red">{{$errors->first('customer_contact')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>E-mail</label>
-                                    <input class="form-control" name="customer_email" type="email" value="{{(Auth::user())?Auth::user()->email:''}}" placeholder="Your Name">
+                                    <input class="form-control" name="customer_email" type="email" value="{{(Auth::user())?Auth::user()->email:old('customer_email')}}" placeholder="Your Name">
+                                    @if($errors->has('customer_email'))
+                                        <span style="color:red">{{$errors->first('customer_email')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input class="form-control" name="customer_address" type="text">
+                                    <input class="form-control" name="customer_address" type="text" value="{{old('customer_address')}}">
+                                    @if($errors->has('customer_address'))
+                                        <span style="color:red">{{$errors->first('customer_address')}}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -105,7 +119,7 @@
                     <div class="booking-item-payment">
                         <header class="clearfix">
                             <a class="booking-item-payment-img" href="{{route('tour.show',$tour->id)}}">
-                                <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}" alt="{{$tour->name}}" title="4 Strokes of Fun">
+                                <img src="{{url('/')}}/storage/tourpackage/{{$tour['image']}}" alt="{{$tour->name}}" >
                             </a>
                             <h5 class="booking-item-payment-title"><a href="{{route('tour.show',$tour->id)}}">{{$tour->name}}</a></h5>
                             

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
      <div class="container">
-            <h1 class="page-title">Search for Activities</h1>
+            <h1 class="page-title">Popular Activities</h1>
         </div>
 
         <div class="container">
@@ -11,7 +11,7 @@
                         <form method="get" action="{{route('toursearch')}}">
                             <div class="form-group form-group-icon-left"><i class="fa fa-map-marker input-icon input-icon-hightlight"></i>
                                 <label>Where</label>
-                                <input class="form-control" placeholder="City" type="text" name="activitydestination" value="{{old('activitydestination')}}">
+                                <input class="form-control" placeholder="City" type="text" name="activitydestination" required value="{{old('activitydestination')}}">
                                 @if($errors->has('activitydestination'))
                                     <span style="color:red">{{$errors->first('activitydestination')}}</span>
                                 @endif
@@ -19,21 +19,21 @@
                             <div class="input-daterange" data-date-format="MM d, D">
                                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                     <label>Check in</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="activityfrom"  type="text" value="{{old('activityfrom')}}">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="activityfrom"  required type="text" value="{{old('activityfrom')}}">
                                     @if($errors->has('activityfrom'))
                                         <span style="color:red">{{$errors->first('activityfrom')}}</span>
                                     @endif
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                     <label>Check Out</label>
-                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="activitytill"  type="text" value="{{old('activitytill')}}">
+                                    <input class="form-control date-pick" data-date-format="yyyy-mm-dd" name="activitytill" required  type="text" value="{{old('activitytill')}}">
                                     @if($errors->has('activitytill'))
                                         <span style="color:red">{{$errors->first('activitytill')}}</span>
                                     @endif
                                 </div>
                                 <div class="form-group form-group-icon-left"><i class="fa fa-male input-icon input-icon-hightlight"></i>
                                     <label>People</label>
-                                    <input class="form-control" name="activitypeople" type="text" value="{{old('activitypeople')}}">
+                                    <input class="form-control" name="activitypeople" type="text" required value="{{old('activitypeople')}}">
                                     @if($errors->has('activitypeople'))
                                         <span style="color:red">{{$errors->first('activitypeople')}}</span>
                                     @endif

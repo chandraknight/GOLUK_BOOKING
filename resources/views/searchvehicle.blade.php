@@ -81,8 +81,9 @@
                 </form>
             </div>
             <h3 class="booking-title">{{$vehicles->count()}} Rental Vehicles in {{$search->location}} on {{\Carbon\Carbon::parse($search->from)->toFormattedDateString()}} -{{\Carbon\Carbon::parse($search->till)->toFormattedDateString()}}<small><a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Change search</a></small></h3>
-              
+
                 <div class="col-md-9">
+                    @if($vehicles->count() > 1)
                     <div class="nav-drop booking-sort">
                         <h5 class="booking-sort-title"><a href="#">Sort By: <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
                         <ul class="nav-drop-menu">
@@ -92,6 +93,7 @@
                             </li>
                         </ul>
                     </div>
+                    @endif
                     <div class="loader"></div>
                     <div class="change">
                     <div class="row row-wrap">

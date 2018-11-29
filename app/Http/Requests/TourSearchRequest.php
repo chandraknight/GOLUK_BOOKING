@@ -26,6 +26,7 @@ class TourSearchRequest extends FormRequest
         return [
             'activitydestination' => 'required|string',
             'activityfrom' => 'required|date|after:today',
+            'activitytill'=>'required|after:activityfrom',
             'activitypeople' => 'required|integer'
         ];
     }
@@ -38,7 +39,8 @@ class TourSearchRequest extends FormRequest
             'activityfrom.date'=>'Please Enter a valid starting date',
             'activityfrom.after'=>'Please provide valid starting date',
             'activitypeople.required'=>'Please Specify number of people',
-            'activitypeople.integer'=>'Enter valid number of people'
+            'activitypeople.integer'=>'Enter valid number of people',
+            'activitytill.after'=>'Enter a valid ending date'
         ];
     }
 }

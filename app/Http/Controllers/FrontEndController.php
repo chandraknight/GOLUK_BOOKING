@@ -140,7 +140,7 @@ class FrontEndController extends Controller
 
     public function hotelList()
     {
-        $hotels = Hotel::where('flag',true)->get();
+        $hotels = Hotel::where('flag',true)->has('rooms')->get();
         return view('hotellist', ['hotels' => $hotels]);
     }
 

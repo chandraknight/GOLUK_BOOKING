@@ -45,6 +45,7 @@
             <div class="row">
                 
                 <div class="col-md-9">
+                    @if($tours->count() > 1)
                     <div class="nav-drop booking-sort">
                         <h5 class="booking-sort-title"><a href="#">Sort: Ranking<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
                         <ul class="nav-drop-menu">
@@ -55,6 +56,7 @@
 
                         </ul>
                     </div>
+                    @endif
                     <div class="loader"></div>
                     <div class="change">
                     <div class="row row-wrap">
