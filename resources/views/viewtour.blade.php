@@ -91,7 +91,7 @@
                 
 <div class="mfp-with-anim mfp-hide mfp-dialog mfp-search-dialog" id="search-dialog">
                 <h3>Book {{$tour->name}}</h3>
-                <form action="{{route('tour.book.session')}}" method="post">
+                <form action="{{route('tour.book.session')}}" method="POST">
                     {{csrf_field()}}
                     <input type="hidden" name="tour_id" value="{{$tour->id}}">
                     <div class="input-daterange" data-date-format="MM d, D">

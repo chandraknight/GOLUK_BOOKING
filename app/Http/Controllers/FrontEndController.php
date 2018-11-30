@@ -84,7 +84,7 @@ class FrontEndController extends Controller
         session()->put('search_tour_id',$search_id);
         $tour = TourPackage::findorfail($request->tour_id);
         $start = Carbon::parse($search->from);
-        return view('tourbook',['search'=>$search,'tour'=>$tour,'start'=>$start]);
+        return redirect()->route('booktour',$tour->id);
 
     }
 
@@ -250,14 +250,12 @@ class FrontEndController extends Controller
         $search->passengers = $request->vehiclepassenger;
         $search->save();
 
-        $from = Carbon::parse($search->from);
-        $till = Carbon::parse($search->till);
 
-        $days = $from->diffInDays($till);
+        $request->session()->put('search_vehicle_id', $search->id);
 
 
         $vehicle = Vehicle::findorfail($request->vehicle_id);
-        return view('reservevehicle',['search'=>$search,'vehicle'=>$vehicle,'from'=>$from,'till'=>$till,'days'=>$days]);
+        return redirect()->route('reservevehicle',$vehicle->id);
     }
 
     public function reserveVehicle($id)

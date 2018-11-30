@@ -148,7 +148,7 @@ Route::get('/tour/book/{id}',[
    'as'=>'booktour'
 ]);
 
-Route::post('/tour/book',[
+Route::post('/activity/book',[
     'uses'=>'BookingController@bookTour',
     'as'=>'tourbook'
 ]);

@@ -204,7 +204,7 @@
                             <div class="form-group form-group-lg form-group-icon-left"><i
                                         class="fa fa-male input-icon input-icon-highlight"></i>
                                 <label>Passenger</label>
-                                <input class="form-control" name="vehiclepassenger" type="number">
+                                <input class="form-control" name="vehiclepassenger" placeholder="max:{{$vehicle->no_of_people}}" type="number" max="{{$vehicle->no_of_people}}" min="1">
                             </div>
                         </div>
 

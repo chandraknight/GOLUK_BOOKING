@@ -4,7 +4,7 @@
 
 
     <div class="container">
-           <form action="{{route('tourbook')}}" method="post">
+           <form action="{{route('tourbook')}}" method="POST">
                 {{csrf_field()}}
                 <input type="hidden" name="tour_package_id" value="{{$tour->id}}">
                  <input type="hidden" name="no_of_people" value="{{$search->people}}">
