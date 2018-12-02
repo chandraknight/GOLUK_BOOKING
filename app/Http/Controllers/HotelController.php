@@ -147,7 +147,7 @@ class HotelController extends Controller
         } else {
             return redirect()->route('hotel.index')->with('error','Permission Denied');
             }
-        return redirect()->route('hotel.index');
+        return redirect()->route('welcome');
     }
 
     public function view($id){

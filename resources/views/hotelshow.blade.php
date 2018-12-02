@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('message')
+    @include('partials.messages')
+@endsection
 @section('content')
     @php $i=0; @endphp
     <div class="container">
@@ -137,7 +140,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <ul class="booking-list">
-                        <form method="post" action="{{route('room.book')}}">
+                        <form method="POST" action="{{route('room.book')}}">
                             {{csrf_field()}}
                             @foreach($hotel->rooms as $room)
                                 <li>
@@ -146,7 +149,7 @@
                                         <a class="" href="{{route('room.show',$room->id)}}" target="_blank">
                                             <div class="col-md-3">
                                                 <img src="{{url('/')}}/storage/rooms/{{$room->hotel_id}}/{{$room->image}}"
-                                                     alt="Image Alternative text" title="The pool">
+                                                     alt="{{$hotel->name}}" title="{{$hotel->name}}">
                                             </div>
                                         </a>
                                         <div class="col-md-6">
@@ -183,6 +186,10 @@
                                                 <label>Enter Required rooms</label>
                                                 <input class="form-control" type="number" max="{{$room->no_of_rooms}}"
                                                        placeholder="{{$room->no_of_rooms}} Available" min="0" name="no_rooms[]">
+                                                @if($errors->has('no_rooms[]'))
+                                                    <span style="color:red">{{$errors->first('no_rooms[]')}}</span>
+                                                @endif
+
                                                 <input type="hidden" name="room_type[]"
                                                        value="{{$room->roomType->name}}">
                                                 <input type="hidden" name="room[]" value="{{$room->id}}">

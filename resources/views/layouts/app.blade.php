@@ -1,5 +1,5 @@
 @include('partials._header')
-
+@yield('message')
     <div id="app">
         @include('partials._navigation')
 

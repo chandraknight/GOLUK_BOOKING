@@ -23,14 +23,32 @@ class BookingRequest extends FormRequest
      */
     public function rules()
     {
+        dd($this->request);
         return [
-           'customer_name'=>'required'
+           'customer_name'=>'required',
+            'customer_address'=>'required',
+            'customer_email'=>'required|email',
+            'customer_number'=>'required',
+            'guest.*'=>'required',
+            'dob.*'=>'required|date|before:',
+            'address.*'=>'required',
+            'adult_child.*'=>'required',
+            'gender.*'=>'required'
         ];
     }
 
     public function messages() {
         return [
-            'customer_name.required'=>'Provide your full name'
+            'customer_name.required'=>'Provide your Full Name',
+            'customer_address.required'=>'Provide your full Address',
+            'customer_email.required'=>'Provide your valid Email Address',
+            'customer_number.required'=>'Provide your Contact Number',
+            'customer_email.email'=>'Provide a valid Email Address'
         ];
     }
+
+    public function  validator() {
+        
+    }
+
 }

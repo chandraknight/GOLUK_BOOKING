@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('message')
+    @include('partials.messages')
+@endsection
 @section('content')
     @php $i = 0;$total=0; @endphp
 
@@ -63,21 +66,33 @@
                     <input type="text" class="form-control" name="customer_name" 
                        value="{{(Auth::user())?Auth::user()->name:''}}" placeholder="Your Name"
                     >
+                        @if($errors->has('customer_name'))
+                            <span style="color:red">{{$errors->first('customer_name')}}</span>
+                        @endif
                     </div>
 
                     <div class="form-group">
                         <label>Address</label>
                         <input type="text" class="form-control" name="customer_address"  placeholder="Address">
+                        @if($errors->has('customer_address'))
+                            <span style="color:red">{{$errors->first('customer_address')}}</span>
+                        @endif
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
                         <input type="email" class="form-control" name="customer_email" value="{{(Auth::user())?Auth::user()->email:''}}" placeholder="example@mail.com" >
+                        @if($errors->has('customer_email'))
+                            <span style="color:red">{{$errors->first('customer_email')}}</span>
+                        @endif
                     </div>
 
                     <div class="form-group">
                         <label>Contact Number</label>
                         <input type="tel" class="form-control" name="customer_number" placeholder="Phone Number">
+                        @if($errors->has('customer_number'))
+                            <span style="color:red">{{$errors->first('customer_number')}}</span>
+                        @endif
                     </div>
                 </div>
 

@@ -15,29 +15,29 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600' rel='stylesheet' type='text/css'>
     <!-- /GOOGLE FONTS -->
-    <link rel="stylesheet" href="css\bootstrap.css">
-    <link rel="stylesheet" href="css\font-awesome.css">
-    <link rel="stylesheet" href="css\icomoon.css">
-    <link rel="stylesheet" href="css\styles.css">
-    <link rel="stylesheet" href="css\mystyles.css">
-    <script src="js\modernizr.js"></script>
+    <link rel="stylesheet" href="{{URL::asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/icomoon.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/styles.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/mystyles.css')}}">
+    <script src="{{URL::asset('js/modernizr.js')}}"></script>
 
-    <link rel="stylesheet" href="css\switcher.css">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\bright-turquoise.css" title="bright-turquoise" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\turkish-rose.css" title="turkish-rose" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\salem.css" title="salem" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\hippie-blue.css" title="hippie-blue" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\mandy.css" title="mandy" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\green-smoke.css" title="green-smoke" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\horizon.css" title="horizon" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\cerise.css" title="cerise" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\brick-red.css" title="brick-red" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\de-york.css" title="de-york" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\shamrock.css" title="shamrock" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\studio.css" title="studio" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\leather.css" title="leather" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\denim.css" title="denim" media="all">
-    <link rel="alternate stylesheet" type="text/css" href="css\schemes\scarlet.css" title="scarlet" media="all">
+    <link rel="stylesheet" href="{{URL::asset('css/switcher.css')}}">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/bright-turquoise.css')}}" title="bright-turquoise" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/turkish-rose.css')}}" title="turkish-rose" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/salem.css')}}" title="salem" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/hippie-blue.css')}}" title="hippie-blue" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/mandy.css')}}" title="mandy" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/green-smoke.css')}}" title="green-smoke" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/horizon.css')}}" title="horizon" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/cerise.css')}}" title="cerise" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/brick-red.css')}}" title="brick-red" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/de-york.css')}}" title="de-york" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/shamrock.css')}}" title="shamrock" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/studio.css')}}" title="studio" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/leather.css')}}" title="leather" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/denim.css')}}" title="denim" media="all">
+    <link rel="alternate stylesheet" type="text/css" href="{{URL::asset('css/schemes/scarlet.css')}}" title="scarlet" media="all">
 </head>
 
 <body class="full">
@@ -51,10 +51,10 @@
         <div class="full-page">
             <div class="bg-holder full">
                 <div class="bg-mask"></div>
-                <div class="bg-img" style="background-image:url(img/people_on_the_beach_1280x852.jpg);"></div>
+                <div class="bg-img" style="background-image:url({{URL::asset('img/people_on_the_beach_1280x852.jpg')}});"></div>
                 <div class="bg-holder-content full text-white">
                     <a class="logo-holder" href="{{route('welcome')}}">
-                        <img src="img\logo-white.png" alt="Image Alternative text" title="Image Title">
+                        <img src="{{URL::asset('img\Yatritime.png')}}" alt="Image Alternative text" title="Image Title">
                     </a>
                     <div class="full-center">
                         <div class="container">
@@ -167,27 +167,27 @@
 
 
 
-        <script src="js\jquery.js"></script>
-        <script src="js\bootstrap.js"></script>
-        <script src="js\slimmenu.js"></script>
-        <script src="js\bootstrap-datepicker.js"></script>
-        <script src="js\bootstrap-timepicker.js"></script>
-        <script src="js\nicescroll.js"></script>
-        <script src="js\dropit.js"></script>
-        <script src="js\ionrangeslider.js"></script>
-        <script src="js\icheck.js"></script>
-        <script src="js\fotorama.js"></script>
+        <script src="{{URL::asset('js/jquery.js')}}"></script>
+        <script src="{{URL::asset('js/bootstrap.js')}}"></script>
+        <script src="{{URL::asset('js/slimmenu.js')}}"></script>
+        <script src="{{URL::asset('js/bootstrap-datepicker.js')}}"></script>
+        <script src="{{URL::asset('js/bootstrap-timepicker.js')}}"></script>
+        <script src="{{URL::asset('js/nicescroll.js')}}"></script>
+        <script src="{{URL::asset('js/dropit.js')}}"></script>
+        <script src="{{URL::asset('js/ionrangeslider.js')}}"></script>
+        <script src="{{URL::asset('js/icheck.js')}}"></script>
+        <script src="{{URL::asset('js/fotorama.js')}}"></script>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-        <script src="js\typeahead.js"></script>
-        <script src="js\card-payment.js"></script>
-        <script src="js\magnific.js"></script>
-        <script src="js\owl-carousel.js"></script>
-        <script src="js\fitvids.js"></script>
-        <script src="js\tweet.js"></script>
-        <script src="js\countdown.js"></script>
-        <script src="js\gridrotator.js"></script>
-        <script src="js\custom.js"></script>
-        <script src="js\switcher.js"></script>
+        <script src="{{URL::asset('js/typeahead.js')}}"></script>
+        <script src="{{URL::asset('js/card-payment.js')}}"></script>
+        <script src="{{URL::asset('js/magnific.js')}}"></script>
+        <script src="{{URL::asset('js/owl-carousel.js')}}"></script>
+        <script src="{{URL::asset('js/fitvids.js')}}"></script>
+        <script src="{{URL::asset('js/tweet.js')}}"></script>
+        <script src="{{URL::asset('js/countdown.js')}}"></script>
+        <script src="{{URL::asset('js/gridrotator.js')}}"></script>
+        <script src="{{URL::asset('js/custom.js')}}"></script>
+        <script src="{{URL::asset('js/switcher.js')}}"></script>
     </div>
 </body>
 

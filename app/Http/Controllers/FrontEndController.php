@@ -69,7 +69,7 @@ class FrontEndController extends Controller
         $search_id = $search->id;
         $request->session()->put('search_id', $search_id);
         $hotel = Hotel::findorfail($request->hotel_id);
-        return redirect()->route('hotel.show',$hotel->id);
+        return redirect()->route('hotel.show',$hotel->id)->with('error','Provide number of rooms');
     }
 
     public function bookTourWithoutSession(TourSearchRequest $request) {
@@ -128,8 +128,6 @@ class FrontEndController extends Controller
             $end = Carbon::parse($search->to_date);
             $days = $start->diffInDays($end);
             return view('book', ['room' => $roomdetails, 'hotel' => $hotel, 'search' => $search,'days'=>$days,'start'=>$start,'end'=>$end,'rooms'=>$rooms,'no_rooms'=>$no_rooms]);
-        } else {
-            return view('front', ['room' => $roomdetails, 'hotel' => $hotel]);
         }
     }
 
