@@ -1,0 +1,17 @@
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <FlightAvailability xmlns="http://booking.us.dev/">
+            <strUserId xmlns="">ASIANL</strUserId>
+            <strPassword xmlns="">PASSWORD</strPassword>
+            <strAgencyId xmlns="">PLZ147</strAgencyId>
+            <strSectorFrom xmlns="">BIR</strSectorFrom>
+            <strSectorTo xmlns="">JKR</strSectorTo>
+            <strFlightDate xmlns="">31-Jan-2019</strFlightDate>
+            <strReturnDate xmlns="">31-Jan-2019</strReturnDate>
+            <strTripType xmlns="">O</strTripType>
+            <strNationality xmlns="">NP</strNationality>
+            <intAdult xmlns="">1</intAdult>
+            <intChild xmlns="">0</intChild>
+        </FlightAvailability>
+    </Body>
+</Envelope>

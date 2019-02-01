@@ -15,7 +15,8 @@
                                         <li class="active"><a href="#tab-1" data-toggle="tab"><i
                                                         class="fa fa-building-o"></i> <span>Hotels</span></a>
                                         </li>
-
+                                        <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-plane"></i> <span>Flights</span></a>
+                                        </li>
                                         <li><a href="#tab-4" data-toggle="tab"><i class="fa fa-car"></i>
                                                 <span>Vehicles</span></a>
                                         </li>
@@ -122,6 +123,263 @@
                                             </form>
                                         </div>
 
+                                        <div class="tab-pane fade" id="tab-2">
+                                            <h2>Search for Cheap Flights</h2>
+                                            @if($sectors)
+
+                                                <div class="tabbable">
+                                                    <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab">
+                                                        <li class="active"><a href="#flight-search-1" data-toggle="tab">Round Trip</a>
+                                                        </li>
+                                                        <li><a href="#flight-search-2" data-toggle="tab">One Way</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade in active" id="flight-search-1">
+                                                            <form method="post" action="{{route('flight.search')}}">
+                                                                @csrf
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>From</label>
+
+                                                                            <select class="form-control" name="flight_depart">
+                                                                                <option selected>Departure</option>
+
+                                                                                @foreach($sectors as $key=>$value)
+                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                    @endforeach
+                                                                            </select>
+                                                                            @if($errors->has('flight_depart'))
+                                                                                <span style="color:red">{{$errors->first('flight_depart')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>To</label>
+
+                                                                            <select class="form-control" name="flight_arrival">
+                                                                                <option selected>Arrival</option>
+                                                                                @foreach($sectors as $key=>$value)
+                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            @if($errors->has('flight_arrival'))
+                                                                                <span style="color:red">{{$errors->first('flight_arrival')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-daterange" data-date-format="M d, D">
+                                                                    <div class="row">
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                                <label>Departing</label>
+                                                                                <input class="form-control" data-date-format="yyyy-mm-dd" name="flight_date" type="text">
+                                                                                @if($errors->has('flight_date'))
+                                                                                    <span style="color:red">{{$errors->first('flight_date')}}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                                <label>Returning</label>
+                                                                                <input class="form-control" data-date-format="yyyy-mm-dd" name="flight_return" type="text">
+                                                                                @if($errors->has('flight_return'))
+                                                                                    <span style="color:red">{{$errors->first('flight_return')}}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group form-group-lg form-group-select-plus">
+                                                                                <label>Children</label>
+
+                                                                                <select class="form-control" name="flight_childs">
+                                                                                    <option selected>0</option>
+                                                                                    <option>1</option>
+                                                                                    <option>2</option>
+                                                                                    <option>3</option>
+                                                                                    <option>4</option>
+                                                                                    <option>5</option>
+                                                                                    <option>6</option>
+                                                                                    <option>7</option>
+                                                                                    <option>8</option>
+                                                                                    <option>9</option>
+                                                                                    <option>10</option>
+                                                                                    <option>11</option>
+                                                                                    <option>12</option>
+                                                                                    <option>13</option>
+                                                                                    <option>14</option>
+                                                                                </select>
+                                                                                @if($errors->has('flight_childs'))
+                                                                                    <span style="color:red">{{$errors->first('flight_childs')}}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group form-group-lg form-group-select-plus">
+                                                                                <label>Adults</label>
+
+                                                                                <select class="form-control" name="flight_adults" required>
+                                                                                    <option>1</option>
+                                                                                    <option>2</option>
+                                                                                    <option>3</option>
+                                                                                    <option>4</option>
+                                                                                    <option>5</option>
+                                                                                    <option>6</option>
+                                                                                    <option>7</option>
+                                                                                    <option>8</option>
+                                                                                    <option>9</option>
+                                                                                    <option>10</option>
+                                                                                    <option>11</option>
+                                                                                    <option>12</option>
+                                                                                    <option>13</option>
+                                                                                    <option>14</option>
+                                                                                </select>
+                                                                                @if($errors->has('flight_adults'))
+                                                                                    <span style="color:red">{{$errors->first('flight_adults')}}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group form-group-lg form-group-select-plus">
+                                                                                <label>Nationality</label>
+                                                                                <select class="form-control" name="nationality">
+                                                                                    <option selected value="NP">Nepalese</option>
+                                                                                    <option value="">Others</option>
+                                                                                </select>
+                                                                                @if($errors->has('nationality'))
+                                                                                    <span style="color:red">{{$errors->first('nationality')}}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-primary btn-lg" type="submit">Search for Flights</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="flight-search-2">
+                                                            <form method="post" action="{{route('flight.search')}}">
+                                                                @csrf
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>From</label>
+
+                                                                            <select class="form-control" name="flight_depart">
+                                                                                <option selected>Departure</option>
+
+                                                                                @foreach($sectors as $key=>$value)
+                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            @if($errors->has('flight_depart'))
+                                                                                <span style="color:red">{{$errors->first('flight_depart')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>To</label>
+
+                                                                            <select class="form-control" name="flight_arrival">
+                                                                                <option selected>Arrival</option>
+                                                                                @foreach($sectors as $key=>$value)
+                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            @if($errors->has('flight_arrival'))
+                                                                                <span style="color:red">{{$errors->first('flight_arrival')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                                                            <label>Departing</label>
+                                                                            <input class="date-pick form-control" name="flight_date" data-date-format="yyyy-mm-dd" type="text">
+                                                                            @if($errors->has('flight_date'))
+                                                                                <span style="color:red">{{$errors->first('flight_date')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>Children</label>
+
+                                                                            <select class="form-control" name="flight_childs">
+                                                                                <option selected>0</option>
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                                <option>4</option>
+                                                                                <option>5</option>
+                                                                                <option>6</option>
+                                                                                <option>7</option>
+                                                                                <option>8</option>
+                                                                                <option>9</option>
+                                                                                <option>10</option>
+                                                                                <option>11</option>
+                                                                                <option>12</option>
+                                                                                <option>13</option>
+                                                                                <option>14</option>
+                                                                            </select>
+                                                                            @if($errors->has('flight_childs'))
+                                                                                <span style="color:red">{{$errors->first('flight_childs')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>Adults</label>
+
+                                                                            <select class="form-control" name="flight_adults" required>
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                                <option>4</option>
+                                                                                <option>5</option>
+                                                                                <option>6</option>
+                                                                                <option>7</option>
+                                                                                <option>8</option>
+                                                                                <option>9</option>
+                                                                                <option>10</option>
+                                                                                <option>11</option>
+                                                                                <option>12</option>
+                                                                                <option>13</option>
+                                                                                <option>14</option>
+                                                                            </select>
+                                                                            @if($errors->has('flight_adults'))
+                                                                                <span style="color:red">{{$errors->first('flight_adults')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>Nationality</label>
+                                                                            <select class="form-control" name="nationality">
+                                                                                <option selected value="NP">Nepalese</option>
+                                                                                <option value="">Others</option>
+                                                                            </select>
+                                                                            @if($errors->has('nationality'))
+                                                                                <span style="color:red">{{$errors->first('nationality')}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-primary btn-lg" type="submit">Search for Flights</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            @else
+                                                <h4>Sorry, no sectors available.Please try again.</h4>
+                                            @endif
+                                        </div>
                                         <div class="tab-pane fade" id="tab-4">
                                             <h2>Search for Cheap Rental Cars</h2>
                                             <form method="get" action="{{route('vehiclesearch')}}">

@@ -173,6 +173,21 @@ Route::get('/ajax/sort/tour',[
     'as'=>'ajaxsorttour'
 ]);
 
+Route::post('/search/flight',[
+    'uses'=>'SearchFlightController@searchFlight',
+    'as'=>'flight.search'
+]);
+
+Route::post('/book/flight',[
+    'uses'=>'SearchFlightController@reserveFlight',
+    'as'=>'flight.reserve'
+]);
+
+Route::post('/reserve/flight',[
+    'uses'=>'FlightBookingController@bookFlight',
+    'as'=>'bookflight'
+]);
+
 Auth::routes();
 Route::group(['prefix'=>'user','middleware'=>'auth'],function(){
     Route::get('/profile/{id}',[

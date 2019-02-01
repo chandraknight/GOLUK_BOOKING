@@ -23,7 +23,6 @@ class BookingRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this->request);
         return [
            'customer_name'=>'required',
             'customer_address'=>'required',
@@ -47,8 +46,6 @@ class BookingRequest extends FormRequest
         ];
     }
 
-    public function  validator() {
-        
-    }
+
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Domestic\Request\SectorCode;
 use App\Hotel;
 use App\Http\Requests\RoomSelectRequest;
 use App\Http\Requests\SearchRequest;
@@ -25,11 +26,14 @@ class FrontEndController extends Controller
 {
     public function welcome()
     {
-
+//        dd(phpinfo());
+        $sector = new SectorCode();
+        $sectors = $sector->doRequest();
+//        dd($sectors);
         $hotels = Hotel::inRandomOrder()->where('flag',true)->limit(8)->get();
         $vehicles = Vehicle::inRandomOrder()->where('flag',true)->limit(4)->get();
         $tours = TourPackage::inRandomOrder()->where('flag',true)->limit(4)->get();
-        return view('welcome',['hotels'=>$hotels,'vehicles'=>$vehicles,'tours'=>$tours]);
+        return view('welcome',['hotels'=>$hotels,'vehicles'=>$vehicles,'tours'=>$tours,'sectors'=>$sectors]);
     }
 
     public function searchHotel(SearchRequest $request)
