@@ -30,7 +30,8 @@ XML;
     }
 
     public function generateFlights($flights){
-        if(count($flights)>0){
+//        dd($flights);
+        if(count($flights)>1){
             $body_array = [
 
                     "strFlightId"=>$flights[0],

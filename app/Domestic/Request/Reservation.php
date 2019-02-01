@@ -11,6 +11,7 @@ class Reservation extends KeepBasic {
     }
 
     public function generateBody($flights){
+//        dd($flights);
         if(isset($flights['in'])){
             $in = $flights['in'];
             $out = $flights['out'];

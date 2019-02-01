@@ -58,7 +58,7 @@ class SearchFlightController extends Controller
             $flights['out']=$request->outflightid;
             $flights['in'] = $request->returnflightid;
         } else {
-            $flights['in'] = $request->outflightid;
+            $flights['out'] = $request->outflightid;
         }
         $reserve = new Reservation();
         $response = $reserve->doRequest($flights);
