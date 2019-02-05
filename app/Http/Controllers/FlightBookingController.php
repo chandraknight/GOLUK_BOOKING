@@ -6,9 +6,11 @@ use App\Domestic\Request\GetFlightDetail;
 use App\Domestic\Request\IssueTicket;
 use App\FlightBooking;
 use App\FlightBookingDetails;
+use App\FlightPnr;
 use App\SearchFlight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\Booking\FlightBookedEvent;
 
 class FlightBookingController extends Controller
 {
@@ -46,61 +48,103 @@ class FlightBookingController extends Controller
         $contactperson['name'] = $request->customer_name;
         $contactperson['contact'] = $request->customer_phone;
         $contactperson['email'] = $request->customer_email;
-
-        $booking = new FlightBooking();
-        $booking->search_flight_id = $search->id;
-        $booking->customer_name = $request->customer_name;
-        $booking->customer_contact = $request->customer_phone;
-        $booking->customer_email = $request->customer_email;
-        $booking->adults = $search->adults;
-        $booking->childs = $search->adults;
-        if(Auth::user()){
-            $booking->user_id = Auth::user()->id;
-        }
-        $flightids = collect($request->flightid);
-//        dd($flightids);
-        $flights=[];
-        $price = 0;
-        foreach($flightids as $flightid){
-            $details = new GetFlightDetail();
-            $detail = $details->doRequest($flightid);
-            $currency = $detail['currency'];
-            $price = $price + $search->adults * ($detail['afare']+$detail['fuel']+$detail['tax']) + $search->childs * ($detail['cfare']+$detail['fuel']+$detail['tax']);
-            array_push($flights,$flightid);
-        }
-        $booking->currency = $currency;
-        $booking->amount = $price;
-        $booking->save();
-//        dd($price);
-        $pax_details = collect($request->only(
+        $passengers = collect($request->only(
             'pax_title','pax_name','pax_surname','pax_gender','pax_type','pax_nationality','pax_remarks'
         ));
-        $passengerdetails = $pax_details->transpose()->map(function($paxData){
-            return [
-                'title'=>$paxData[0],
-                'name'=>$paxData[1],
-                'surname'=>$paxData[2],
-                'gender'=>$paxData[3],
-                'type'=>$paxData[4],
-                'nationality'=>$paxData[5],
-                'remarks'=>$paxData[6],
-            ];
+        $pax_details = $passengers->transpose()->map(function($paxData){
+                return  ([
+                    'title'=>$paxData[0],
+                    'name'=>$paxData[1],
+                    'surname'=>$paxData[2],
+                    'gender'=>$paxData[3],
+                    'type'=>$paxData[4],
+                    'nationality'=>$paxData[5],
+                    'remarks'=>$paxData[6],
+                ]);
         });
-        $ticketdetails['pax']=$passengerdetails;
-        $ticketdetails['flights']=$flights;
+        $flightids = collect($request->flightid);
+        $ticketdetails['pax']=$pax_details;
+        $ticketdetails['flights']=$flightids;
         $ticketdetails['contact'] = $contactperson;
-//        dd($ticketdetails['pax']);
-        array_push($ticketdetails,[
-            'pax'=>$passengerdetails,
-            'flights'=>$flightids,
-            'contact'=>$contactperson
-        ]);
+
+
+
         $tickets = new IssueTicket();
         $ticketdetails = $tickets->doRequest($ticketdetails);
-//        dd($passengerdetails);
+        if($ticketdetails != false) {
+            $total = 0;
+            $totalcommission = 0;
+            $booking = new FlightBooking();
 
-//        $booking->details()->saveMany($passengers);
-        return view('flightbookingsuccess',['response'=>$ticketdetails]);
+            $booking->search_flight_id = $search->id;
+            $booking->customer_name = $request->customer_name;
+            $booking->customer_contact = $request->customer_phone;
+            $booking->customer_email = $request->customer_email;
+            $booking->adults = $search->adults;
+            $booking->childs = $search->adults;
+            if (Auth::user()) {
+                $booking->user_id = Auth::user()->id;
+            }
+            $booking->save();
+            foreach ($ticketdetails as $ticket) {
+                $detail = new FlightBookingDetails();
+                $detail->flight_booking_id = $booking->id;
+                $detail->passenger_title = $ticket['title'];
+                $detail->passenger_name = $ticket['name'];
+                $detail->passenger_surname = $ticket['surname'];
+                $detail->passenger_gender = $ticket['gender'];
+                $detail->passenger_type = $ticket['pax_type'];
+                $detail->passenger_nationality = $ticket['nationality'];
+                $detail->currency = $ticket['currency'];
+                $detail->price = $ticket['fare'];
+                $detail->fuel_surcharge = $ticket['surcharge'];
+                $detail->tax = $ticket['tax'];
+                $detail->pnr = $ticket['pnr'];
+                $detail->ticket = $ticket['ticketno'];
+                $detail->barcode = $ticket['barcode'];
+                $detail->sector = $ticket['sector'];
+                $detail->airline = $ticket['airline'];
+                $detail->flight_no = $ticket['flightno'];
+                $detail->flight_date = $ticket['flightdate'];
+                $detail->flight_time = $ticket['flight_time'];
+                $detail->class = $ticket['class'];
+                $detail->refundable = $ticket['refundable'];
+                $detail->commission = $ticket['commission'];
+
+                $total = $total + $ticket['fare'] + $ticket['surcharge'] + $ticket['tax'];
+                $totalcommission = $totalcommission + $ticket['commission'];
+                $detail->save();
+            }
+
+            $booking->update([
+                'amount' => $total,
+                'commission' => $totalcommission
+            ]);
+            event(new FlightBookedEvent($booking));
+            return redirect()->route('flightreserved',$booking->id);
+
+        } else {
+            $pnr_data = collect($request->only(
+                'airline','flightid','pnr'
+            ));
+            $pnrs = $pnr_data->transpose()->map(function($data) use ($search){
+                $pnr = new FlightPnr();
+                    $pnr->search_flight_id=$search->id;
+                    $pnr->airline_id=$data[0];
+                    $pnr->flight_id=$data[1];
+                    $pnr->pnr=$data[2];
+
+                    $pnr->save();
+            });
+            return view('flightbookingsuccess',['booking'=>$ticketdetails]);
+        }
+
+    }
+
+
+    public function flightReserved($id){
+        $booking = FlightBooking::findorfail($id);
+        return view('flightbookingsuccess',['booking'=>$booking]);
     }
 
     /**

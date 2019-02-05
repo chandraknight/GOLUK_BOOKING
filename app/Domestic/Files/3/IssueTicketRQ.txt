@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://booking.us.dev/">
+    <SOAP-ENV:Body>
+        <ns1:IssueTicket>
+            <strFlightId>a2b080c7-cbff-4132-af0e-3ce4779fd244</strFlightId>
+            <strReturnFlightId></strReturnFlightId>
+            <strContactName>contact person</strContactName>
+            <strContactEmail>contact@contact.com</strContactEmail>
+            <strContactMobile>5213789652</strContactMobile>
+            <strPassengerDetail><![CDATA[<?xml version="1.0"?><PassengerDetail><Passenger><PaxType>ADULT</PaxType><Title>Mr</Title><Gender>M</Gender><FirstName>first</FirstName><LastName>passenger</LastName><Nationality>NP</Nationality><PaxRemarks>remarks first passenger</PaxRemarks></Passenger></PassengerDetail>]]></strPassengerDetail>
+       </ns1:IssueTicket>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

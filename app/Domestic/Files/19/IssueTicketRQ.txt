@@ -1,5 +1,0 @@
-<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    <Body>
-    <IssueTicket xmlns="http://booking.us.dev/" ><strFlightId>7347d951-6c0e-4eee-bd09-f24ed20847ca</strFlightId><strReturnFlightId>f1ab2782-e2d4-442f-9913-f46dd336257c</strReturnFlightId><strContactName>sdds</strContactName><strContactEmail>test@test.com</strContactEmail><strContactMobile>5213789652</strContactMobile><strPassengerDetail><Passenger><PaxType>ADULT</PaxType><Title>Mr</Title><Gender>M</Gender><FirstName>dsdas</FirstName><LastName>fgfd</LastName><Nationality>NP</Nationality><PaxRemarks>gdfgfdgdfgd</PaxRemarks></Passenger></strPassengerDetail></IssueTicket>
-    </Body>
-</Envelope>

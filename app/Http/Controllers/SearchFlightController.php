@@ -66,16 +66,7 @@ class SearchFlightController extends Controller
         if(!$response){
             return view('bookflight',['response'=>$response]);
         }
-        foreach($response as $res){
-            $flightpnr = new FlightPnr();
-            $flightpnr->search_flight_id = $search->id;
-            $flightpnr->airline_id = $res['airline'];
-            $flightpnr->flight_id = $res['flight'];
-            $flightpnr->pnr = $res['pnr'];
-            $flightpnr->type = $res['status'];
 
-            $flightpnr->save();
-        }
         $details = [];
         $price = 0;
         if(isset($request->returnflightid)){

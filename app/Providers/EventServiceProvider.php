@@ -40,7 +40,10 @@ class EventServiceProvider extends ServiceProvider
         ['App\Listeners\Booking\VehicleBookingCanceledListener'],
 
         'App\Events\Booking\TourBookingCanceledEvent' =>
-        ['App\Listeners\Booking\TourBookingCanceledListener']
+        ['App\Listeners\Booking\TourBookingCanceledListener'],
+
+        'App\Events\Booking\FlightBookedEvent' =>
+            ['App\Listeners\Booking\FlightBookedEventListener']
     ];
 
     /**

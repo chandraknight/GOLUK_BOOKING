@@ -2,39 +2,31 @@
 @section('content')
     <div class="container">
         {{--{{dd($response)}}--}}
-        @if($response != false)
+        @if($booking != false)
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <i class="fa fa-check round box-icon-large box-icon-center box-icon-success mb30"></i>
-                <h2 class="text-center">John, your payment was successful!</h2>
+                <h2 class="text-center">Your ticket has been confirmed.</h2>
                 <h5 class="text-center mb30">Booking details has been send to johndoe@gmail.com</h5>
                 <ul class="order-payment-list list mb30">
+                    @foreach($booking->details as $ticket)
                     <li>
                         <div class="row">
                             <div class="col-xs-9">
-                                <h5><i class="fa fa-plane"></i> Flight from London to New York City</h5>
-                                <p><small>April 24, 2014</small>
-                                </p>
+                                <h5><i class="fa fa-plane"></i> Flight from {{$ticket->sector}} for {{$ticket->passenger_name}}</h5>
+                                <h3><small>Ticket No - {{$ticket->ticket}}</small></h3>
+                                <h3><small>PNR - {{$ticket->pnr}}</small></h3>
+                                <h3><small>Bar Code - {{$ticket->barcode}}</small></h3>
+                                <h2><small>{{$ticket->airline}}-{{$ticket->flight_no}}-{{$ticket->flight_date}}-{{$ticket->flight_time}}</small>
+                                </h2>
                             </div>
                             <div class="col-xs-3">
-                                <p class="text-right"><span class="text-lg">$150</span>
+                                <p class="text-right"><span class="text-lg">{{$ticket -> currency}} {{$ticket->price +$ticket->fuel_surcharge+$ticket->tax}}</span>
                                 </p>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-xs-9">
-                                <h5><i class="fa fa-plane"></i> Flight from New York City to London</h5>
-                                <p><small>April 28, 2014</small>
-                                </p>
-                            </div>
-                            <div class="col-xs-3">
-                                <p class="text-right"><span class="text-lg">$187</span>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
                 <h4 class="text-center">You might also need in New York</h4>
                 <ul class="list list-inline list-center">

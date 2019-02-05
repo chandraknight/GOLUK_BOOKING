@@ -6,6 +6,7 @@ use App\AgentHotelCommission;
 use App\AgentTourPackageCommission;
 use App\AgentVehicleCommission;
 use App\Booking;
+use App\FlightBooking;
 use App\Hotel;
 use App\TourPackage;
 use App\TourPackageBooking;
@@ -1059,6 +1060,86 @@ class AdminController extends Controller
     public function editRoomService($id) {
         $service = RoomService::findorfail($id);
         return view('admin.editroomservice',['service'=>$service]);
+    }
+
+    public function flightBooking(){
+        $bookings = FlightBooking::all()->sortByDesc('created_at');
+        return view('admin.flightbooking',['bookings'=>$bookings]);
+    }
+
+    public function flightBookingsData(Request $request){
+        dd($request);
+        $columns = array(
+            0=>'id',
+            1=>'customer_name',
+            2=>'customer_contact',
+            3=>'customer_email',
+            4=>'adults',
+            5=>'childs',
+            6=>'amount',
+            7=>'commission',
+            8=>'actions'
+        );
+        $totalData = FlightBooking::all()->count();
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        if(empty($request->input('search.value'))){
+            $posts = DB::table('flight_bookings')
+                ->select('flight_bookings.id','flight_bookings.customer_name', 'flight_bookings.customer_contact','flight_bookings.customer_email','flight_bookings.adults','flight_bookings.childs','flight_bookings.amount','flight_bookings.commission')
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+            // dd($posts);
+            $totalFiltered = DB::table('flight_bookings')
+                ->select('flight_bookings.id','flight_bookings.customer_name', 'flight_bookings.customer_contact','flight_bookings.customer_email','flight_bookings.adults','flight_bookings.childs','flight_bookings.amount','flight_bookings.commission')
+                ->count();
+        }else{
+            $search = $request->input('search.value');
+            $posts = DB::table('flight_bookings')
+                ->select('flight_bookings.id','flight_bookings.customer_name', 'flight_bookings.customer_contact','flight_bookings.customer_email','flight_bookings.adults','flight_bookings.child','flight_bookings.amount','flight_bookings.commission')
+                ->where('customer_name', 'like', "%{$search}%")
+                ->orWhere('customer_contact','like',"%{$search}%")
+                ->orWhere('customer_email','like',"%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+            $totalFiltered = DB::table('flight_bookings')
+                ->select('flight_bookings.id', 'flight_bookings.customer_name', 'flight_bookings.customer_contact', 'flight_bookings.customer_email', 'flight_bookings.adults', 'flight_bookings.child', 'flight_bookings.amount', 'flight_bookings.commission')
+                ->where('customer_name', 'like', "%{$search}%")
+                ->orWhere('customer_contact', 'like', "%{$search}%")
+                ->orWhere('customer_email', 'like', "%{$search}%")
+                ->count();
+        }
+
+
+        $data = array();
+        if($posts) {
+            $c=1;
+
+            foreach($posts as $r) {
+                $viewBooking = URL::to(route('admin.view.flight.booking',$r->id));
+                $nestedData['id']=$r->id;
+                $nestedData['customer_name']=$r->customer_name;
+                $nestedData['created_at']=Carbon::parse($r->created_at)->toFormattedDateString();
+                $nestedData['actions']="<a href=".$viewBooking."> <button type='button' class='btn btn-sm btn-gradient-success btn-rounded'>View</button></a>";
+
+                $data[]=$nestedData;
+                $c++;
+            }
+        }
+        dd($posts);
+        $json_data = array(
+            "draw"=>intval($request->input('draw')),
+            "recordsTotal"=>intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"=>$data
+        );
+        echo json_encode($json_data);
     }
     
 }

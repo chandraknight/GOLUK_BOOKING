@@ -188,6 +188,11 @@ Route::post('/reserve/flight',[
     'as'=>'bookflight'
 ]);
 
+Route::get('/flight/reserved/{id}',[
+    'uses'=>'FlightBookingController@flightReserved',
+    'as'=>'flightreserved'
+]);
+
 Auth::routes();
 Route::group(['prefix'=>'user','middleware'=>'auth'],function(){
     Route::get('/profile/{id}',[
@@ -902,6 +907,21 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:,admin,superadmin']]
     Route::get('/booking/tour/view/{id}',[
         'uses'=>'AdminController@viewTourBooking',
         'as'=>'admin.view.tour.booking'
+    ]);
+
+    Route::get('/booking/flights',[
+        'uses'=>'AdminController@flightBooking',
+        'as'=>'admin.flight.booking'
+    ]);
+
+    Route::post('/bookings/flight/data',[
+        'uses'=>'AdminController@flightsBookingData',
+        'as'=>'admin.flight.booking.data'
+    ]);
+
+    Route::get('/booking/flight/view/{id}',[
+        'uses'=>'AdminController@viewFlightBooking',
+        'as'=>'admin.view.flight.booking'
     ]);
 
     Route::post('/hotel/commission',[

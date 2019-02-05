@@ -6,8 +6,8 @@
             <strAgencyId xmlns="">PLZ147</strAgencyId>
             <strSectorFrom xmlns="">KTM</strSectorFrom>
             <strSectorTo xmlns="">BIR</strSectorTo>
-            <strFlightDate xmlns="">07-Feb-2019</strFlightDate>
-            <strReturnDate xmlns="">07-Feb-2019</strReturnDate>
+            <strFlightDate xmlns="">08-Feb-2019</strFlightDate>
+            <strReturnDate xmlns="">08-Feb-2019</strReturnDate>
             <strTripType xmlns="">O</strTripType>
             <strNationality xmlns="">NP</strNationality>
             <intAdult xmlns="">1</intAdult>

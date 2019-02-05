@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FlightPnr extends Model
 {
     protected $fillable = [
-        'search_flight_id','pnr','type'
+        'flight_booking_id','airline_id','flight_id','pnr'
     ];
 
     protected $dates = [
@@ -16,6 +16,10 @@ class FlightPnr extends Model
 
     public function flightSearch(){
         return $this->belongsTo('App\SearchFlight');
+    }
+
+    public function booking(){
+        return $this->belongsTo('App\FlightBooking');
     }
 
     public function getTickets(){

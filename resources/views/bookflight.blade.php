@@ -135,12 +135,17 @@
                 </div>
                 <div class="col-md-4">
                     <div class="booking-item-payment">
-                        {{--{{dd($details)}}--}}
+
+                    @foreach($response as $res)
+                        <input type="hidden" name="airline[]" value="{{$res['airline']}}">
+                        <input type="hidden" name="pnr[]" value="{{$res['pnr']}}">
+                        <input type="hidden" name="flightid[]" value="{{$res['flight']}}">
+                    @endforeach
+
                     @foreach($details as $detail)
-                        <input type="hidden" name="flightid[]" value="{{$detail['flightid']}}">
                     <header class="clearfix">
                         <h5 class="mb0">PNR: {{$response[$loop->iteration-1]['pnr']}} Issue Before: {{$response[$loop->iteration-1]['ttltime']}}</h5>
-                        <input type="hidden" name="pnr[]" value="{{$response[$loop->iteration-1]['pnr']}}">
+
                     </header>
                     <ul class="booking-item-payment-details">
                         <li>
@@ -190,7 +195,7 @@
                             @endif
 
                             <li>
-                                <p class="booking-item-payment-price-title">Fuel Surcharge   </p>
+                                <p class="booking-item-payment-price-title">Fuel Surcharge</p>
                                 <p class="booking-item-payment-price-amount"> &nbsp;   {{$detail['currency']}} {{$detail['fuel']}}<small>/per passenger</small>
                                 </p>
                             </li>

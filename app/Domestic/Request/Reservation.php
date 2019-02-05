@@ -32,6 +32,7 @@ XML;
     <Body>
         <Reservation xmlns="http://booking.us.dev/">
             <strFlightId xmlns="">$out</strFlightId>
+            <strReturnFlightId xmlns=""></strReturnFlightId>
         </Reservation>
     </Body>
 </Envelope>

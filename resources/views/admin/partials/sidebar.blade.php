@@ -113,6 +113,7 @@
                 <li class="nav-item"> <a class="nav-link" href="{{route('admin.hotel.booking')}}"> Hotel Bookings </a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('admin.vehicle.booking')}}"> Vehicle Bookings </a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('admin.tour.booking')}}"> Tour Bookings </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('admin.flight.booking')}}"> Flight Bookings </a></li>
               </ul>
               </div>
           </li>

@@ -15,6 +15,7 @@ class FlightBooking extends Model
         'childs',
         'amount',
         'currency',
+        'commission',
         'user_id'
     ];
 
