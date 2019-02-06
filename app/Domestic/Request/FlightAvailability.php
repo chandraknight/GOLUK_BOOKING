@@ -64,12 +64,12 @@ XML;
 
     public function doRequest(){
         $body = $this->generateBody();
-        if(is_dir("../app/Domestic/Files/".$this->searchid."/FlightAvailabilityRQ.txt")){
-            $file = "../app/Domestic/Files/".$this->searchid."/FlightAvailabilityRQ.txt";
+        if(is_dir("../storage/app/public/Domestic/".$this->searchid."/FlightAvailabilityRQ.txt")){
+            $file = "../storage/app/public/Domestic/".$this->searchid."/FlightAvailabilityRQ.txt";
             file_put_contents($file,$body);
         } else {
-            mkdir("../app/Domestic/Files/".$this->searchid,0755,true);
-            $file = "../app/Domestic/Files/".$this->searchid."/FlightAvailabilityRQ.txt";
+            mkdir("../storage/app/public/Domestic/".$this->searchid,0755,true);
+            $file = "../storage/app/public/Domestic/".$this->searchid."/FlightAvailabilityRQ.txt";
             file_put_contents($file,$body);
         }
 
@@ -81,12 +81,12 @@ XML;
             return false;
         }
         $response = html_entity_decode($rawresponse);
-        if(is_dir("../app/Domestic/Files/".$this->searchid)){
-            $file = "../app/Domestic/Files/".$this->searchid."/FlightAvailabilityRS.txt";
+        if(is_dir("../storage/app/public/Domestic/".$this->searchid)){
+            $file = "../storage/app/public/Domestic/".$this->searchid."/FlightAvailabilityRS.txt";
             file_put_contents($file,$response);
         } else {
-            mkdir("../app/Domestic/Files/".$this->searchid,0755,true);
-            $file = "../app/Domestic/Files/".$this->searchid."/FlightAvailabilityRS.txt";
+            mkdir("../storage/app/public/Domestic/".$this->searchid,0755,true);
+            $file = "../storage/app/public/Domestic/".$this->searchid."/FlightAvailabilityRS.txt";
             file_put_contents($file,$response);
         }
 //        dd($response);

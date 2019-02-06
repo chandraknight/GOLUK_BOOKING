@@ -1,8 +1,0 @@
-<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    <Body>
-        <GetFlightDetail xmlns="http://booking.us.dev/">
-            <strUserId xmlns="">ASIANL</strUserId>
-            <strFlightId xmlns="">bb4b8506-de0e-40a9-b6f1-1f0e857eace0</strFlightId>
-        </GetFlightDetail>
-    </Body>
-</Envelope

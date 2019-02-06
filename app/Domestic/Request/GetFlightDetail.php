@@ -10,7 +10,7 @@ class GetFlightDetail extends KeepBasic {
         parent::__construct();
     }
 
-    public function generateBody($id){
+    public function generateBody($id) {
         return <<<XML
 <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
     <Body>
@@ -31,12 +31,12 @@ XML;
             foreach($id as $d){
 
                 $xmlStr = $this->generateBody($d);
-                if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-                    $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRQ".$c.".txt";
+                if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+                    $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRQ".$c.".txt";
                     file_put_contents($file,$xmlStr);
                 } else {
-                    mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-                    $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRQ".$c.".txt";
+                    mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+                    $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRQ".$c.".txt";
                     file_put_contents($file,$xmlStr);
                 }
                 $client = $this->createSoapClient();
@@ -45,12 +45,12 @@ XML;
                     return false;
                 }
                 $response = html_entity_decode($rawresponse);
-                if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-                    $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRS".$c.".txt";
+                if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+                    $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRS".$c.".txt";
                     file_put_contents($file,$xmlStr);
                 } else {
-                    mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-                    $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRS".$c.".txt";
+                    mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+                    $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRS".$c.".txt";
                     file_put_contents($file,$xmlStr);
                 }
                 array_push($details,$this->formatResponse($response));

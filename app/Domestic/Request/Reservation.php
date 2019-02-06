@@ -46,12 +46,12 @@ XML;
 //        dd($flights);
         $xmlStr = $this->generateBody($flights);
 //        dd($xmlStr);
-        if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/ReservationRQ.txt";
+        if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/ReservationRQ.txt";
             file_put_contents($file,$xmlStr);
         } else {
-            mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/ReservationRQ.txt";
+            mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/ReservationRQ.txt";
             file_put_contents($file,$xmlStr);
         }
 
@@ -62,12 +62,12 @@ XML;
         }
         $response = html_entity_decode($rawresponse);
 //        dd($response);
-        if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/ReservationRS.txt";
+        if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/ReservationRS.txt";
             file_put_contents($file,$response);
         } else {
-            mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/ReservationRS.txt";
+            mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/ReservationRS.txt";
             file_put_contents($file,$response);
         }
 

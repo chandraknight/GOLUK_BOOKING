@@ -139,12 +139,12 @@ XML;
         $xmlStr= $this->generateBodyXml($passengers,$flights,$contact);
         $xmlreq = $this->tempRequest();
 //        dd($xmlStr);
-        if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/IssueTicketRQ.txt";
+        if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/IssueTicketRQ.txt";
             file_put_contents($file,$xmlStr);
         } else {
-            mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/IssueTicketRQ.txt";
+            mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/IssueTicketRQ.txt";
             file_put_contents($file,$xmlStr);
         }
 //        dd($xmlStr);
@@ -154,12 +154,12 @@ XML;
             return false;
         }
         $response = html_entity_decode($rawresponse);
-        if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/IssueTicketRS.txt";
+        if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/IssueTicketRS.txt";
             file_put_contents($file,$response);
         } else {
-            mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-            $file = "../app/Domestic/Files/".session()->get('searchid')."/IssueTicketRS.txt";
+            mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+            $file = "../storage/app/public/Domestic/".session()->get('searchid')."/IssueTicketRS.txt";
             file_put_contents($file,$response);
         }
         $formattedresponse = $this->formatResponse($response);
@@ -183,34 +183,7 @@ XML;
         $passengers = $doc->getElementsByTagName('Passenger');
         $ticketDetails = [];
         foreach($passengers as $passenger){
-//            $airline = $passenger->getElementsByTagName('Airline')->item(0)->nodeValue;
-//            $pnr = $passenger->getElementsByTagName('PnrNo')->item(0)->nodeValue;
-//            $title = $passenger->getElementsByTagName('Title')->item(0)->nodeValue;
-//            $gender = $passenger->getElementsByTagName('Gender')->item(0)->nodeValue;
-//            $firstname = $passenger->getElementsByTagName('FirstName')->item(0)->nodeValue;
-//            $lastname = $passenger->getElementsByTagName('LastName')->item(0)->nodeValue;
-//            $pax_type = $passenger->getElementsByTagName('PaxType')->item(0)->nodeValue;
-//            $nationality = $passenger->getElementsByTagName('Nationality')->item(0)->nodeValue;
-//            $issue_date = $passenger->getElementsByTagName('IssueDate')->item(0)->nodeValue;
-//            $flight_no = $passenger->getElementsByTagName('FlightNo')->item(0)->nodeValue;
-//            $flight_date = $passenger->getElementsByTagName('FlightDate')->item(0)->nodeValue;
-//            $departure = $passenger->getElementsByTagName('Departure')->item(0)->nodeValue;
-//            $flight_time = $passenger->getElementsByTagName('FlightTime')->item(0)->nodeValue;
-//            $ticket_no = $passenger->getElementsByTagName('TicketNo')->item(0)->nodeValue;
-//            $barcode = $passenger->getElementsByTagName('BarCodeValue')->item(0)->nodeValue;
-//            $bar_code_image = $passenger->getElementsByTagName('BarCodeImage')->item(0)->nodeValue;
-//            $arrival = $passenger->getElementsByTagName('Arrival')->item(0)->nodevalue;
-//            $arrival_time = $passenger->getElementsByTagName('ArrivalTime')->item(0)->nodeValue;
-//            $sector = $passenger->getElementsByTagName('Sector')->item(0)->nodeValue;
-//            $class = $passenger->getElementsByTagName('ClassCode')->item(0)->nodeValue;
-//            $currency = $passenger->getElementsByTagName('Currency')->item(0)->nodeValue;
-//            $fare = $passenger->getElementsByTagName('Fare')->item(0)->nodeValue;
-//            $surcharge = $passenger->getElementsByTagName('Surcharge')->item(0)->nodeValue;
-//            $tax_currency = $passenger->getElementsByTagName('TaxCurrency')->item(0)->nodeValue;
-//            $tax = $passenger->getElementsByTagName('Tax')->item(0)->nodeValue;
-//            $commission = $passenger->getElementsByTagName('CommissionAmount')->item(0)->nodeValue;
-//            $refundable = $passenger->getElementsByTagName('Refundable')->item(0)->nodeValue;
-//            $baggage = $passenger->getElementsByTagName('FreeBaggage')->item(0)->nodeValue;
+
             array_push($ticketDetails,[
                 'airline'=>$passenger->getElementsByTagName('Airline')->item(0)->nodeValue,
                 'pnr'=>$passenger->getElementsByTagName('PnrNo')->item(0)->nodeValue,
