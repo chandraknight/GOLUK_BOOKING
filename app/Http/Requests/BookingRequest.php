@@ -13,7 +13,7 @@ class BookingRequest extends FormRequest
      */
 
      public function __construct(){
-         dd($this);
+        //  dd($this);
      }
     public function authorize()
     {

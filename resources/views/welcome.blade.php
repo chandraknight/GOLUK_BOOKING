@@ -15,7 +15,7 @@
                                         <li class="active"><a href="#tab-1" data-toggle="tab"><i
                                                         class="fa fa-building-o"></i> <span>Hotels</span></a>
                                         </li>
-                                        <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-plane"></i> <span>Flights</span></a>
+                                        <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-plane"></i> <span>Domestic Flights</span></a>
                                         </li>
                                         <li><a href="#tab-4" data-toggle="tab"><i class="fa fa-car"></i>
                                                 <span>Vehicles</span></a>
@@ -176,7 +176,7 @@
                                                                         <div class="col-md-3">
                                                                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                                 <label>Departing</label>
-                                                                                <input class="form-control" data-date-format="yyyy-mm-dd" name="flight_date" type="text">
+                                                                                <input class="date-pick form-control" data-date-format="yyyy-mm-dd" name="flight_date" type="text">
                                                                                 @if($errors->has('flight_date'))
                                                                                     <span style="color:red">{{$errors->first('flight_date')}}</span>
                                                                                 @endif
@@ -185,7 +185,7 @@
                                                                         <div class="col-md-3">
                                                                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                                 <label>Returning</label>
-                                                                                <input class="form-control" data-date-format="yyyy-mm-dd" name="flight_return" type="text">
+                                                                                <input class="date-pick form-control" data-date-format="yyyy-mm-dd" name="flight_return" type="text">
                                                                                 @if($errors->has('flight_return'))
                                                                                     <span style="color:red">{{$errors->first('flight_return')}}</span>
                                                                                 @endif
@@ -203,14 +203,7 @@
                                                                                     <option>4</option>
                                                                                     <option>5</option>
                                                                                     <option>6</option>
-                                                                                    <option>7</option>
-                                                                                    <option>8</option>
-                                                                                    <option>9</option>
-                                                                                    <option>10</option>
-                                                                                    <option>11</option>
-                                                                                    <option>12</option>
-                                                                                    <option>13</option>
-                                                                                    <option>14</option>
+                                                                                    
                                                                                 </select>
                                                                                 @if($errors->has('flight_childs'))
                                                                                     <span style="color:red">{{$errors->first('flight_childs')}}</span>
@@ -228,14 +221,7 @@
                                                                                     <option>4</option>
                                                                                     <option>5</option>
                                                                                     <option>6</option>
-                                                                                    <option>7</option>
-                                                                                    <option>8</option>
-                                                                                    <option>9</option>
-                                                                                    <option>10</option>
-                                                                                    <option>11</option>
-                                                                                    <option>12</option>
-                                                                                    <option>13</option>
-                                                                                    <option>14</option>
+                                                                                   
                                                                                 </select>
                                                                                 @if($errors->has('flight_adults'))
                                                                                     <span style="color:red">{{$errors->first('flight_adults')}}</span>
@@ -544,14 +530,13 @@
                                             class="im im-rain loc-info-weather-icon"></i>
                                 </p>
                                 <ul class="loc-info-list">
-                                    {{--<li><a href="#"><i class="fa fa-building-o"></i> 277 Hotels from $36/night</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li><a href="#"><i class="fa fa-home"></i> 130 Rentals from $44/night</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li><a href="#"><i class="fa fa-car"></i> 294 Car Offers from $45/day</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li><a href="#"><i class="fa fa-bolt"></i> 200 Activities this Week</a>--}}
-                                    {{--</li>--}}
+                                    <li><a href="#"><i class="fa fa-building-o"></i> {{ \App\Hotel::count() }} Hotels from {{ \App\Room::min('room_flat_cost') }}/night</a>
+                                    </li>
+                                    
+                                    <li><a href="#"><i class="fa fa-car"></i> {{ \App\Vehicle::count() }} Car Offers from {{ \App\Vehicle::min('rate_per_day') }}/day</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-bolt"></i> {{ \App\TourPackage::count() }} Activities available</a>
+                                    </li>
                                 </ul>
                                 <a class="btn btn-white btn-ghost mt10" href="#"><i class="fa fa-angle-right"></i>How to
                                     book ?</a>
