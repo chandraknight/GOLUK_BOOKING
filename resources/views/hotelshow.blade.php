@@ -317,7 +317,7 @@
                 <div class="form-group form-group-lg form-group-icon-left"><i
                             class="fa fa-map-marker input-icon input-icon-highlight"></i>
                     <label>Where are you going?</label>
-                    <input class="typeahead form-control"
+                    <input class="form-control"
                            placeholder="City, Point of Interest or Hotel Name "
                            name="hoteldestination" value="{{$hotel->address}}" type="text">
                 </div>

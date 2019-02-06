@@ -11,6 +11,10 @@ class BookingRequest extends FormRequest
      *
      * @return bool
      */
+
+     public function __construct(){
+         dd($this);
+     }
     public function authorize()
     {
         return true;

@@ -55,7 +55,10 @@ Route::post('/invoice/payment',[
     'uses'=>'BookingController@paymentStripe',
     'as'=>'stripePayment'
 ]);
-
+// Route::get('/',function(){
+//     session()->flush();
+//     return view('welcome');
+// });
 Route::get('/',[
     'uses'=>'FrontEndController@welcome',
     'as'=>'welcome'

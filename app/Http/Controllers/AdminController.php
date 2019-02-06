@@ -1067,8 +1067,8 @@ class AdminController extends Controller
         return view('admin.flightbooking',['bookings'=>$bookings]);
     }
 
-    public function flightBookingsData(Request $request){
-        dd($request);
+    public function flightsBookingData(Request $request){
+        // dd($request);
         $columns = array(
             0=>'id',
             1=>'customer_name',
@@ -1081,6 +1081,7 @@ class AdminController extends Controller
             8=>'actions'
         );
         $totalData = FlightBooking::all()->count();
+        // dd($totalData);
         $limit = $request->input('length');
         $start = $request->input('start');
         $order = $columns[$request->input('order.0.column')];
@@ -1124,8 +1125,6 @@ class AdminController extends Controller
             foreach($posts as $r) {
                 $viewBooking = URL::to(route('admin.view.flight.booking',$r->id));
                 $nestedData['id']=$r->id;
-                $nestedData['customer_name']=$r->customer_name;
-                $nestedData['created_at']=Carbon::parse($r->created_at)->toFormattedDateString();
                 $nestedData['actions']="<a href=".$viewBooking."> <button type='button' class='btn btn-sm btn-gradient-success btn-rounded'>View</button></a>";
 
                 $data[]=$nestedData;

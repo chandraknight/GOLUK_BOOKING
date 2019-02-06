@@ -111,9 +111,9 @@ class BookingController extends Controller
     }
 
     
-    public function register(BookingRequest $request)
+    public function register(Request $request)
     {
-        dd($request);
+        // dd($request);
         $hotel = Hotel::where('id', '=', $request->hotel_id)->first();
         $user = User::where('id', '=', $hotel->created_by)->first();
 
