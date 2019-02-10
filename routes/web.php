@@ -181,6 +181,13 @@ Route::post('/search/flight',[
     'as'=>'flight.search'
 ]);
 
+Route::post('/flight/sort',[
+    'uses'=>'SearchFlightController@sortFlight',
+    'as'=>'sortflight'
+]);
+
+
+
 Route::post('/book/flight',[
     'uses'=>'SearchFlightController@reserveFlight',
     'as'=>'flight.reserve'

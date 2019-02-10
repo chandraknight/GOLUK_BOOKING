@@ -133,7 +133,8 @@ XML;
                 $out['ifare']=$available->getElementsByTagName('InfantFare')->item(0)->nodeValue;
                 $out['rfare']=$available->getElementsByTagName('ResFare')->item(0)->nodeValue;
                 $out['fuel']=$available->getElementsByTagName('FuelSurcharge')->item(0)->nodeValue;
-                $out['tax']=$available->getElementsByTagName('Tax')->item(0)->nodeValue;
+								$out['tax']=$available->getElementsByTagName('Tax')->item(0)->nodeValue;
+								$out['tafare'] = $available->getElementsByTagName('AdultFare')->item(0)->nodeValue + $available->getElementsByTagName('FuelSurcharge')->item(0)->nodeValue + $available->getElementsByTagName('Tax')->item(0)->nodeValue;
                 $out['refund']=$available->getElementsByTagName('Refundable')->item(0)->nodeValue;
                 $out['baggage']=$available->getElementsByTagName('FreeBaggage')->item(0)->nodeValue;
                 $out['agencycomm']=$available->getElementsByTagName('AgencyCommission')->item(0)->nodeValue;
@@ -168,7 +169,8 @@ XML;
                     $in['ifare']=$available->getElementsByTagName('InfantFare')->item(0)->nodeValue;
                     $in['rfare']=$available->getElementsByTagName('ResFare')->item(0)->nodeValue;
                     $in['fuel']=$available->getElementsByTagName('FuelSurcharge')->item(0)->nodeValue;
-                    $in['tax']=$available->getElementsByTagName('Tax')->item(0)->nodeValue;
+										$in['tax']=$available->getElementsByTagName('Tax')->item(0)->nodeValue;
+					$in['tafare'] = $available->getElementsByTagName('AdultFare')->item(0)->nodeValue + $available->getElementsByTagName('FuelSurcharge')->item(0)->nodeValue + $available->getElementsByTagName('Tax')->item(0)->nodeValue;
                     $in['refund']=$available->getElementsByTagName('Refundable')->item(0)->nodeValue;
                     $in['baggage']=$available->getElementsByTagName('FreeBaggage')->item(0)->nodeValue;
                     $in['agencycomm']=$available->getElementsByTagName('AgencyCommission')->item(0)->nodeValue;
@@ -181,7 +183,7 @@ XML;
 //            'out'=>$outair,
 //            'in'=>$inair,
 //        ]);
-//        dd($flights);
+      //  dd($flights);
         return $flights;
     }
     public function tempResponse(){

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+{{--  {{ dd($flights['out']) }}  --}}
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="{{route('welcome')}}">Home</a>
@@ -414,17 +415,13 @@
             </div>
             <div class="col-md-9">
                 <div class="nav-drop booking-sort">
-                    <h5 class="booking-sort-title"><a href="#">Sort: Sort: Price (low to high)<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
+                    <h5 class="booking-sort-title"><a href="#">Sort: <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
                     <ul class="nav-drop-menu">
-                        <li><a href="#">Price (high to low)</a>
+                        <li><a href="#" class="sort" id="hightolow">Price (high to low)</a>
                         </li>
-                        <li><a href="#">Duration</a>
+                        <li><a href="#" class="sort" id="lowtohigh">Price (low to high)</a>
                         </li>
-                        <li><a href="#">Stops</a>
-                        </li>
-                        <li><a href="#">Arrival</a>
-                        </li>
-                        <li><a href="#">Departure</a>
+                        <li><a href="#" class="sort" id="airline">Airline</a>
                         </li>
                     </ul>
                 </div>
@@ -463,7 +460,7 @@
                                         <h5>{{\Carbon\Carbon::parse($flight['departuretime'])->diffInRealMinutes(\Carbon\Carbon::parse($flight['arrivaltime']))}} mins</h5>
                                         <p>1 stop</p>
                                     </div>
-                                    <div class="col-md-3"><span class="booking-item-price">{{$flight['currency']}} {{$flight['afare']}}</span><span>/adult</span>
+                                    <div class="col-md-3"><span class="booking-item-price">{{$flight['currency']}} {{$flight['tafare']}}</span><span>/adult</span>
                                         <p class="booking-item-flight-class">Class: {{$flight['class']}}</p>
 
                                         @if(count($flights['in']) <= 0)
@@ -493,9 +490,9 @@
                                         {{--<h5>Stopover: Charlotte (CLT) 7h 1m</h5>--}}
                                         <h5 class="list-title">Pricing</h5>
                                         <ul class="list">
-                                            <li>Adult Fare: {{$flight['currency']}} {{$flight['afare']}}</li>
-                                            <li>Child Fare: {{$flight['currency']}} {{$flight['cfare']}}</li>
-                                            <li>Infant Fare: {{$flight['currency']}} {{$flight['ifare']}}</li>
+                                            <li>Adult Base Fare: {{$flight['currency']}} {{$flight['afare']}}</li>
+                                            <li>Child Base Fare: {{$flight['currency']}} {{$flight['cfare']}}</li>
+                                            <li>Infant Base Fare: {{$flight['currency']}} {{$flight['ifare']}}</li>
                                             <li>Fuel Surcharge: {{$flight['currency']}} {{$flight['fuel']}}</li>
                                             <li>Tax: {{$flight['currency']}} {{$flight['tax']}}</li>
                                             <li>Baggage: {{$flight['baggage']}}</li>
@@ -542,7 +539,7 @@
                                                 <h5>{{\Carbon\Carbon::parse($flight['departuretime'])->diffInRealMinutes(\Carbon\Carbon::parse($flight['arrivaltime']))}} mins</h5>
                                                 <p>1 stop</p>
                                             </div>
-                                            <div class="col-md-3"><span class="booking-item-price">{{$flight['currency']}} {{$flight['afare']}}</span><span>/adult</span>
+                                            <div class="col-md-3"><span class="booking-item-price">{{$flight['currency']}} {{$flight['tafare']}}</span><span>/adult</span>
                                                 <p class="booking-item-flight-class">Class: {{$flight['class']}}</p>
                                                 {{--  <a class="btn btn-primary" href="#">Details</a>  --}}
 
@@ -564,14 +561,14 @@
                                                 {{--<h5>Stopover: Charlotte (CLT) 7h 1m</h5>--}}
                                                 <h5 class="list-title">Pricing</h5>
                                                 <ul class="list">
-                                                    <li>Adult Fare: {{$flight['currency']}} {{$flight['afare']}}</li>
-                                                    <li>Child Fare: {{$flight['currency']}} {{$flight['cfare']}}</li>
-                                                    <li>Infant Fare: {{$flight['currency']}} {{$flight['ifare']}}</li>
+                                                    <li>Adult Base Fare: {{$flight['currency']}} {{$flight['afare']}}</li>
+                                                    <li>Child Base Fare: {{$flight['currency']}} {{$flight['cfare']}}</li>
+                                                    <li>Infant Base Fare: {{$flight['currency']}} {{$flight['ifare']}}</li>
                                                     <li>Fuel Surcharge: {{$flight['currency']}} {{$flight['fuel']}}</li>
                                                     <li>Tax: {{$flight['currency']}} {{$flight['tax']}}</li>
-                                                    <li>Baggage: {{$flight['baggage']}}</li>
+                                                    <li>Baggage: {{  $flight['baggage'] }}</li>
                                                     <li>Refundable: {{$flight['refund']}}</li>
-                                                    <li>Duration: {{\Carbon\Carbon::parse($flight['departuretime'])->diffInRealMinutes(\Carbon\Carbon::parse($flight['arrivaltime']))}} mins</li>
+                                                    <li>Duration: {{  \Carbon\Carbon::parse($flight['departuretime'])->diffInRealMinutes(\Carbon\Carbon::parse($flight['arrivaltime']))}} mins</li>
                                                 </ul>
                                                 <p>Total trip time: {{\Carbon\Carbon::parse($flight['departuretime'])->diffInRealMinutes(\Carbon\Carbon::parse($flight['arrivaltime']))}} mins</p>
                                             </div>
@@ -585,7 +582,7 @@
                     <input type="submit" value="Reserve" class="btn btn-primary">
                     @endif
                 </ul>
-                <p class="text-right">Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
+                <p class="text-right">Not what you are looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
                 </p>
             </div>
         </div>
@@ -594,4 +591,25 @@
             @endif
         <div class="gap"></div>
     </div>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function(){
+        let outbound = <?php echo $flights['out'] ?>;
+        let inbound = <?php echo $flights['in'] ?>;
+        $('.sort').on('click',function(){
+            let sorttype = this.id;
+            $.ajax({
+                method: 'post',
+                dataType: 'json',
+                url: '{{ route('sortflight') }}',
+                data: {outbound: outbound,inbound:inbound,sorttype:sorttype,_token:'{{ csrf_token() }}' },
+                success : function(data){
+                    $('.booking-list').html(data.output);
+                }
+            });    
+        });
+        
+    });
+</script>
 @endsection

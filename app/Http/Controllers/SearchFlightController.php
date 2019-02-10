@@ -9,6 +9,8 @@ use App\Domestic\Request\SectorCode;
 use App\FlightPnr;
 use App\SearchFlight;
 use Illuminate\Http\Request;
+use App\Events\TicketTimeExpiredEvent;
+use Carbon\Carbon;
 
 class SearchFlightController extends Controller
 {
@@ -30,6 +32,7 @@ class SearchFlightController extends Controller
     public function searchFlight(Request $request)
     {
 //        dd($request);
+        $flight = [];
         $search = new SearchFlight();
         $search->location = $request->flight_depart;
         $search->destination = $request->flight_arrival;
@@ -46,8 +49,11 @@ class SearchFlightController extends Controller
         $sectors = $sector->doRequest();
         $flights = new FlightAvailability($search->id);
         $response = $flights->doRequest();
-//        dd($response);
-        return view('searchflight',['search'=>$search,'flights'=>$response,'sectors'=>$sectors]);
+        $out = collect($response['out']);
+        $in = collect($response['in']);
+        $flight['out'] = $out;
+        $flight['in'] = $in;  
+        return view('searchflight',['search'=>$search,'flights'=>$flight,'sectors'=>$sectors]);
     }
 
     public function reserveFlight(Request $request){
@@ -66,7 +72,9 @@ class SearchFlightController extends Controller
         if(!$response){
             return view('bookflight',['response'=>$response]);
         }
-
+        event(new TicketTimeExpiredEvent());
+        // $job = (new TicketTimeExpired())->delay(Carbon::now()->addSeconds(90));
+        // dispatch($job);
         $details = [];
         $price = 0;
         if(isset($request->returnflightid)){
@@ -96,60 +104,26 @@ class SearchFlightController extends Controller
         return view('bookflight',['response'=>$response,'details'=>$details,'price'=>$price,'search'=>$search]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function sortFlight(Request $request){
+        $flights=[];
+        if($request->sorttype == 'hightolow'){
+            $outbounds = collect($request->outbound)->sortByDesc('tafare');
+            $inbounds = collect($request->inbound)->sortByDesc('tafare');
+        }
+        if($request->sorttype == 'lowtohigh'){
+            $outbounds = collect($request->outbound)->sortBy('tafare');
+            $inbounds = collect($request->inbound)->sortBy('tafare');
+        } 
+        if($request->sorttype == 'airline'){
+            $outbounds = collect($request->outbound)->sortBy('airline');
+            $inbounds = collect($request->inbound)->sortBy('airline');
+        }
+       
+        $flights['out'] = $outbounds;
+        $flights['in'] = $inbounds;
+        $output = view('sortflight', ['flights' =>$flights ])->render();
+        return response()->json(['output'=>$output]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\SearchFlight  $searchFlight
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SearchFlight $searchFlight)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SearchFlight  $searchFlight
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SearchFlight $searchFlight)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SearchFlight  $searchFlight
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SearchFlight $searchFlight)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\SearchFlight  $searchFlight
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SearchFlight $searchFlight)
-    {
-        //
-    }
+   
 }
