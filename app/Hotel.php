@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Scope\HotelWithRoomScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
@@ -29,6 +30,11 @@ class Hotel extends Model
       'address',
 
    ];
+
+   public static function boot(){
+       parent::boot();
+       static::addGlobalScope(new HotelWithRoomScope());
+   }
 
    public function user() {
    	return $this->belongsTo('App\User','created_by');
