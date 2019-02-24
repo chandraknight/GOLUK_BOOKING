@@ -18,7 +18,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane fade in {{  ($search->return_date != null)?'active':'' }}" id="flight-search-1">
+                        <div class="tab-pane fade  {{  ($search->return_date != null)?'active':'' }}" id="flight-search-1">
                             <form method="post" action="{{route('flight.search')}}">
                                 @csrf
                                 <div class="row">
@@ -79,13 +79,13 @@
                                                 <label>Children</label>
 
                                                 <select class="form-control" name="flight_childs">
-                                                    <option selected>0</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
+                                                    <option {{ ($search->childs == 0)?'selected':'' }}>0</option>
+                                                    <option {{ ($search->childs == 1)?'selected':'' }}>1</option>
+                                                    <option {{ ($search->childs == 2)?'selected':'' }}>2</option>
+                                                    <option {{ ($search->childs == 3)?'selected':'' }}>3</option>
+                                                    <option {{ ($search->childs == 4)?'selected':'' }}>4</option>
+                                                    <option {{ ($search->childs == 5)?'selected':'' }}>5</option>
+                                                    <option {{ ($search->childs == 6)?'selected':'' }}>6</option>
 
                                                 </select>
                                                 @if($errors->has('flight_childs'))
@@ -98,12 +98,13 @@
                                                 <label>Adults</label>
 
                                                 <select class="form-control" name="flight_adults" required>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
+                                                    <option {{ ($search->adults == 0)?'selected':'' }}>0</option>
+                                                    <option {{ ($search->adults == 1)?'selected':'' }}>1</option>
+                                                    <option {{ ($search->adults == 2)?'selected':'' }}>2</option>
+                                                    <option {{ ($search->adults == 3)?'selected':'' }}>3</option>
+                                                    <option {{ ($search->adults == 4)?'selected':'' }}>4</option>
+                                                    <option {{ ($search->adults == 5)?'selected':'' }}>5</option>
+                                                    <option {{ ($search->adults == 6)?'selected':'' }}>6</option>
 
                                                 </select>
                                                 @if($errors->has('flight_adults'))
@@ -116,7 +117,7 @@
                                                 <label>Nationality</label>
                                                 <select class="form-control" name="nationality">
                                                     <option selected value="NP">Nepalese</option>
-                                                    <option value="">Others</option>
+                                                    <option value="US">Others</option>
                                                 </select>
                                                 @if($errors->has('nationality'))
                                                     <span style="color:red">{{$errors->first('nationality')}}</span>
@@ -134,11 +135,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group form-group-lg form-group-select-plus">
-                                            <label>From</label>
-
+                                            <label>Departure</label>
                                             <select class="form-control" name="flight_depart">
-                                                <option selected>Departure</option>
-
                                                 @foreach($sectors as $key=>$value)
                                                     <option value="{{$key}}" {{($search->location==$key)?'selected':''}}>{{$value}}</option>
                                                 @endforeach
@@ -150,12 +148,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-group-lg form-group-select-plus">
-                                            <label>To</label>
+                                            <label>Arrival</label>
 
                                             <select class="form-control" name="flight_arrival">
-                                                <option selected>Arrival</option>
                                                 @foreach($sectors as $key=>$value)
-                                                    <option value="{{$key}}">{{$value}}</option>
+                                                    <option value="{{$key}}" {{ ($search->destination == $key)?'selected':'' }}>{{$value}}</option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('flight_arrival'))
@@ -168,7 +165,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                             <label>Departing</label>
-                                            <input class="date-pick form-control" name="flight_date" data-date-format="yyyy-mm-dd" type="text">
+                                            <input class="date-pick form-control" name="flight_date" value="{{ $search->depart_date }}" data-date-format="yyyy-mm-dd" type="text">
                                             @if($errors->has('flight_date'))
                                                 <span style="color:red">{{$errors->first('flight_date')}}</span>
                                             @endif
@@ -179,14 +176,13 @@
                                             <label>Children</label>
 
                                             <select class="form-control" name="flight_childs">
-                                                <option selected>0</option>
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
+                                                <option {{ ($search->childs == 0)?'selected':'' }}>0</option>
+                                                <option {{ ($search->childs == 1)?'selected':'' }}>1</option>
+                                                <option {{ ($search->childs == 2)?'selected':'' }}>2</option>
+                                                <option {{ ($search->childs == 3)?'selected':'' }}>3</option>
+                                                <option {{ ($search->childs == 4)?'selected':'' }}>4</option>
+                                                <option {{ ($search->childs == 5)?'selected':'' }}>5</option>
+                                                <option {{ ($search->childs == 6)?'selected':'' }}>6</option>
                                                 
                                             </select>
                                             @if($errors->has('flight_childs'))
@@ -199,13 +195,13 @@
                                             <label>Adults</label>
 
                                             <select class="form-control" name="flight_adults" required>
-                                                <option {{}}>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
+                                                <option {{ ($search->adults == 0)?'selected':'' }}>0</option>
+                                                <option {{ ($search->adults == 1)?'selected':'' }}>1</option>
+                                                <option {{ ($search->adults == 2)?'selected':'' }}>2</option>
+                                                <option {{ ($search->adults == 3)?'selected':'' }}>3</option>
+                                                <option {{ ($search->adults == 4)?'selected':'' }}>4</option>
+                                                <option {{ ($search->adults == 5)?'selected':'' }}>5</option>
+                                                <option {{ ($search->adults == 6)?'selected':'' }}>6</option>
                                                 
                                             </select>
                                             @if($errors->has('flight_adults'))
@@ -412,22 +408,17 @@
                     </div>
                 </div>
                 <aside class="booking-filters text-white">
-
                     <ul class="list booking-filters-list">
-
-
-
                         <li>
                             <h5 class="booking-filters-title">Airlines </h5>
                            @foreach($airlines as $airline)
-                            <div class="checkbox">
-                                <label class="">
-                                    <div class="i-check"><input class="i-check" type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>{{ $airline }}
-                                </label>
-                            </div>
+                                <div class="checkbox airline">
+                                    <label>
+                                        <input class="i-check" value="{{ $airline }}" type="checkbox">{{ $airline }}
+                                    </label>
+                                </div>
                                @endforeach
                         </li>
-
                     </ul>
                 </aside>
 
@@ -632,6 +623,25 @@
                     $('.booking-list').show();
                 }
             });    
+        });
+
+        $('.airline').on('click',function(){
+            let air = this.val();
+            alert(air);
+            console.log('dhsjhsdvjhsd');
+            $.ajax({
+                method : 'post',
+                dataType:'json',
+                url:'{{ route('filterflight') }}',
+                data:{outbound: outbound,inbound: inbound,airline:air,_token:'{{ csrf_token() }}'},
+                beforeSend: function(){
+                    $('.booking-list').hide();
+                },
+                success: function(data){
+                    $('.booking-list').html(data.output);
+                    $('.booking-list').show();
+                }
+            });
         });
         
     });

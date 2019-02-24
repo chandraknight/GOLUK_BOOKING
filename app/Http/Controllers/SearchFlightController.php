@@ -33,30 +33,35 @@ class SearchFlightController extends Controller
     public function searchFlight(SearchFlightRequest $request)
     {
 //        dd($request);
-        $flight = [];
-        $search = new SearchFlight();
-        $search->location = $request->flight_depart;
-        $search->destination = $request->flight_arrival;
-        $search->depart_date = $request->flight_date;
-        $search->childs =  $request->flight_childs;
-        $search->adults = $request->flight_adults;
-        $search->nationality = $request->nationality;
-        if(isset($request->flight_return)){
-            $search->return_date = $request->flight_return;
-        }
-        $search->save();
-        session()->put('searchid',$search->id);
-        $sector = new SectorCode();
-        $sectors = $sector->doRequest();
-        $flights = new FlightAvailability($search->id);
-        $response = $flights->doRequest();
-        $out = collect($response['out']);
-        $in = collect($response['in']);
-        $flight['out'] = $out;
-        $flight['in'] = $in;
-        $airlines = $out->pluck('airline');
+        try {
+            $flight = [];
+            $search = new SearchFlight();
+            $search->location = $request->flight_depart;
+            $search->destination = $request->flight_arrival;
+            $search->depart_date = $request->flight_date;
+            $search->childs =  $request->flight_childs;
+            $search->adults = $request->flight_adults;
+            $search->nationality = $request->nationality;
+            if(isset($request->flight_return)){
+                $search->return_date = $request->flight_return;
+            }
+            $search->save();
+            session()->put('searchid',$search->id);
+            $sector = new SectorCode();
+            $sectors = $sector->doRequest();
+            $flights = new FlightAvailability($search->id);
+            $response = $flights->doRequest();
+            $out = collect($response['out']);
+            $in = collect($response['in']);
+            $flight['out'] = $out;
+            $flight['in'] = $in;
+            $airlines = $out->unique('airline')->pluck('airline');
 //        dd($airlines);
-        return view('searchflight',['search'=>$search,'flights'=>$flight,'sectors'=>$sectors,'airlines'=>$airlines]);
+            return view('searchflight',['search'=>$search,'flights'=>$flight,'sectors'=>$sectors,'airlines'=>$airlines]);
+        } catch (\Exception $e){
+            return redirect()->route('welcome')->with('error',$e->getMessage());
+        }
+
     }
 
     public function reserveFlight(Request $request){
@@ -128,5 +133,14 @@ class SearchFlightController extends Controller
         return response()->json(['output'=>$output]);
     }
 
-   
+    public function filterFlight(Request $request){
+        $flights = [];
+        $airline = $request->airline;
+        $outbounds = collect($request->outbound)->where('airline',$airline);
+        $inbounds = collect($request->inbound)->where('airline',$airline);
+        $flights['out'] = $outbounds;
+        $flights['in'] = $inbounds;
+        $output = view('sortflight',['flights'=>$flights])->render();
+        return response()->json(['output'=>$output]);
+    }
 }
