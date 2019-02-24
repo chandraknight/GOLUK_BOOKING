@@ -7,6 +7,7 @@ use App\Domestic\Request\GetFlightDetail;
 use App\Domestic\Request\Reservation;
 use App\Domestic\Request\SectorCode;
 use App\FlightPnr;
+use App\Http\Requests\SearchFlightRequest;
 use App\SearchFlight;
 use Illuminate\Http\Request;
 use App\Events\TicketTimeExpiredEvent;
@@ -29,7 +30,7 @@ class SearchFlightController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function searchFlight(Request $request)
+    public function searchFlight(SearchFlightRequest $request)
     {
 //        dd($request);
         $flight = [];
@@ -52,8 +53,10 @@ class SearchFlightController extends Controller
         $out = collect($response['out']);
         $in = collect($response['in']);
         $flight['out'] = $out;
-        $flight['in'] = $in;  
-        return view('searchflight',['search'=>$search,'flights'=>$flight,'sectors'=>$sectors]);
+        $flight['in'] = $in;
+        $airlines = $out->pluck('airline');
+//        dd($airlines);
+        return view('searchflight',['search'=>$search,'flights'=>$flight,'sectors'=>$sectors,'airlines'=>$airlines]);
     }
 
     public function reserveFlight(Request $request){

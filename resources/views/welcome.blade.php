@@ -138,36 +138,39 @@
                                                         <div class="tab-pane fade in active" id="flight-search-1">
                                                             <form method="post" action="{{route('flight.search')}}">
                                                                 @csrf
+                                                                <input type="hidden" name="flight_type" value="R">
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group form-group-lg form-group-select-plus">
-                                                                            <label>From</label>
+                                                                            <label>Departure</label>
 
                                                                             <select class="form-control" name="flight_depart">
-                                                                                <option selected>Departure</option>
 
                                                                                 @foreach($sectors as $key=>$value)
-                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                    <option value="{{$key}}" {{ (old('flight_depart') == $key)?'selected':'' }}>{{$value}}</option>
                                                                                     @endforeach
                                                                             </select>
+                                                                            @if( old('flight_type') == 'R')
                                                                             @if($errors->has('flight_depart'))
                                                                                 <span style="color:red">{{$errors->first('flight_depart')}}</span>
                                                                             @endif
+                                                                                @endif
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group form-group-lg form-group-select-plus">
-                                                                            <label>To</label>
+                                                                            <label>Arrival</label>
 
                                                                             <select class="form-control" name="flight_arrival">
-                                                                                <option selected>Arrival</option>
                                                                                 @foreach($sectors as $key=>$value)
-                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                    <option value="{{$key}}" {{ (old('flight_arrival') == $key)?'selected':'' }}>{{$value}}</option>
                                                                                 @endforeach
                                                                             </select>
+                                                                            @if( old('flight_type') == 'R')
                                                                             @if($errors->has('flight_arrival'))
                                                                                 <span style="color:red">{{$errors->first('flight_arrival')}}</span>
                                                                             @endif
+                                                                                @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -176,19 +179,23 @@
                                                                         <div class="col-md-3">
                                                                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                                 <label>Departing</label>
-                                                                                <input class="date-pick form-control" data-date-format="yyyy-mm-dd" name="flight_date" type="text">
+                                                                                <input class="date-pick form-control" data-date-format="yyyy-mm-dd" value="{{ old('flight_date') }}" name="flight_date" type="text">
+                                                                                @if( old('flight_type') == 'R')
                                                                                 @if($errors->has('flight_date'))
                                                                                     <span style="color:red">{{$errors->first('flight_date')}}</span>
                                                                                 @endif
+                                                                                    @endif
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                                 <label>Returning</label>
-                                                                                <input class="date-pick form-control" data-date-format="yyyy-mm-dd" name="flight_return" type="text">
+                                                                                <input class="date-pick form-control" data-date-format="yyyy-mm-dd" value="{{ old('flight_return') }}" name="flight_return" type="text">
+                                                                                @if( old('flight_type') == 'R')
                                                                                 @if($errors->has('flight_return'))
                                                                                     <span style="color:red">{{$errors->first('flight_return')}}</span>
                                                                                 @endif
+                                                                                    @endif
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
@@ -196,18 +203,20 @@
                                                                                 <label>Children</label>
 
                                                                                 <select class="form-control" name="flight_childs">
-                                                                                    <option selected>0</option>
-                                                                                    <option>1</option>
-                                                                                    <option>2</option>
-                                                                                    <option>3</option>
-                                                                                    <option>4</option>
-                                                                                    <option>5</option>
-                                                                                    <option>6</option>
+                                                                                    <option {{ (old('flight_childs') == 0)?'selected':'' }} {{(old('flight_childs')?'':'selected')}}>0</option>
+                                                                                    <option {{ (old('flight_childs') == 1)?'selected':'' }}>1</option>
+                                                                                    <option {{ (old('flight_childs') == 2)?'selected':'' }}>2</option>
+                                                                                    <option {{ (old('flight_childs') == 3)?'selected':'' }}>3</option>
+                                                                                    <option {{ (old('flight_childs') == 4)?'selected':'' }}>4</option>
+                                                                                    <option {{ (old('flight_childs') == 5)?'selected':'' }}>5</option>
+                                                                                    <option {{ (old('flight_childs') == 6)?'selected':'' }}>6</option>
                                                                                     
                                                                                 </select>
+                                                                                @if( old('flight_type') == 'R')
                                                                                 @if($errors->has('flight_childs'))
                                                                                     <span style="color:red">{{$errors->first('flight_childs')}}</span>
                                                                                 @endif
+                                                                                    @endif
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
@@ -215,17 +224,19 @@
                                                                                 <label>Adults</label>
 
                                                                                 <select class="form-control" name="flight_adults" required>
-                                                                                    <option>1</option>
-                                                                                    <option>2</option>
-                                                                                    <option>3</option>
-                                                                                    <option>4</option>
-                                                                                    <option>5</option>
-                                                                                    <option>6</option>
-                                                                                   
+                                                                                    <option {{ (old('flight_adults') == 0)?'selected':'' }}>0</option>
+                                                                                    <option {{ (old('flight_adults') == 1)?'selected':'' }} {{(old('flight_adults')?'':'selected')}}>1</option>
+                                                                                    <option {{ (old('flight_adults') == 2)?'selected':'' }}>2</option>
+                                                                                    <option {{ (old('flight_adults') == 3)?'selected':'' }}>3</option>
+                                                                                    <option {{ (old('flight_adults') == 4)?'selected':'' }}>4</option>
+                                                                                    <option {{ (old('flight_adults') == 5)?'selected':'' }}>5</option>
+                                                                                    <option {{ (old('flight_adults') == 6)?'selected':'' }}>6</option>
                                                                                 </select>
+                                                                                @if( old('flight_type') == 'R')
                                                                                 @if($errors->has('flight_adults'))
                                                                                     <span style="color:red">{{$errors->first('flight_adults')}}</span>
                                                                                 @endif
+                                                                                    @endif
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
@@ -233,11 +244,13 @@
                                                                                 <label>Nationality</label>
                                                                                 <select class="form-control" name="nationality">
                                                                                     <option selected value="NP">Nepalese</option>
-                                                                                    <option value="">Others</option>
+                                                                                    <option value="US">Others</option>
                                                                                 </select>
+                                                                                @if( old('flight_type') == 'R')
                                                                                 @if($errors->has('nationality'))
                                                                                     <span style="color:red">{{$errors->first('nationality')}}</span>
                                                                                 @endif
+                                                                                    @endif
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -245,39 +258,42 @@
                                                                 <button class="btn btn-primary btn-lg" type="submit">Search for Flights</button>
                                                             </form>
                                                         </div>
-                                                        <div class="tab-pane fade" id="flight-search-2">
+                                                        <div class="tab-pane fade " id="flight-search-2">
                                                             <form method="post" action="{{route('flight.search')}}">
                                                                 @csrf
+                                                                <input type="hidden" name="flight_type" value="S">
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group form-group-lg form-group-select-plus">
-                                                                            <label>From</label>
+                                                                            <label>Departure</label>
 
                                                                             <select class="form-control" name="flight_depart">
-                                                                                <option selected>Departure</option>
 
                                                                                 @foreach($sectors as $key=>$value)
-                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                    <option value="{{$key}}" {{ (old('flight_depart') == $key)?'selected':'' }}>{{$value}}</option>
                                                                                 @endforeach
                                                                             </select>
+                                                                            @if( old('flight_type') == 'S')
                                                                             @if($errors->has('flight_depart'))
                                                                                 <span style="color:red">{{$errors->first('flight_depart')}}</span>
                                                                             @endif
+                                                                                @endif
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group form-group-lg form-group-select-plus">
-                                                                            <label>To</label>
+                                                                            <label>Arrival</label>
 
                                                                             <select class="form-control" name="flight_arrival">
-                                                                                <option selected>Arrival</option>
                                                                                 @foreach($sectors as $key=>$value)
-                                                                                    <option value="{{$key}}">{{$value}}</option>
+                                                                                    <option value="{{$key}}" {{ (old('flight_arrival') == $key)?'selected':'' }}>{{$value}}</option>
                                                                                 @endforeach
                                                                             </select>
+                                                                            @if( old('flight_type') == 'S')
                                                                             @if($errors->has('flight_arrival'))
                                                                                 <span style="color:red">{{$errors->first('flight_arrival')}}</span>
                                                                             @endif
+                                                                                @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -285,9 +301,33 @@
                                                                     <div class="col-md-3">
                                                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
                                                                             <label>Departing</label>
-                                                                            <input class="date-pick form-control" name="flight_date" data-date-format="yyyy-mm-dd" type="text">
+                                                                            <input class="date-pick form-control" name="flight_date" value="{{ old('flight_date') }}" data-date-format="yyyy-mm-dd" type="text">
+                                                                            @if( old('flight_type') == 'S')
                                                                             @if($errors->has('flight_date'))
                                                                                 <span style="color:red">{{$errors->first('flight_date')}}</span>
+                                                                            @endif
+                                                                                @endif
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group form-group-lg form-group-select-plus">
+                                                                            <label>Adults</label>
+
+                                                                            <select class="form-control" name="flight_adults" required>
+                                                                                <option {{ (old('flights_adults') == 0)?'selected':'' }}>0</option>
+                                                                                <option {{ (old('flights_adults') == 1)?'selected':'' }} {{(old('flight_adults')?'':'selected')}}>1</option>
+                                                                                <option {{ (old('flights_adults') == 2)?'selected':'' }}>2</option>
+                                                                                <option {{ (old('flights_adults') == 3)?'selected':'' }}>3</option>
+                                                                                <option {{ (old('flights_adults') == 4)?'selected':'' }}>4</option>
+                                                                                <option {{ (old('flights_adults') == 5)?'selected':'' }}>5</option>
+                                                                                <option {{ (old('flights_adults') == 6)?'selected':'' }}>6</option>
+                                                                                <option {{ (old('flights_adults') == 7)?'selected':'' }}>7</option>
+
+                                                                            </select>
+                                                                            @if( old('flight_type') == 'S')
+                                                                                @if($errors->has('flight_adults'))
+                                                                                    <span style="color:red">{{$errors->first('flight_adults')}}</span>
+                                                                                @endif
                                                                             @endif
                                                                         </div>
                                                                     </div>
@@ -296,62 +336,36 @@
                                                                             <label>Children</label>
 
                                                                             <select class="form-control" name="flight_childs">
-                                                                                <option selected>0</option>
-                                                                                <option>1</option>
-                                                                                <option>2</option>
-                                                                                <option>3</option>
-                                                                                <option>4</option>
-                                                                                <option>5</option>
-                                                                                <option>6</option>
-                                                                                <option>7</option>
-                                                                                <option>8</option>
-                                                                                <option>9</option>
-                                                                                <option>10</option>
-                                                                                <option>11</option>
-                                                                                <option>12</option>
-                                                                                <option>13</option>
-                                                                                <option>14</option>
+                                                                                <option {{ (old('flight_childs') == 0)?'selected':'' }} {{(old('flight_childs')?'':'selected')}}>0</option>
+                                                                                <option {{ (old('flight_childs') == 1)?'selected':'' }} >1</option>
+                                                                                <option {{ (old('flight_childs') == 2)?'selected':'' }}>2</option>
+                                                                                <option {{ (old('flight_childs') == 3)?'selected':'' }}>3</option>
+                                                                                <option {{ (old('flight_childs') == 4)?'selected':'' }}>4</option>
+                                                                                <option {{ (old('flight_childs') == 5)?'selected':'' }}>5</option>
+                                                                                <option {{ (old('flight_childs') == 6)?'selected':'' }}>6</option>
+                                                                                <option {{ (old('flight_childs') == 7)?'selected':'' }}>7</option>
+
                                                                             </select>
+                                                                            @if( old('flight_type') == 'S')
                                                                             @if($errors->has('flight_childs'))
                                                                                 <span style="color:red">{{$errors->first('flight_childs')}}</span>
                                                                             @endif
+                                                                                @endif
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group form-group-lg form-group-select-plus">
-                                                                            <label>Adults</label>
 
-                                                                            <select class="form-control" name="flight_adults" required>
-                                                                                <option>1</option>
-                                                                                <option>2</option>
-                                                                                <option>3</option>
-                                                                                <option>4</option>
-                                                                                <option>5</option>
-                                                                                <option>6</option>
-                                                                                <option>7</option>
-                                                                                <option>8</option>
-                                                                                <option>9</option>
-                                                                                <option>10</option>
-                                                                                <option>11</option>
-                                                                                <option>12</option>
-                                                                                <option>13</option>
-                                                                                <option>14</option>
-                                                                            </select>
-                                                                            @if($errors->has('flight_adults'))
-                                                                                <span style="color:red">{{$errors->first('flight_adults')}}</span>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
                                                                     <div class="col-md-3">
                                                                         <div class="form-group form-group-lg form-group-select-plus">
                                                                             <label>Nationality</label>
                                                                             <select class="form-control" name="nationality">
                                                                                 <option selected value="NP">Nepalese</option>
-                                                                                <option value="">Others</option>
+                                                                                <option value="US">Others</option>
                                                                             </select>
+                                                                            @if( old('flight_type') == 'S')
                                                                             @if($errors->has('nationality'))
                                                                                 <span style="color:red">{{$errors->first('nationality')}}</span>
                                                                             @endif
+                                                                                @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
