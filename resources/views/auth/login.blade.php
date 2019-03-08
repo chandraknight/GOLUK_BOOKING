@@ -95,7 +95,7 @@
                                 </form>
                             </div>
                             <div class="col-md-4">
-                                <h3 class="mb15">New To Traveler?</h3>
+                                <h3 class="mb15">New To Yatritime?</h3>
                                 <form method="POST" action="{{ route('register') }}">
                                     {{csrf_field()}}
                                     <div class="form-group form-group-ghost form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>

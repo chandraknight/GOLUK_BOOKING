@@ -2,13 +2,13 @@
 <html class="full">
 
 <head>
-    <title>Traveler - Login register</title>
+    <title>Yatritime</title>
 
 
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Template, html, premium, themeforest">
-    <meta name="description" content="Traveler - Premium template for travel companies">
-    <meta name="author" content="Tsoy">
+    <meta name="description" content="Yatritime">
+    <meta name="author" content="yatritime">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- GOOGLE FONTS -->
@@ -54,7 +54,7 @@
                 <div class="bg-img" style="background-image:url({{URL::asset('img/people_on_the_beach_1280x852.jpg')}});"></div>
                 <div class="bg-holder-content full text-white">
                     <a class="logo-holder" href="{{route('welcome')}}">
-                        <img src="{{URL::asset('img\logo-white.png')}}" alt="Image Alternative text" title="Image Title">
+                        <img src="{{URL::asset('img\Yatritime.png')}}" alt="Image Alternative text" title="Image Title">
                     </a>
                     <div class="full-center">
                         <div class="container">

@@ -50,7 +50,7 @@ class SearchFlightController extends Controller
             $sector = new SectorCode();
             $sectors = $sector->doRequest();
             $flights = new FlightAvailability($search->id);
-            $response = $flights->doRequest();
+            $response = $flights->formatResponse();
             $out = collect($response['out']);
             $in = collect($response['in']);
             $flight['out'] = $out;

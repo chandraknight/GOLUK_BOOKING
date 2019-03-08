@@ -412,9 +412,9 @@
                         <li>
                             <h5 class="booking-filters-title">Airlines </h5>
                            @foreach($airlines as $airline)
-                                <div class="checkbox airline">
+                                <div class="checkbox">
                                     <label>
-                                        <input class="i-check" value="{{ $airline }}" type="checkbox">{{ $airline }}
+                                        <input class="i-check" id="airline" value="{{ $airline }}" type="checkbox">{{ $airline }}
                                     </label>
                                 </div>
                                @endforeach
@@ -625,7 +625,11 @@
             });    
         });
 
-        $('.airline').on('click',function(){
+        $('#airline').on('click',function(){
+            console.log('sdckjdd');
+        });
+
+        $('input[type="checkbox"]').change(function(event){
             let air = this.val();
             alert(air);
             console.log('dhsjhsdvjhsd');
