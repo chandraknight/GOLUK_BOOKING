@@ -98,8 +98,8 @@ XML;
         return $formattedResponse;
     }
 
-    public function formatResponse(){
-        $response = $this->tempResponse();
+    public function formatResponse($response){
+//        $response = $this->tempResponse();
         $doc = new \DOMDocument();
         $doc->loadXML($response);
         $xmlArray = XMLSerializer::XMLtoArray($response);
