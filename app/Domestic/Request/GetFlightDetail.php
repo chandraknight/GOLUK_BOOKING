@@ -59,12 +59,12 @@ XML;
             return $details;
         } else {
             $xmlStr = $this->generateBody($id);
-            if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-                $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRQ.txt";
+            if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+                $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRQ.txt";
                 file_put_contents($file,$xmlStr);
             } else {
-                mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-                $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRQ.txt";
+                mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+                $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRQ.txt";
                 file_put_contents($file,$xmlStr);
             }
             $client = $this->createSoapClient();
@@ -73,12 +73,12 @@ XML;
                 return false;
             }
             $response = html_entity_decode($rawresponse);
-            if(is_dir("../app/Domestic/Files/".session()->get('searchid'))){
-                $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRS.txt";
+            if(is_dir("../storage/app/public/Domestic/".session()->get('searchid'))){
+                $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRS.txt";
                 file_put_contents($file,$response);
             } else {
-                mkdir("../app/Domestic/Files/".session()->get('searchid'),0755,true);
-                $file = "../app/Domestic/Files/".session()->get('searchid')."/GetFlightDetailRS.txt";
+                mkdir("../storage/app/public/Domestic/".session()->get('searchid'),0755,true);
+                $file = "../storage/app/public/Domestic/".session()->get('searchid')."/GetFlightDetailRS.txt";
                 file_put_contents($file,$response);
             }
             $details = $this->formatResponse($response);
